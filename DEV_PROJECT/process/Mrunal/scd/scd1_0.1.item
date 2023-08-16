@@ -126,13 +126,15 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;dbo&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Dummy&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;qdimainuser&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:2hh1Dg+z9eyyFvTKWIEXhu3Qjj+NUa8TyhWDox03gnGcZG2nNm8oUZ9y"/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;Products&quot;"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:r7SiCx4NUu5UiqlqeCaEtT/cHP11r8F+fMNkJkZmLd05pBM4inCNHI4q"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_wAZXYDwtEe6vHL-ChQZPrw - Product"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;Product&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT dbo.Products.ProductID,&#10;&#9;&#9;dbo.Products.ProductName,&#10;&#9;&#9;dbo.Products.SupplierID,&#10;&#9;&#9;dbo.Products.CategoryID,&#10;&#9;&#9;dbo.Products.QuantityPerUnit,&#10;&#9;&#9;dbo.Products.UnitPrice,&#10;&#9;&#9;dbo.Products.UnitsInStock,&#10;&#9;&#9;dbo.Products.UnitsOnOrder,&#10;&#9;&#9;dbo.Products.ReorderLevel,&#10;&#9;&#9;dbo.Products.Discontinued&#10;FROM&#9;dbo.Products&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT dbo.Product.ProductID,&#10;&#9;&#9;dbo.Product.ProductName,&#10;&#9;&#9;dbo.Product.Quantity,&#10;&#9;&#9;dbo.Product.City&#10;FROM&#9;dbo.Product&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -147,56 +149,26 @@
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="ProductName"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="SupplierID"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Quantity"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="CategoryID"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="QuantityPerUnit"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="UnitPrice"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="UnitsInStock"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="UnitsOnOrder"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ReorderLevel"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="Discontinued"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="City"/>
       <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="Products" name="tDBInput_1">
-      <column comment="" key="true" length="10" name="ProductID" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+    <metadata connector="FLOW" label="Product" name="tDBInput_1">
+      <column comment="" key="false" length="10" name="ProductID" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="40" name="ProductName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="50" name="ProductName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="SupplierID" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="false" length="10" name="Quantity" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="CategoryID" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="20" name="QuantityPerUnit" nullable="true" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="19" name="UnitPrice" nullable="true" pattern="" precision="4" sourceType="INT" type="id_Object" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="5" name="UnitsInStock" nullable="true" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="5" name="UnitsOnOrder" nullable="true" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="5" name="ReorderLevel" nullable="true" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="1" name="Discontinued" nullable="false" pattern="" precision="0" sourceType="BIT" type="id_Boolean" usefulColumn="true">
+      <column comment="" key="false" length="50" name="City" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
@@ -251,29 +223,29 @@
     <elementParameter field="ENCODING_TYPE" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="DEBUG" value="false"/>
-    <metadata connector="FLOW" label="Products" name="tDBSCD_1">
-      <column comment="" key="false" length="40" name="ProductName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+    <metadata connector="FLOW" label="Product" name="tDBSCD_1">
+      <column comment="" key="false" length="50" name="ProductName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="true" length="10" name="ProductID" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="false" length="10" name="ProductID" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="Column generated by scd editor." defaultValue="" key="true" length="-1" name="Product_key" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="Column generated by scd editor." key="false" length="-1" name="scd_start" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
       <column comment="Column generated by scd editor." key="false" length="-1" name="scd_end" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
-      <column comment="Column generated by scd editor." defaultValue="" key="false" length="-1" name="scd_active" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Boolean" usefulColumn="true"/>
+      <column comment="Column generated by scd editor." defaultValue="" key="false" length="1" name="scd_active" nullable="false" originalLength="1" pattern="" precision="-1" sourceType="" type="id_Boolean" usefulColumn="true"/>
     </metadata>
-    <metadata connector="REJECT" label="Products" name="REJECT">
-      <column comment="" key="false" length="40" name="ProductName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+    <metadata connector="REJECT" label="Product" name="REJECT">
+      <column comment="" key="false" length="50" name="ProductName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="true" length="10" name="ProductID" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="false" length="10" name="ProductID" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="Column generated by scd editor." defaultValue="" key="true" length="-1" name="Product_key" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="Column generated by scd editor." key="false" length="-1" name="scd_start" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
       <column comment="Column generated by scd editor." key="false" length="-1" name="scd_end" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
-      <column comment="Column generated by scd editor." defaultValue="" key="false" length="-1" name="scd_active" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Boolean" usefulColumn="true"/>
+      <column comment="Column generated by scd editor." defaultValue="" key="false" length="1" name="scd_active" nullable="false" originalLength="1" pattern="" precision="-1" sourceType="" type="id_Boolean" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
@@ -287,13 +259,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_fa15ad9a-9b6c-4d61-a154-2b0c7a20b867"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>j97LzdjMQ6FMpCZFLeBzCFY600jnRW0OswgxSH1jvMwgfEW8Q/cGS+5gZSIHc0euDfl81F2biG3K&#13;
-5nDQyoBxvQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_f12ad275-b466-4fb2-b720-6e86de3fd6cd"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>2hiUdQ/i+Uo5XbnAgrwUEDEgoBmJZKhnaJbLdaviuPfp6K1hla7QTyoSG+QCZkjl4kVPO6FbMv95&#13;
-rCUKXNfZRQ==</DigestValue></Reference></SignedInfo><SignatureValue>OVQrI/8TDelad9TbCpZtiEsBgH812MEy3L0Jx5hrbdd7+XtELTKby2IT2ddSau1RHKRU5KuhhhqD&#13;
-sVEv+sLY5tL7CxlR7Q3ucD0AVLjoWs9x2r5I5p/gZx1jodP61jTicltiBOQG6WFs3pXoF+rYoDUt&#13;
-fWkbthvXZT4bsDxNv3sUBkWEcx/Jlh5gOaARp9ssNfZf8qvjlXIOPkK7atK5dbq5oXuSI+xr5FmA&#13;
-3o0xlpHClmywdB4eTnWb8eyo1h9pWplMgXEPf5FfpT/Bhf8Ecj5wvFXtVb2n9xvTO9BXh65P+Xfh&#13;
-GkHTPk/DBtjwC0mXzRYZjcoSnuPVDZWa3IQyfg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_af3c8d99-4cb4-44e1-9d5b-7fedff1b1db4"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>g5nDr1M/tVs4BcWtlND1T1v7hSGem8T5wcnbtLYGbc6FlVHkCBIay9TEUY8C+1hBJk7+tGXYyobQ&#13;
+HL0lkvp5Xw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_31df24c0-7646-4e43-af8b-407f79978b58"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>N5NMzx0ewxrmYWHJ2/BloNjAlzqnUsztphFkUhfQDgmxQskhJ7JYHoyMSE2MuGQnklUVylU9VgEz&#13;
+G6vOFMdyAg==</DigestValue></Reference></SignedInfo><SignatureValue>JD2XEXw4wo3RttMSo6PFPUN3XqVfuicmjU3nz/yZPGDiMVv3w3rdQ2rN2mJxmLU5LVtJgBWp1+Hb&#13;
+O6edEQwpgFh2KJN/Zo8U8bP998onYxQJXsgRrt5rjMpvcSKoXMawxMHLCi3/USwMAMnw6VQrm03S&#13;
+Kn9LomJPlX+FV8MVABKArKqFsjjSJvFXz0cA9Dt2/sjiZmbzdD7PkVyBjY3TUR1VWgg3yElry/nD&#13;
+7u0qEkHarXpVI6rrXWmVhEJnrwpuBdC9uQSRG5WHWHlR0pePZsRXrm6+biCDN3X6KlMjh+ZcaKJ0&#13;
+0GyYEQYEu8DGRIfT+kYuaTiOVaLq2FvVa+NM0w==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -315,4 +287,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_f12ad275-b466-4fb2-b720-6e86de3fd6cd" Target="#_fa15ad9a-9b6c-4d61-a154-2b0c7a20b867"><Timestamp>2023-08-16 13:04:02</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_31df24c0-7646-4e43-af8b-407f79978b58" Target="#_af3c8d99-4cb4-44e1-9d5b-7fedff1b1db4"><Timestamp>2023-08-16 13:08:53</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
