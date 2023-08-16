@@ -107,6 +107,11 @@
     <routinesParameter id="_pPCV8Dv5Ee6j4v6uG-X0AQ" name="TalendDate"/>
     <routinesParameter id="_pPMG-Dv5Ee6j4v6uG-X0AQ" name="TalendStringUtil"/>
     <routinesParameter id="_pPCV-jv5Ee6j4v6uG-X0AQ" name="TalendString"/>
+    <routinesParameter id="_3eHuMDwiEe6S_b_NUPoAOA" name="DataMasking"/>
+    <routinesParameter id="_3jPewDwiEe6S_b_NUPoAOA" name="DQTechnical"/>
+    <routinesParameter id="_3fnjAjwiEe6S_b_NUPoAOA" name="DataQuality"/>
+    <routinesParameter id="_3i78wDwiEe6S_b_NUPoAOA" name="DqStringHandling"/>
+    <routinesParameter id="_3iLu0DwiEe6S_b_NUPoAOA" name="DataQualityDependencies"/>
   </parameters>
   <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="-3" offsetLabelY="3" posX="128" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_1"/>
@@ -178,7 +183,7 @@
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
     <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
-    <elementParameter field="IMAGE" name="PREVIEW" value="_vvk5sDwYEe6HpafsTTuvjA-tMap_1-PREVIEW.bmp"/>
+    <elementParameter field="IMAGE" name="PREVIEW" value="_PcO74DwdEe6HpafsTTuvjA-tMap_1-PREVIEW.bmp"/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" show="false" value="true"/>
     <elementParameter field="CHECK" name="LKUP_PARALLELIZE" show="false" value="false"/>
     <elementParameter field="TEXT" name="LEVENSHTEIN" show="false" value="0"/>
@@ -210,7 +215,7 @@
       <column comment="" key="false" length="20" name="Phone_Number" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables activateCondensedTool="true" activateExpressionFilter="true" expressionFilter="row1.Branch_ID.equals(&quot;A&quot;)" name="BranchA" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row1.Account_Number " name="Account_Number" nullable="true" type="id_String"/>
@@ -260,7 +265,7 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;TALEND_DEMO_MasterBranch&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:g+E6UzHHXqCuGB7AADx2q9GG8vaaSaIbou192Hbty7fOGotUWr6a3vx6"/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;BranchA&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;Parllelization_BranchA&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="DROP_IF_EXISTS_AND_CREATE"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT_OR_UPDATE"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
@@ -372,7 +377,7 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;TALEND_DEMO_MasterBranch&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:HAGv1Avjmq3JA9aFRteS2q0ItjknrmNDoVu9vJT5BY9Insxyqe//GBfm"/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;BranchB&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;Parllelization_BranchB&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="DROP_IF_EXISTS_AND_CREATE"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT_OR_UPDATE"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
@@ -473,28 +478,35 @@
   </node>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tDBInput_1" offsetLabelX="0" offsetLabelY="0" source="tDBInput_1" target="tMap_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="RADIO" name="PARTITIONER" value="true"/>
+    <elementParameter field="RADIO" name="NONE" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <connection connectorName="FLOW" label="BranchA" lineStyle="0" metaname="BranchA" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tMap_1" target="tDBOutput_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="RADIO" name="DEPARTITIONER" value="true"/>
+    <elementParameter field="RADIO" name="NONE" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="BranchA"/>
   </connection>
   <connection connectorName="FLOW" label="BranchB" lineStyle="0" metaname="BranchB" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_1" target="tDBOutput_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="RADIO" name="DEPARTITIONER" value="true"/>
+    <elementParameter field="RADIO" name="NONE" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="BranchB"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+    <elementParameter field="CHECK" name="SUBJOB_DISPLAYED" show="false" value="false"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_cd929382-ae8e-4f6c-be07-558dfd55c615"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>/dLHXZ4t9QF4l6ZKWpryXv/nd9W7HhpFeFVh7WmYeZkueyfmseAYt08E5PvmxlnZuYQEs5S9qeVw&#13;
-PDealW4pYw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_3f41669c-8a95-45a7-8b3f-82205734319d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>7n9G+6/iluPQzh50PXzNcAnEgQ1IhJXC44Rsr3tyduFESuJBhgl+lGrw95Or3X0ZaZyR+Etf6K7S&#13;
-rQNQhLZtbw==</DigestValue></Reference></SignedInfo><SignatureValue>GN/mL0p1/8c5FCJr30U6jr7ugPXO6PR+ej1xfOLEZc+jXclGCjWThRes3nqlaHU0uOk/gPWDDsYG&#13;
-opnLVIWgPwaL2rMctFjBRqztJfCorDJIDmkcLELv9EtexYvkoNNRSyyddK4zCR25/mW4DyhGw5So&#13;
-+DjqkdOFeaYEmNkmaRNMsjZ9ZyJ7b+L2c0AuaqlUDGnxUBgK6hcpSuDZHGRbIVXvoCG1wYU6oPsA&#13;
-ztE/Srd6qPyDRlTR/gixpSRy2WVSFoM4h2tNPXoPojuyUSEYtLxJNTXepByk+xCFALgISWgxp3OO&#13;
-WBo9aFyP8jJca9tIxO8H8WF+Ia6u73Ai7hDVHA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_4394472f-da00-4a7a-81a0-78cc318fdcc1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>PFs8wtpf8EZrWTSWTrR+dOxWFS+xGMS5bF+qAWPHE9J0EI12bcopbhXARkHlpahNVCdosbPSodZj&#13;
+qhUFODP4gg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_d88cd1fa-5b9a-499b-a1e7-7f9bb1c9a9a5"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>QN+g6wJtYHtRDBbekhdYZvMvYMipVF9yxDtqZ1cmAjMgYJIW0bFbvUwvP/TZlriZlMEQwdp73Oi5&#13;
+X+WBzWguGQ==</DigestValue></Reference></SignedInfo><SignatureValue>PLKEp2a/4oZ/QWTw7j6N2EcMrZuhZ7vlUjeihGP1kw8QAU2Zsmx5WWlLPonwCuAxGYp+Mt2cygmT&#13;
+DQlaKPLVsYwmFamZBy51ZIZZZL8qphRCW1munI3eGj443D9gVkOKI6feKDK38dDHTuUqA3n9XNF9&#13;
+0FAEn+N2tW5ieaXHLrImr94nXJ75dRM94iZP2kNt3MKDIcr5Di6d1Sii37daEsyz6UPhzfC8AP2b&#13;
+T/hDnb23v2BGdwC1QXUE6r2b2Y9hPnQBeSj1MQD/AuHlNRrKhy0m0stfJoh/254emCZoonfoIO7j&#13;
+rdHtoS7DZqjJ8tTAQDyfT6tVp/OmPqoSvxTG8g==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -516,4 +528,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_3f41669c-8a95-45a7-8b3f-82205734319d" Target="#_cd929382-ae8e-4f6c-be07-558dfd55c615"><Timestamp>2023-08-16 10:51:44</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_d88cd1fa-5b9a-499b-a1e7-7f9bb1c9a9a5" Target="#_4394472f-da00-4a7a-81a0-78cc318fdcc1"><Timestamp>2023-08-16 10:56:52</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
