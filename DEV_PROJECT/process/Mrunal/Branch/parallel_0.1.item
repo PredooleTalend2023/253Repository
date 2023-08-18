@@ -936,9 +936,12 @@
   </node>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tDBInput_1" offsetLabelX="-11" offsetLabelY="50" source="tDBInput_1" target="tMap_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="NUM_PARTITIONS" show="false" value="4"/>
-    <elementParameter field="TEXT" name="PART_QUEUE_SIZE" show="false" value="200000"/>
-    <elementParameter field="TABLE" name="HASH_KEYS" show="false">
+    <elementParameter field="RADIO" name="PARTITIONER" value="true"/>
+    <elementParameter field="RADIO" name="NONE" value="false"/>
+    <elementParameter field="TEXT" name="NUM_PARTITIONS" value="4"/>
+    <elementParameter field="TEXT" name="PART_QUEUE_SIZE" value="200000"/>
+    <elementParameter field="CHECK" name="HASH_PARTITION" value="true"/>
+    <elementParameter field="TABLE" name="HASH_KEYS">
       <elementValue elementRef="KEY_COLUMN" value="Customer_ID"/>
     </elementParameter>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
@@ -955,21 +958,29 @@
   </connection>
   <connection connectorName="FILTER" label="row2" lineStyle="0" metaname="FILTER" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFilterRow_5" target="tDBOutput_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="DEPART_QUEUE_SIZE" show="false" value="200000"/>
+    <elementParameter field="RADIO" name="DEPARTITIONER" value="true"/>
+    <elementParameter field="RADIO" name="NONE" value="false"/>
+    <elementParameter field="TEXT" name="DEPART_QUEUE_SIZE" value="200000"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
   <connection connectorName="REJECT" label="row4" lineStyle="0" metaname="REJECT" offsetLabelX="50" offsetLabelY="50" outputId="2" source="tFilterRow_5" target="tLogRow_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="DEPART_QUEUE_SIZE" show="false" value="200000"/>
+    <elementParameter field="RADIO" name="DEPARTITIONER" value="true"/>
+    <elementParameter field="RADIO" name="NONE" value="false"/>
+    <elementParameter field="TEXT" name="DEPART_QUEUE_SIZE" value="200000"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
   </connection>
   <connection connectorName="FILTER" label="row3" lineStyle="0" metaname="FILTER" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tFilterRow_8" target="tDBOutput_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="RADIO" name="DEPARTITIONER" value="true"/>
+    <elementParameter field="RADIO" name="NONE" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
   </connection>
   <connection connectorName="REJECT" label="row5" lineStyle="0" metaname="REJECT" offsetLabelX="16" offsetLabelY="50" outputId="2" source="tFilterRow_8" target="tLogRow_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="DEPART_QUEUE_SIZE" show="false" value="200000"/>
+    <elementParameter field="RADIO" name="DEPARTITIONER" value="true"/>
+    <elementParameter field="RADIO" name="NONE" value="false"/>
+    <elementParameter field="TEXT" name="DEPART_QUEUE_SIZE" value="200000"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row5"/>
   </connection>
   <subjob>
@@ -977,13 +988,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_c5b708b2-5a2e-41d1-a75a-54a32a21dc50"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>xuaDrvFE4Hqss1Wsk3E2oiRBynCMSAS7Rf8uSZjCFKi3GQjzacCjJQdek4IOBQvL4wLjA5fSnuWO&#13;
-CNvkr6msyA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_dc995551-9b1e-47a1-b343-0706bf6e536f"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>bg1CRAYGb7sWBq+6IZpKKnB9hHBcyND4j2eAOHlzan+PbBvtpKQpoWeibvPtuAYsWtitXO4RFhBw&#13;
-StRrfAdsSg==</DigestValue></Reference></SignedInfo><SignatureValue>DGQU4xipvZQbEFAt3tmuBGWm8t47gEM/q8+Z3E0JLa0PHuRzgS7z6o8a4EMbHxaMYptB6j4Xb+Qc&#13;
-83UHzT0n4tmqzv0633Is/JfPdjspxMAF50W91+pbjw88FEIGCbn5Nvsh7M8EmwjtNGsiXfSeT+Py&#13;
-RuXRpIl6o9oAgLHzhUGb8KO/KBiZr57CLF0AcWQ6S42QV2u7s/cW0m5+4Rk5R1Q/IiUL/ASJpM/6&#13;
-8sZBpLwqwnh9zVzJUu2rcKlJBi0FpkODfwoE48d5RZ2amnvt2fosoacryJ1i1Ud0PvljTfl2ffn2&#13;
-INjVpLy5lhTmAFM1AaE3be7JBFmomD4fhpcbDw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_71bfee54-ef6f-4f85-9a7b-5b88c12f989f"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>3qdtlGfgaa9drDqM1v7X/0kCqvRmlqc3vompmKrpitStYCaFGYN/PkwFNFdBpVmpU8Ui84du1hBC&#13;
+yC5whJLO4Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_1f063a20-765d-41af-8766-e4fac9bedb57"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>TGuIdHfvf1dVQqePEbS459V51+aESkRWXCYppTYw8oBpQ03udKK5lZCy8I9wZrcKzppunYCPo9+c&#13;
+H138wV3m4g==</DigestValue></Reference></SignedInfo><SignatureValue>loObJVggP9pqtWh3FTlvc0lV4m51ZpEf84xTbgBfhWi5xb6GFV7gM7TaWCgwUfViBbJSDeor9D/k&#13;
+ihj6Zwh+hbNTgjq2xJnM4FS0p+FN8mhlkaYgQ9d3uiW3rLTIzgYRqZn0FbIfxwDhfxfQTJTwxwV8&#13;
+E4FQL3+xXS/rV09zVO2Vd1NKLxbOmlUCCsH1JqOSX53mlMDIzIAQ6Vp5AebONEEdawYxWaAwLjn+&#13;
+9DLOSL8IStLwM0YGdNZ5gW6bS4Dfoyzb0ePUhieixG2GQmZqVZXn9gDVNeN22qfHItVKNqrOLXJH&#13;
+RYiymWFecdhYB08kVqtaL1OMk0kuDefXSQh2uw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1005,4 +1016,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_dc995551-9b1e-47a1-b343-0706bf6e536f" Target="#_c5b708b2-5a2e-41d1-a75a-54a32a21dc50"><Timestamp>2023-08-18 08:40:11</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_1f063a20-765d-41af-8766-e4fac9bedb57" Target="#_71bfee54-ef6f-4f85-9a7b-5b88c12f989f"><Timestamp>2023-08-18 08:40:47</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
