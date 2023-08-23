@@ -113,7 +113,7 @@
     <routinesParameter id="_pPMG-Dv5Ee6j4v6uG-X0AQ" name="TalendStringUtil"/>
     <routinesParameter id="_pPCV-jv5Ee6j4v6uG-X0AQ" name="TalendString"/>
   </parameters>
-  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="160">
+  <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_1"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
@@ -126,7 +126,7 @@
     <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;BikeStores&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;talend&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:PO1ih6AMD3kqhvvqJ3TyWmj0LUx38K/QeJK26awkKpmkD3nDFEo="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:hTBCFnu5ZVBGU4DIHk4G9qfosyBWugQa5ezTNTIDjHLeBrvDlp8="/>
     <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_HkvH0EGGEe6UysSrJjFATg - emp"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Master_branch_table&quot;"/>
@@ -134,7 +134,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT Master_branch_table.id,&#10;&#9;&#9;Master_branch_table.name,&#10;&#9;&#9;Master_branch_table.city&#10;FROM&#9;Master_branch_table&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT Master_branch_table.Customer_ID,&#10;&#9;&#9;Master_branch_table.Customer_Name,&#10;&#9;&#9;Master_branch_table.Branch_ID,&#10;&#9;&#9;Master_branch_table.Email,&#10;&#9;&#9;Master_branch_table.Area,&#10;&#9;&#9;Master_branch_table.Phone_Number,&#10;&#9;&#9;Master_branch_table.Account_Type,&#10;&#9;&#9;Master_branch_table.Account_Number,&#10;&#9;&#9;Master_branch_table.Balance&#10;FROM&#9;Master_branch_table&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -354,21 +354,11 @@
   </node>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tDBInput_1" offsetLabelX="0" offsetLabelY="0" source="tDBInput_1" target="tDBOutput_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="RADIO" name="PARTITIONER" value="true"/>
-    <elementParameter field="RADIO" name="NONE" value="false"/>
-    <elementParameter field="TEXT" name="NUM_PARTITIONS" value="3"/>
-    <elementParameter field="TEXT" name="PART_QUEUE_SIZE" value="25000"/>
-    <elementParameter field="CHECK" name="HASH_PARTITION" value="true"/>
-    <elementParameter field="TABLE" name="HASH_KEYS">
-      <elementValue elementRef="KEY_COLUMN" value="id"/>
-    </elementParameter>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tDBOutput_1" offsetLabelX="0" offsetLabelY="0" source="tDBOutput_1" target="tDBOutput_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="RADIO" name="DEPARTITIONER" value="true"/>
-    <elementParameter field="RADIO" name="NONE" value="false"/>
-    <elementParameter field="TEXT" name="DEPART_QUEUE_SIZE" value="25000"/>
+    <elementParameter field="TEXT" name="DEPART_QUEUE_SIZE" show="false" value="25000"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
   <subjob>
@@ -376,13 +366,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_da7c0783-400f-4bf9-a5e0-a652b83387bb"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>FmWQ/kKbMnHND6Zasut6Y40LdpWScOeBGc8Oi1+bE06CmUt0mt7Ze3e15xbwWVwLYfZ6SQaH7Ezv&#13;
-95kgnIiWTw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_2338f86a-7576-4122-89e0-64fe77e246b8"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>/7q+MUbPGlEjYVYhVQqPSSnoHq+DmzwGmFmrGDd/4Sma0CUFODjHLpRpsYRZmEr/9cz7YDTFEsFU&#13;
-aTn+iL17ZA==</DigestValue></Reference></SignedInfo><SignatureValue>fUUlWaCvWJwnA/J5stQr/WP/dEbbfExu2F6qEM45xujZcLD/BxujW0sb1ZHkTMEiBG+EXGzuKeic&#13;
-6z/yjK1h2jAbhtqKPoBldi/CApznaegxqZ5wkpHbfPtQyaCL6GLULSJUJsPhQijmAIAhL3Rk1hWi&#13;
-OX8CcFUkJqam3p8727RAyhww0UwbF5Tua9Os75zEt+zO3MVuXzNl1fkwQekKJIcNtN8NdnUNrgcN&#13;
-tTEAU3X0BFgVoCvaBzHxjYKpeTZVy0bR9yCJGK8r8U7JFf5o9eDAwhRV++vH05C4tbfr1cAOdOBw&#13;
-citfXCZQkvW4j7L/2IdXnvIbBn9//REvG0P1zw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_8d2b7bac-079e-4d3a-8b17-7f2e1a5e559f"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>q+8JPEQ11bTiSvXPRtlqtB1vhnT1p7TxD5wW56rdLPftSnU4vQTS4aPegTZRL35TQK0ZXZ78+4gG&#13;
+pOaPtU6Jkw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_1a2c7430-2df1-4dbd-8e90-1bd8cc144718"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>l4pAWX0Gcvu/CvibaHTYvH35HGWbf4IttVi3TjNL9NIh9ShVK3sgiF9UZEUfmhEUUVD6VHMfInRQ&#13;
+HMv/1ZiYDQ==</DigestValue></Reference></SignedInfo><SignatureValue>ovohCP/RxReTKS0d67Ep0/8ydlxEiLtd9sRamC8OlqF1447saC3ZxB94elRjHvyri5nptJmtE0CK&#13;
+28aAph4jit99xbsYn/LpHIvKndTLWgGGasyDz9+99emPLGXnJhUHv/rkyGtqQArVxePdBLZ9+J4+&#13;
+8+6ef1PrtRO8CTMbCIrnbkAKSWQqVtiWGH3jpfwDvakYnMhnd7oyLkL4n+O7p6r3piGWOQ12bUVM&#13;
+oeix5w0lVuB+SEH1nZ8ZLAVOTUoEECMo02jLzqTmEyeDMll0dlHFKpLWbwqOa/5hL7oUjMLsCG3E&#13;
+WpgP/6cq6dlpUebmEnE/kTsW4ijfqTLH9qaQ3A==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -404,4 +394,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_2338f86a-7576-4122-89e0-64fe77e246b8" Target="#_da7c0783-400f-4bf9-a5e0-a652b83387bb"><Timestamp>2023-08-23 11:10:09</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_1a2c7430-2df1-4dbd-8e90-1bd8cc144718" Target="#_8d2b7bac-079e-4d3a-8b17-7f2e1a5e559f"><Timestamp>2023-08-23 11:14:02</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
