@@ -413,7 +413,7 @@
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:5Q6kKZEA9FFzMOHvbMNMleZ2+m96Z58iGWlixQ17pZQ4hkSmNMMWRzuN"/>
     <elementParameter field="DBTABLE" name="TABLE" value="((String)globalMap.get(&quot;City&quot;))"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="DROP_IF_EXISTS_AND_CREATE"/>
-    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT_ON_DUPLICATE_KEY_UPDATE"/>
+    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="UPDATE_OR_INSERT"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -467,23 +467,23 @@
     <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
     <elementParameter field="CHECK" name="ON_DUPLICATE_KEY_UPDATE" show="false" value="false"/>
     <elementParameter field="TABLE" name="DUPLICATED_KEYS" show="false"/>
-    <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" show="false" value="false"/>
+    <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="metadata" name="tDBOutput_1">
-      <column comment="" key="true" length="2" name="id" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="19" name="product" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="10" name="seller" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="12" name="product_type" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="location" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="5" name="unit_price" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="3" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="true" length="2" name="id" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="product" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="LINESTRING" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="seller" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="LINESTRING" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="12" name="product_type" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="LINESTRING" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="8" name="location" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="LINESTRING" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="5" name="unit_price" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" label="metadata" name="REJECT">
-      <column comment="" key="true" length="2" name="id" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="19" name="product" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="10" name="seller" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="12" name="product_type" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="8" name="location" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="5" name="unit_price" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="3" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="true" length="2" name="id" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="product" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="LINESTRING" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="seller" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="LINESTRING" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="12" name="product_type" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="LINESTRING" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="8" name="location" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="LINESTRING" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="5" name="unit_price" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
@@ -514,13 +514,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_63240c11-91d6-468a-b941-c309cd5521d5"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>6JuMeBPGEmHIAEBIOTUMeH7AJxf1DhciCGB2YGmxcXSX72YOPpBGJ80jITusU59Sx5lIymUmtt55&#13;
-LAeFm2HJSw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_022dfe0c-8db2-4b58-866a-c46e6896d4d4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>2HlwHGUgSRF3ksKiL+6SPNwRwsmt8fnL2z+llUCgpbvIw/iSs2Y5ggz/H0mydQf8mbIRGbuoM+TT&#13;
-W5GNH8mYUQ==</DigestValue></Reference></SignedInfo><SignatureValue>KmjNsnj71dGjHFMfQZxf5H/0Fxd5c4seEGzCk6l39aYfeqHKZVZFNVLDw75Fc5Fh3vkXU6x43BVp&#13;
-lOOFKckWg0dGbTlkCkSrG+lgLgs9lW0ECnRsQ2hZfdQRe2/omQXrIsbFz2a4rGie6c09DCLRnE4C&#13;
-++doNsvWaXJhwc67LabOVSDWGnxHpLe2QK+1poeg2Qng++xS69rsnBHEf5MKo9UtObAk/4T+covG&#13;
-Pvd6kDo3NxwdVcMq9nkrppEWvGhyxdmyd2LZTfIUQ4/OUwk/ngFwLBndjffWykEJVdCu2QMyCOLz&#13;
-M64VgW5t4qac7AFAVVzvByyLupsAfnQRKDjMrg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_645530da-30c4-44a7-9d3b-296c9fb6fd40"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>262Q4Jev28WMCAHIPNEtYLx1QrvQGYZThj6Qa2HCnPgPjZZK9WAhICQl4Lhuu7LpqDH7SFbW0DND&#13;
+/8iJ6APAiQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_c6c205b4-22ee-4d4f-b0a5-8dbfac1b3afc"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>SMFkq32EvLIPnEUhJGVCGkc4q9Sy1wXQ5B6/COpijSm/JZYZex6O3naFOzMBataZCgEBDwlx+Dc2&#13;
+e2dtuhayug==</DigestValue></Reference></SignedInfo><SignatureValue>R2uDvqpV4+jSXQUKfBldUxH176zaPaksZOhXYT1n8puPec0GapBgqs9RiyUsKoX8ygIUfMfokTHk&#13;
+JQRLS738icLBGqx7FTFmk5SlGcmKUmAwAZE83Ra6YpNEj99UVrbmdz8+6yvjFoanscmoguiuNncj&#13;
+Z4j0bce8vyFDqpxGQczs0cNv+R9GZdrIQnMuuxAr6iU45wvGF/x/QiX/kbEvoq+5DJrgY954LfOA&#13;
+pi0ErLo9Fun5qeGcVhTt+k73lAmBWKGSgnkbDgK+27wIscqTkP99UpyN/wAUa7h7aOlKcDVHPi+a&#13;
+B+jVrLfzbzW2bBCHjfgQSkk6L6xSgJryhKdx9Q==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -542,4 +542,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_022dfe0c-8db2-4b58-866a-c46e6896d4d4" Target="#_63240c11-91d6-468a-b941-c309cd5521d5"><Timestamp>2023-08-24 12:07:28</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_c6c205b4-22ee-4d4f-b0a5-8dbfac1b3afc" Target="#_645530da-30c4-44a7-9d3b-296c9fb6fd40"><Timestamp>2023-08-24 12:08:42</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
