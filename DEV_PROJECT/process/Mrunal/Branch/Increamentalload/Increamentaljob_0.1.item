@@ -365,12 +365,14 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Dummy&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;qdimainuser&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:WqtSy8cvDsgez6VzELfMgEAf1NyWpU3t2lVw46tpHrft/2ep2ZPQXN+G"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_wAZXYDwtEe6vHL-ChQZPrw - etlcontrol"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;etlcontrol&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT dbo.etlcontrol.product_id,&#10;&#9;&#9;dbo.etlcontrol.product_name,&#10;&#9;&#9;dbo.etlcontrol.price,&#10;&#9;&#9;dbo.etlcontrol.created_at,&#10;&#9;&#9;dbo.etlcontrol.modified_at&#10;FROM&#9;dbo.etlcontrol&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT dbo.etl_control.job_id,&#13;&#10;&#9;&#9;dbo.etl_control.Job_name,&#13;&#10;&#9;&#9;dbo.etl_control.table_nanel,&#13;&#10;&#9;&#9;dbo.etl_control.last_success&#13;&#10;FROM&#9;dbo.etl_control&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -381,35 +383,30 @@
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
     <elementParameter field="TABLE" name="TRIM_COLUMN">
-      <elementValue elementRef="SCHEMA_COLUMN" value="product_id"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="job_id"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="product_name"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="job_name"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="price"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="table_name"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="created_at"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="modified_at"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="last_Success"/>
       <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="products" name="tDBInput_2">
-      <column comment="" key="true" length="10" name="product_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+    <metadata connector="FLOW" label="etlcontrol" name="tDBInput_2">
+      <column comment="" key="true" length="10" name="job_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="255" name="product_name" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="255" name="job_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="price" nullable="false" pattern="" precision="2" sourceType="DECIMAL" type="id_BigDecimal" usefulColumn="true">
+      <column comment="" key="false" length="255" name="table_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" defaultValue="'getdate()'" key="false" length="23" name="created_at" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" defaultValue="'getdate()'" key="false" length="23" name="modified_at" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+      <column comment="" key="false" length="10" name="last_Success" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
@@ -552,13 +549,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_cf20193c-7ac1-4a4e-a2ca-c9b849fce363"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>nLrsGHZjFjHpe3TzhLuS2FG5m7/zLgzPiLgm9zDDnGeQ+CdCiJOeONxpN2EGUfCeHwYar15S9BtR&#13;
-ZzKQdL89LA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_37e884e5-fbcc-4046-a4c6-5d6483399a5c"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ggJVKaR/4cGETAXNnEyKvrvlbAFBmq2ytkMTltR0PJx9k7S1DrFeb9jd5WzWr6X+jY/sAnchMjqz&#13;
-2HFrXC5vQw==</DigestValue></Reference></SignedInfo><SignatureValue>CJ1vGiUzyIauNkwYmI8EaUWCBJpF35Hr8ZZsffYfOhcimkkkg8BLVoYkULwBcSPF41FqOWeN6okr&#13;
-lEMhoH5aJs9Auy2/UunViHzxg/Gi5z27RyuOxn5spyq5J/eR1cff6RwbcnwYs5hHErcki/vCIf9z&#13;
-3SpQizglRTwqWnI57TkBPzuBbO4VfQXXDWy9MRrJn2IT34TM+VfQgdc6sxUK/gE+X3K3xhZ5CNSy&#13;
-+PhW4hAjlhxoOVYhKCYS2BCmzoHuEonmi5Bh8P6FPRCkT/ArYZ8GTR972tRgW+PaYuXP9+gbqOFX&#13;
-Vo+fNTOBu2OArdNrTulu9DKb5NBxD1OkZ4WQdg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_78ef21d1-511a-4670-b402-b704c26605d6"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>eiO1WqNxVDHbN8d/GkJcNWOW1gvHQvwkGVdtpWlVXAZxWqcph0p4eiwMsm/hIIqBc3GZhVWy8Ikq&#13;
+8Xwi7iOYnQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_4a80db1e-fb0e-41d2-9dd0-1aa6a32778f4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>W1MrnKcFJF6+kI1kF5oyCxGVznncfRQlcM6J55XdhNZsbz8/PGvVSEI1jQK1hD/3CuT4r1W1VHgO&#13;
+zIA6iCaP9A==</DigestValue></Reference></SignedInfo><SignatureValue>joRRGub6eA1ATsxTIS3zTREaCjKbpEUcz1w4b3ZspZed035LmeEe9VOwgqS40xym8kaIQXtzupC8&#13;
+RAlWIykpHW8FVlCQVGdgRwasYGekElK0qNCchZK8v9yKkvn6ofiYUMJzLxhumH06YF/7Ui9F+xps&#13;
+gqi7lpBw8EIkY1xdLNrRK7RKXiIpvq5nWocH4HFp2L7J86TU0TLvKUx5N52pWCZep2XqqeN0s5Zj&#13;
+Sy2DwUAN+cVWz1FS/TeXyFwXqV0ZBuh5vfVM22YXfVt9MCrurG5CFW4/3+zFawU7T3uf8nT03omU&#13;
+8+V6yarmC6Uwbgj6WWid3uhylxnnCxFjygFRPQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -580,4 +577,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_37e884e5-fbcc-4046-a4c6-5d6483399a5c" Target="#_cf20193c-7ac1-4a4e-a2ca-c9b849fce363"><Timestamp>2023-08-25 08:43:28</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_4a80db1e-fb0e-41d2-9dd0-1aa6a32778f4" Target="#_78ef21d1-511a-4670-b402-b704c26605d6"><Timestamp>2023-08-25 08:55:14</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
