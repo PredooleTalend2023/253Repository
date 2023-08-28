@@ -347,14 +347,12 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;dump&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;qdimainuser&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:f9EkTrwOes3DUUaWE5pKnPhHMKlcHyxpSx/kW5SDCcTG9zbinu5vSD70"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_gpW8sEGjEe6HN-vTwi6_QQ - test2"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;test2&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT dbo.test2.\&quot;id\&quot;,&#10;&#9;&#9;dbo.test2.name,&#10;&#9;&#9;dbo.test2.created_on&#10;FROM&#9;dbo.test2&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select top (1) MAX(created_on) as created_max,created_on from [dump].[dbo].[test2]&#13;&#10;  group by created_on&#13;&#10;  order by created_max desc &quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -365,9 +363,7 @@
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
     <elementParameter field="TABLE" name="TRIM_COLUMN">
-      <elementValue elementRef="SCHEMA_COLUMN" value="id"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="name"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="created_max"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="created_on"/>
       <elementValue elementRef="TRIM" value="false"/>
@@ -376,21 +372,14 @@
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="test2" name="tDBInput_2">
-      <column comment="" key="true" length="10" name="id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="255" name="name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="23" name="created_on" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
+    <metadata connector="FLOW" name="tDBInput_2">
+      <column comment="" key="false" length="23" name="created_max" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="23" name="created_on" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_2"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.last_run = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, input_row.created_on);&#10;context.created_on = TalendDate. formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, TalendDate.getCurrentDate());&#10;&#10;System.out.println(&quot;Last Success : &quot; +context.last_run);&#10;System.out.println(&quot;Current Run  : &quot; +context.created_on);"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.last_run = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, input_row.created_max);&#10;context.created_on = TalendDate. formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, TalendDate.getCurrentDate());&#10;&#10;System.out.println(&quot;Last Success : &quot; +context.last_run);&#10;System.out.println(&quot;Current Run  : &quot; +context.created_on);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_2"/>
@@ -441,13 +430,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_eeb2c184-225c-4d23-9ece-9008cd7c3891"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>MsX6sO9DCTVy4x4ouJdc33AgqDvp6TJGO1LSx4RiRdisebbJApt1U19DUJ9UN8QMrR+HQBg9SaOl&#13;
-UIobZG9jZQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_10e71fd0-d46b-4ad2-8efb-43c7b6ac4069"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>4I3K9qgznqg5CDThY+dzDWui5ApEAHIcHEgqHyVrkSk2ooLFzxbqwBCcVr45fLRsW9oZxi4oM+Mf&#13;
-oGTg3D01rA==</DigestValue></Reference></SignedInfo><SignatureValue>dJ8QcOWMAexT+AvA7d0oMd83PZOb/rMEO44sseJHM1EmhRUnGwpLrBG8kBNrvPx/YqzBLSsCVYqr&#13;
-ClukBZ2H+9OonQQPj+F9n/hsdqx5IhW8serRoT2S05Ormwj3rOGNZ/KEDUty7Zvm1riE03eH8/PB&#13;
-C1dVwt5rH2uW89IcC6wHS5JJZM8wRbeBnLV38HcBI/uefqE0FRkzn9RiUo2AwoAJXUGgmm0UpKxs&#13;
-fcjYlXXVhCjNWBdcB784br3yOyNdj1qSCYB4H3hKue+GXTUilD3G6+W7koycUza9xkuLhD8R0IE+&#13;
-CnzDRT2iTHOXLlSCqBgmZUW7C9X+1fW6h5YVfA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_2dc1cca1-797a-45b8-80b4-8dd06032cfd1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>zae2/RvVloEbGhsgYM4vvfc8bu2/u8Elw1WB6V09srmF8h4SIOiZzPRG8vJEfjskBgeurYu89hUv&#13;
+iQlp13r94w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_1e0da59e-8795-4bc6-bf85-39a1c8aae4de"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>AZ455oDRTrY9O+ujbRXjCq5YZJUOgRlAhejE4CiYCgpSf+6y6kNiEfC0GnAVsurEUQmtM8yxl3t1&#13;
+NA19VOP8wQ==</DigestValue></Reference></SignedInfo><SignatureValue>dJWiayoSSHwT9b6CPdt+YPDXf9lK+aN2ZEzBW/5SsO7V0dneCAyr5CzpcqnfEMeGtwP/Kx0cz3iB&#13;
+A9fa/EuL+idHdf7DGqPHLjPLAjlsl8bJYeoJrXT7lA8XWXwkhdfniHSBqe3Lsw5xOLGvxXsB0JWA&#13;
+sUl6DltkBVZNeE58aaaXBMCC9t7aAJTY7pzgYgTKYuSoQ9yScfq8aJJKZda9ZQbTsa4tmMofFBy0&#13;
+REkOcWmSgAviG2Z+P7tlocY4mD2ymN0qa1k9iehFkGz1L2fwYp/GqE8NEP6Ezums5Hhl5qe8x2Ln&#13;
+6s8i9fvBoiDkJdiDTqbz8cRDcz2adtVSe6h0kg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -469,4 +458,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_10e71fd0-d46b-4ad2-8efb-43c7b6ac4069" Target="#_eeb2c184-225c-4d23-9ece-9008cd7c3891"><Timestamp>2023-08-28 09:31:08</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_1e0da59e-8795-4bc6-bf85-39a1c8aae4de" Target="#_2dc1cca1-797a-45b8-80b4-8dd06032cfd1"><Timestamp>2023-08-28 09:45:25</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
