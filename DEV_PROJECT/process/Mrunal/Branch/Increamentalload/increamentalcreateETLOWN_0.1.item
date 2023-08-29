@@ -327,8 +327,6 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Dummy&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;Talend&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:3/M9XChg+RbdM39HoB47qi0yTvqs/tTNxf7BD62M6pc783PmfFwAF0wJ"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_ERfNEEVlEe6R9tsMJATLwQ - ETL"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;ETL&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
@@ -375,7 +373,7 @@
       <column comment="" key="false" length="255" name="message" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="19" name="duration" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+      <column comment="" key="false" length="19" name="duration" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Long" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="23" name="moment" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true">
@@ -492,12 +490,12 @@
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="message"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="duration"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="duration"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="message_type"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
@@ -514,21 +512,21 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBOutput_2">
       <column key="false" length="0" name="moment" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="0" sourceType="" type="id_Date" usefulColumn="true"/>
-      <column key="false" length="20" name="pid" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column key="true" length="20" name="pid" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column key="false" length="50" name="project" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column key="false" length="255" name="job" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column key="false" length="255" name="job_repository_id" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column key="false" length="255" name="message" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="8" name="duration" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column key="false" length="255" name="message_type" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" name="REJECT">
       <column key="false" length="0" name="moment" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="0" sourceType="" type="id_Date" usefulColumn="true"/>
-      <column key="false" length="20" name="pid" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column key="true" length="20" name="pid" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column key="false" length="50" name="project" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column key="false" length="255" name="job" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column key="false" length="255" name="job_repository_id" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
-      <column key="false" length="255" name="message" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="8" name="duration" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column key="false" length="255" name="message_type" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
@@ -577,13 +575,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_427f424a-156b-4b74-8902-f3194e54dfa2"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>khAXlbeFUtSSbN5cKCuU3Igx3oAgr+5i2PmxS9w3mcqtprTB4Nb5mx+DxorUqWc87+4GsV2fXT5D&#13;
-L2RZB8xAlg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_26a20521-3fd2-4e8c-a1bf-45e5b9feeda7"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>IwS1C/D48O4PN5ZUprJa2TPTkzhRVzrpJglwGKNaEsmN4OulyF0LoIbtrif/EiwdsD83G1fV+F0d&#13;
-5z+N4nEbsQ==</DigestValue></Reference></SignedInfo><SignatureValue>cfymAylzWWsPLt7TcjWHoQzMZ37xmIPnFtLzU9nz/VBJO5jLrRR1hFsknlF4ah+ABce/42XgnP4s&#13;
-R/8rAiwh+EwyVxAkJfG0Xa9SJE1tvqq2NUJUgfYNm6e06I13OTEdAOSIdsN+Ioi4PJqfgDFswtyN&#13;
-LiG+N16JwrPhe2h53vGxUZxc3CuOwY71/CbkYKkA+ERgSgzADXlqiObiYhjiZJ1fwd3FkYruM0FH&#13;
-Hg3/3RF3zZhbD7vbIq+TqXHcCSzwxHiua6SLY9rR3AORu7GJPslg6qWyLT3MeBzIBeWjVxjcows6&#13;
-0WZKVrm8faG0xk9h1vK5BlgWtOSUykPq78axqA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_a709446b-041c-4bc5-9f96-bfcf9c74f57a"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Ugn/5yVGDNoqpfFdPSumioqSVG1zo5aC3zAdjk2o/4FtbJ2yosCqKZzLnGnSCHa+WACFtXwkhYj6&#13;
+K5Ze4NvUQA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_6a9d5968-b49c-4246-befb-f6d8531c5def"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>85Uc8fiCP51wU/snBOATIorlzu285+4tSkOksKDIzRt7nFtXml7wqYoMyt5hqGVa0pYJ5zcy/rXo&#13;
+cXsiLd8cAA==</DigestValue></Reference></SignedInfo><SignatureValue>SyYqK4WVhVo8UX/74ucCU7wvxrTqCZqmrdC/0g2BHYXVMla4FCHYLXAyjYWv0Y92NnkMgwMexSJE&#13;
+fCb39Gjle8LID677e9Zb5jfG29PwC5kSgJklOFfoPu6YpBqcGVBtlb4W8/E++Iup3/3eJcdLaYk6&#13;
+aXkea+y0KEqAXffXB2PK6HBvDD3mbnz/KelFvc5dmX8dbFxDb/X9Y4vSjutYL8A0r0P0Q/mxJdZb&#13;
+geaZS8YK5j/bgrgoxabLyEInMFQb8bw4L1H7Z4WGnPrp2zH3Y+Sr0CCc4U8AyPjcLPB7yKNGXqoZ&#13;
+xdZ1qS0Z6NKFcmgbRz2MK/2cQpxFVKZpB0gOsQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -605,4 +603,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_26a20521-3fd2-4e8c-a1bf-45e5b9feeda7" Target="#_427f424a-156b-4b74-8902-f3194e54dfa2"><Timestamp>2023-08-29 07:42:07</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_6a9d5968-b49c-4246-befb-f6d8531c5def" Target="#_a709446b-041c-4bc5-9f96-bfcf9c74f57a"><Timestamp>2023-08-29 08:52:36</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
