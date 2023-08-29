@@ -221,7 +221,7 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;talendtest&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:TtGXI9p67tPPtGGyUazmTebLiBUHAkuq3J1aSl9CFixT0ybYyjY/GXLn"/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;products_without_inc&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;products_details_inc&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="CREATE_IF_NOT_EXISTS"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT_OR_UPDATE"/>
     <elementParameter field="TECHNICAL" name="SCHEMA_REJECT:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
@@ -381,9 +381,22 @@
     <elementParameter field="MEMO_JAVA" name="CODE" value="&#10;context.Last_Success=TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,input_row.UpdatedOn);&#10;context.Current_Success= TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,TalendDate.getCurrentDate());&#10;context.delete_sql=&quot;delete from prodlog where UpdatedOn='&quot; +context.Last_Success+ &quot; ' &quot;;&#10;&#10;&#10;System.out.println(&quot;Last Success: &quot;+context.Last_Success);&#10;&#10;System.out.println(&quot;Current Success: &quot;+context.Current_Success);&#10;&#10;System.out.println(&quot;Delete Sql: &quot;+context.delete_sql);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJavaRow_1">
-      <column comment="" key="false" length="19" name="created_at" nullable="false" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="19" name="modified_at" nullable="false" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+    <metadata connector="FLOW" label="prolog" name="tJavaRow_1">
+      <column comment="" key="false" length="10" name="product_id" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="product_name" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="price" nullable="false" pattern="" precision="2" sourceType="DECIMAL" type="id_BigDecimal" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="30" name="Operation" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="23" name="UpdatedOn" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
     </metadata>
   </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tDBConnection_1">
@@ -421,13 +434,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f0ec27b6-8863-4986-adcb-3461dbf4e611"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>7ALkA+hIZg+q6K6Qe4ar9NplFoRw8NQUWUqXVm/pNuwphCYWPFlG1Q4/qTBlTooIk8R6iNXl/wo6&#13;
-0NmfcaUltQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_0d1537ea-127d-4d98-8ed0-54e08d7b3749"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Vt69p74FYkpkdeZB10YwqQXOmO7sjTBeXJYEl71O7ncbMI3Fr+iqTJwmdR/wZqsXfedWy21Sed3Q&#13;
-5hYvhERo8g==</DigestValue></Reference></SignedInfo><SignatureValue>eBm6HHUn3KMwaNNq6KGX7KzbBZxHY6WwFulgT24ImLDgbQWUQFPEedDtwWOWSlX6fIXRW1qW+HiM&#13;
-GzFtyEKh8PfwCiFBG0V1JbWt8UYVTZDEM/DsxE9C6mj7x6rB1IYDrqsXp+GZwaxNJIUMYiLC8QLl&#13;
-u3nQpzeznoWzYoSrOrKA6cxu+KuW3umJ7p8zpz6Wj2e10TjZCgKvJfHhpG4AKpua7IZApOX8mHPT&#13;
-B3rymgZQrax6Ue9CLAJ2YRre0gemgS2qKZ+WwfHfvnQpKNjyt/iJe1mod67O3/1cZGCfG441tXmr&#13;
-v5bJwLCh5hIePXHIYuJQF8zF7jfzZJqA5hKelg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_de8fa6ef-0add-40c5-8742-b59972ab2690"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>/NpHZToICJ2Ht+0vTmnNa8NoqWjkf/HSSH6K0lWtxMNtTULECooVxBiB1ZwQ2o8nzj5iCWVJ7iUf&#13;
+D9IE4jdS1Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_67a01497-1544-4c88-a6d8-93057488b279"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>1pm/TxgHLXWbICiSRw/J+KtHnPLUCSCPLINF/aQFUo8tsZAYgkHTV6UaNvfUY0mcnCE8ZrJ/+yGY&#13;
+C6dTX2IuPw==</DigestValue></Reference></SignedInfo><SignatureValue>eFKgAJZIzowQ/BJzdxQBdbRhheiUuwIKbk3aFp7ea2CoUEuP7/HTj4EIN4zVRaJ8cqpnE83IH+nl&#13;
+jQUiVhyvlJ5VeEww9C8dudL8WPsv3HWaMhT/pFk4AccWR2NhhQBeipdM03EbUT09pUAhApQXL1b+&#13;
+nK8KNbuEdb2sw2dc7U04d/O3NtuTDOXmS7oK/BJyZjDvlHQtRg8wTUCI0Tzz9b1bo1wMkaMYvAHQ&#13;
+zNX7xvXasRws0NY2pHQkIqTsCtbT+/w+qwe1Ygy9ve8dgUmSda471RRCkXVIE4Wa90r9WlC+lEGU&#13;
+VbJM5lRwo45TShFx7f7W+lv55IvGumWzPfz2dQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -449,4 +462,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_0d1537ea-127d-4d98-8ed0-54e08d7b3749" Target="#_f0ec27b6-8863-4986-adcb-3461dbf4e611"><Timestamp>2023-08-29 10:47:26</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_67a01497-1544-4c88-a6d8-93057488b279" Target="#_de8fa6ef-0add-40c5-8742-b59972ab2690"><Timestamp>2023-08-29 10:48:15</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
