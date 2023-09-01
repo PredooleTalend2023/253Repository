@@ -146,57 +146,6 @@
     <elementParameter field="TEXT" name="LABEL" value="Pranita_sql_ETL_conn"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tMysqlInput" componentVersion="0.102" offsetLabelX="8" offsetLabelY="-4" posX="448" posY="64">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_2"/>
-    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_8pMoUEF6Ee6BdedkMBJ0KQ"/>
-    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="MYSQL_8"/>
-    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
-    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
-    <elementParameter field="TEXT" name="HOST" value="&quot;localhost&quot;"/>
-    <elementParameter field="TEXT" name="PORT" value="&quot;3306&quot;"/>
-    <elementParameter field="TEXT" name="DBNAME" value="&quot;TALEND_DEMO_MasterBranch&quot;"/>
-    <elementParameter field="TEXT" name="TYPE" show="false" value="MYSQL"/>
-    <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:bUCzetezZOoueRlBBJmOKE5ygxfwG/b1fHkNcmMo9wpDhdeW8QfQl9+Q"/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;products_without_control_table&quot;"/>
-    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
-    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
-    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
-    <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT &#10;   max(`products_without_control_table`.`created_at`) created_at , &#10; max( `products_without_control_table`.`modified_at`) modified_at&#10;FROM `products_without_control_table`&quot;"/>
-    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
-    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
-    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
-    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="mysql_id"/>
-    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;noDatetimeStringSync=true&amp;enabledTLSProtocols=TLSv1.2,TLSv1.1,TLSv1&quot;"/>
-    <elementParameter field="ENCODING_TYPE" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
-    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
-    <elementParameter field="CHECK" name="ENABLE_STREAM" value="false"/>
-    <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
-    <elementParameter field="TABLE" name="TRIM_COLUMN">
-      <elementValue elementRef="SCHEMA_COLUMN" value="created_at"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="modified_at"/>
-      <elementValue elementRef="TRIM" value="false"/>
-    </elementParameter>
-    <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tDBInput_2">
-      <column comment="" key="false" length="19" name="created_at" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="19" name="modified_at" nullable="false" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-    </metadata>
-  </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="64">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="&#10;context.Last_Success=TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,input_row.modified_at);&#10;context.Current_Success= TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,TalendDate.getCurrentDate());&#10;&#10;&#10;System.out.println(&quot;Last Success: &quot;+context.Last_Success);&#10;&#10;System.out.println(&quot;Current Success: &quot;+context.Current_Success);"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJavaRow_1">
-      <column comment="" key="false" length="19" name="created_at" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="19" name="modified_at" nullable="false" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-    </metadata>
-  </node>
   <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_1"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
@@ -239,6 +188,14 @@
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="modified_at"/>
       <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Product_key"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Scd_Start"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Scd_End"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Scd_actice"/>
+      <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
@@ -260,6 +217,18 @@
       <column comment="" key="false" length="19" name="modified_at" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
+      <column comment="" key="false" length="10" name="Product_key" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="Scd_Start" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="Scd_End" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="Scd_actice" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
     </metadata>
   </node>
   <node componentName="tMysqlSCD" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="192">
@@ -278,28 +247,35 @@
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Product_incremetnal_SCD&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="CREATE_IF_NOT_EXISTS"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
-    <elementParameter field="COLUMN_LIST" name="SURROGATE_KEY" show="false" value=""/>
-    <elementParameter field="CLOSED_LIST" name="SK_CREATION" show="false" value="AUTO_INCREMENT"/>
+    <elementParameter field="COLUMN_LIST" name="SURROGATE_KEY" show="false" value="Product_Key"/>
+    <elementParameter field="CLOSED_LIST" name="SK_CREATION" show="false" value="TABLE_MAX"/>
     <elementParameter field="PREV_COLUMN_LIST" name="SK_INPUT_FIELD" show="false" value="product_id"/>
     <elementParameter field="TEXT" name="SK_ROUTINE" show="false" value="Numeric.sequence(&quot;seq&quot;, 1, 1)"/>
-    <elementParameter field="TABLE" name="SOURCE_KEYS" show="false"/>
+    <elementParameter field="TABLE" name="SOURCE_KEYS" show="false">
+      <elementValue elementRef="NAME" value="product_id"/>
+    </elementParameter>
     <elementParameter field="CHECK" name="USE_SAVE_MEM_MODE" value="false"/>
     <elementParameter field="CHECK" name="SOURCE_KEY_INC_NULL" value="false"/>
-    <elementParameter field="CHECK" name="USE_L0" show="false" value="false"/>
-    <elementParameter field="TABLE" name="L0_FIELDS" show="false"/>
+    <elementParameter field="CHECK" name="USE_L0" show="false" value="true"/>
+    <elementParameter field="TABLE" name="L0_FIELDS" show="false">
+      <elementValue elementRef="NAME" value="product_name"/>
+      <elementValue elementRef="NAME" value="modified_at"/>
+      <elementValue elementRef="NAME" value="created_at"/>
+    </elementParameter>
     <elementParameter field="CHECK" name="USE_L1" show="false" value="false"/>
-    <elementParameter field="TABLE" name="L1_FIELDS" show="false"/>
     <elementParameter field="CHECK" name="ONLY_UPDATE_ACTIVE" show="false" value="false"/>
-    <elementParameter field="CHECK" name="USE_L2" show="false" value="false"/>
-    <elementParameter field="TABLE" name="L2_FIELDS" show="false"/>
-    <elementParameter field="COLUMN_LIST" name="L2_STARTDATE_FIELD" show="false" value=""/>
+    <elementParameter field="CHECK" name="USE_L2" show="false" value="true"/>
+    <elementParameter field="TABLE" name="L2_FIELDS" show="false">
+      <elementValue elementRef="NAME" value="price"/>
+    </elementParameter>
+    <elementParameter field="COLUMN_LIST" name="L2_STARTDATE_FIELD" show="false" value="scd_start"/>
     <elementParameter field="CLOSED_LIST" name="L2_STARTDATE_VALUE" show="false" value="JOB_START_TIME"/>
     <elementParameter field="PREV_COLUMN_LIST" name="L2_STARTDATE_INPUT_FIELD" show="false" value="product_id"/>
-    <elementParameter field="COLUMN_LIST" name="L2_ENDDATE_FIELD" show="false" value=""/>
+    <elementParameter field="COLUMN_LIST" name="L2_ENDDATE_FIELD" show="false" value="scd_end"/>
     <elementParameter field="CLOSED_LIST" name="L2_ENDDATE_VALUE" show="false" value="NULL_VALUE"/>
     <elementParameter field="TEXT" name="L2_ENDDATE_FIXED_VALUE" show="false" value="&quot;2500&quot;"/>
-    <elementParameter field="CHECK" name="USE_L2_ACTIVE" show="false" value="false"/>
-    <elementParameter field="COLUMN_LIST" name="L2_ACTIVE_FIELD" show="false" value=""/>
+    <elementParameter field="CHECK" name="USE_L2_ACTIVE" show="false" value="true"/>
+    <elementParameter field="COLUMN_LIST" name="L2_ACTIVE_FIELD" show="false" value="scd_active"/>
     <elementParameter field="CHECK" name="USE_L2_VERSION" show="false" value="false"/>
     <elementParameter field="COLUMN_LIST" name="L2_VERSION_FIELD" show="false" value=""/>
     <elementParameter field="LABEL" name="NOTE" show="false" value="(Version must be an Integer)"/>
@@ -328,6 +304,22 @@
       <column comment="" key="false" length="19" name="modified_at" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
+      <column comment="" key="false" length="10" name="Product_key" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="Scd_Start" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="Scd_End" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="Scd_actice" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="Column generated by scd editor." defaultValue="" key="true" length="-1" name="Product_Key" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="Column generated by scd editor." key="false" length="-1" name="scd_start" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="Column generated by scd editor." key="false" length="-1" name="scd_end" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="Column generated by scd editor." defaultValue="" key="false" length="1" name="scd_active" nullable="false" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" label="products_without_control_table" name="REJECT">
       <column comment="" key="true" length="10" name="product_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
@@ -345,8 +337,93 @@
       <column comment="" key="false" length="19" name="modified_at" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
+      <column comment="" key="false" length="10" name="Product_key" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="Scd_Start" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="Scd_End" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="Scd_actice" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="Column generated by scd editor." defaultValue="" key="true" length="-1" name="Product_Key" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="Column generated by scd editor." key="false" length="-1" name="scd_start" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="Column generated by scd editor." key="false" length="-1" name="scd_end" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="Column generated by scd editor." defaultValue="" key="false" length="1" name="scd_active" nullable="false" originalLength="1" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tMysqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="416" posY="64">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_2"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_8pMoUEF6Ee6BdedkMBJ0KQ"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="MYSQL_8"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;localhost&quot;"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;3306&quot;"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;TALEND_DEMO_MasterBranch&quot;"/>
+    <elementParameter field="TEXT" name="TYPE" show="false" value="MYSQL"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:zlUUG1sOAFDsPUGfay9v0IQZcvop0md6VSh5L9vOy1gu1STouHILaMaS"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;products_without_control_table&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT &#13;&#10;   max(`products_without_control_table`.`created_at`) created_at , &#13;&#10; max( `products_without_control_table`.`modified_at`) modified_at&#13;&#10;FROM `products_without_control_table`&quot;"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="mysql_id"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;noDatetimeStringSync=true&amp;enabledTLSProtocols=TLSv1.2,TLSv1.1,TLSv1&quot;"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="ENABLE_STREAM" value="false"/>
+    <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
+    <elementParameter field="TABLE" name="TRIM_COLUMN">
+      <elementValue elementRef="SCHEMA_COLUMN" value="product_id"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="product_name"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="price"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="created_at"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="modified_at"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Product_key"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Scd_Start"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Scd_End"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Scd_actice"/>
+      <elementValue elementRef="TRIM" value="false"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="products_without_control_table" name="tDBInput_2">
+      <column comment="" key="false" length="19" name="created_at" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="modified_at" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+    </metadata>
+  </node>
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="64">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="&#10;context.Last_Success=TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,input_row.modified_at);&#10;context.Current_Success= TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,TalendDate.getCurrentDate());&#10;&#10;&#10;System.out.println(&quot;Last Success: &quot;+context.Last_Success);&#10;&#10;System.out.println(&quot;Current Success: &quot;+context.Current_Success);"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJavaRow_1">
+      <column comment="" key="false" length="19" name="created_at" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="19" name="modified_at" nullable="false" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tDBConnection_1">
@@ -355,13 +432,13 @@
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tDBConnection_1" offsetLabelX="0" offsetLabelY="0" source="tDBConnection_1" target="tDBInput_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
   </connection>
-  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tDBInput_2" offsetLabelX="0" offsetLabelY="0" source="tDBInput_2" target="tJavaRow_1">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
-  </connection>
   <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tDBInput_1" offsetLabelX="0" offsetLabelY="0" source="tDBInput_1" target="tDBSCD_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
+  </connection>
+  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tDBInput_2" offsetLabelX="0" offsetLabelY="0" source="tDBInput_2" target="tJavaRow_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" show="false" value="true"/>
@@ -375,22 +452,22 @@
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
   <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_2"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-  <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6e36486e-d8a8-4d99-a49d-e929940d9640"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>lgPfg4up2ZB0eHntJkhW9FCIGe99GctLxR7pGM6EBo3NK60YDhO+QFYnN3uUZ9IDqG1cv94pY+U6&#13;
-aWOSUj+nPg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_54dad485-a472-4740-93cf-c062411b535e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>XpnFKT6aiNlxePfv7BL+TMq1+kHXVwxgGDQce5qLygL4VDOmDO7WGtpT5kORLTWsPuqgsxPr0aDC&#13;
-hgOyCmt1XQ==</DigestValue></Reference></SignedInfo><SignatureValue>V7mn45UNPGWd8yfdAvOQPRwMr5j4V6eTyJ9pzJt8cPKEbM5JGVc5kEo7uaXYDrdMb26YmE/8slef&#13;
-jUTvPkbW2V0BHbAo8H3iKikJwA/agTLfKrQyBkZswNohFiFfbmF88vjsMSQArMhmgaem2ClE7aqq&#13;
-bp9mBYQC9/EsGap4K6CjQdh/Qo40q1g5BaB+etEhfGWwp+5O6BpHveol9mJsagscLxgbllBi4ts2&#13;
-imEMKsFo7x7OCVfjxh2iAPRYTcBYytoCLq+F4rdihF1aErzKgr29ObJwPRc3/nKs6h0s7EPIosAW&#13;
-piCNPjFgW2Z3+0us3q3mpR1Fvignp7+lYzcImQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_2"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_d5f756fc-01a6-4d32-978a-c9b2d0e523b5"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>3AO7+TgjwZcNE1zqtMK5tQDpAjzfeyazFgxmj/aRQ+a+3sS/D2fQiyapqB08fwJNQRK9nxqPYrwA&#13;
+7TDsyeaIHw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_86d880e7-dd44-42f8-8f93-a622a59fe4a5"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>NK7N+AMIn7pWhOGDOrUswY6/auCjdU4O+3TlsQPq2KmakUNXeGMQIX881tDRJsr5gTNYDzNQq9RJ&#13;
+o/5KtgnBkg==</DigestValue></Reference></SignedInfo><SignatureValue>CT1dwdEUVdNyarsg4Cba9nY/kir6EukQXEHo5ZaYi1kRs5OnotWo5mzFAwZI9YaRcFWwFpKD2KUj&#13;
+yocCxoTjh7Qk/q2GqFUkcjfEuTwO63Mb+/CEkujdwZj6/0e4E0op1C5LCzdVmshrXOpJlXGZc1fF&#13;
+4+miRdoCBzHbcBjcqxhXyrjbOTHmtb8KH9qLACxayASqnKKU5yaDq1L2oEQlHrOKYHINUkh4LcbY&#13;
+NdL9VbyqiM0hz16/53STutMdhP8R/4Xj2MAOYKEsEftsV12ekmjaryuH/RZpgJRy/i+zmXcRiFQT&#13;
+YZnHTI/Qd9hZxpx+bXljnn2hWxFYbV8VScTYYQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -412,4 +489,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_54dad485-a472-4740-93cf-c062411b535e" Target="#_6e36486e-d8a8-4d99-a49d-e929940d9640"><Timestamp>2023-09-01 05:47:58</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_86d880e7-dd44-42f8-8f93-a622a59fe4a5" Target="#_d5f756fc-01a6-4d32-978a-c9b2d0e523b5"><Timestamp>2023-09-01 05:55:30</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
