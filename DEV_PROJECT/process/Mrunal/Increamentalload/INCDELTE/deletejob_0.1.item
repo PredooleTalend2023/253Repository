@@ -268,7 +268,7 @@
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:gpohnjSNGALL1dPeIVHgCDVBRrXhEz+XNc+cIRZa9tqUFBpMycrTMR+G"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Product_I_U_Delete&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
-    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="REPLACE"/>
+    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT_OR_UPDATE"/>
     <elementParameter field="TECHNICAL" name="SCHEMA_REJECT:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="SCHEMA_REJECT:REPOSITORY_SCHEMA_TYPE" show="false" value="_8pMoUEF6Ee6BdedkMBJ0KQ - products_without_control_table"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
@@ -303,13 +303,23 @@
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Operation"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="UpdatedOn"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
     </elementParameter>
     <elementParameter field="CHECK" name="USE_HINT_OPTIONS" value="false"/>
     <elementParameter field="TABLE" name="HINT_OPTIONS" show="false"/>
     <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
     <elementParameter field="CHECK" name="ON_DUPLICATE_KEY_UPDATE" show="false" value="false"/>
     <elementParameter field="TABLE" name="DUPLICATED_KEYS" show="false"/>
-    <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" show="false" value="false"/>
+    <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
     <elementParameter field="TEXT" name="LABEL" value="targetMysql"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="prologs" name="tDBOutput_1">
@@ -322,6 +332,12 @@
       <column comment="" key="false" length="10" name="price" nullable="false" pattern="" precision="2" sourceType="DECIMAL" type="id_BigDecimal" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
+      <column comment="" key="false" length="1" name="Operation" nullable="true" pattern="" precision="0" sourceType="CHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="23" name="UpdatedOn" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
     </metadata>
     <metadata connector="REJECT" label="prologs" name="REJECT">
       <column comment="" key="true" length="10" name="product_id" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
@@ -331,6 +347,12 @@
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="10" name="price" nullable="false" pattern="" precision="2" sourceType="DECIMAL" type="id_BigDecimal" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="1" name="Operation" nullable="true" pattern="" precision="0" sourceType="CHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="23" name="UpdatedOn" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
@@ -451,13 +473,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_ce3f539f-5e9a-4304-bf05-d934ce0da8e6"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>N/0lZzQkHqoVNiXGQAq8MdC+ibVqAbF9oUcPJjYh0MNuXKH6cDc5tsJJlZmQyHaM7XegTZ5JOJAv&#13;
-defEvPqAUQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_2606a714-713a-41a8-ac3e-fcfd978a238b"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>q/1+nkMH7c1SFKF9YmQJq2grCxMy9esbGFYKmP4ZgycN5z6q7no8FjLcz7J41lnmUSQPpveRqnXn&#13;
-gvy1Qk8kFg==</DigestValue></Reference></SignedInfo><SignatureValue>PynUDWC0HRegPkKgwst6rriK1jo3lsnrSMS0fgIUTl4+KCj/y3ndiuh9f8zylGd0v/2qr+wd2bla&#13;
-8m7kP4SHKg3cpfAmIuwz594z3KYi+/rPeEosMMtnl4+QzYd1sKaXaqQ4BrgTdWGUMuUF/bz4R/PW&#13;
-lVpJZgP76Xw+cHFUjzMnxngaq/1aGc29nPN7uBUWMJ6JGcF1rQF5nPdEilzWkILsEWVeq1huooA7&#13;
-Z1atrCLNkUXrNAyvh9S3S9p3HItlG3uvCIuXiWBcmOVkcIH++y2fux4fQWFvHNm7u/y4/yBsjK1n&#13;
-VaxxeQkcQ5ACqolWutKUu8YkMkjQPxHs7rS5ng==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f6a9c37d-37b3-44b5-aa05-4bead58997fd"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>aWvb5ieYqCQnyBG4tWil+phRRYQ3F3iZYt57wtfzUusFZptaTiDOAoPnoyEeOUw1GU9b38F5GMrn&#13;
+fBAjYt13fA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_fa76014b-737d-470b-8841-5ffe98a05ced"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>pf3klNAZxJJy974+afmrLcaYR6CMxiZqxhAu8MJQ9Pv4lkPnue5UQI6aTKoKrkiYAMWeHkQJRelE&#13;
+tU8VTuKJeQ==</DigestValue></Reference></SignedInfo><SignatureValue>BpXRek9x+aJkZ9lwDer2hMUsQw2NmeU9a9y7ABLI9Zh9vbD2cW4OWz2r3phHnlTylq+gxq0pRe/J&#13;
+fOIkLJr0kAr4+I+A7sehK0wsgZc8hQSH7lmbIx68KlxqQ21MrDfrExFQN2Vq4gnQz46yuVq7nrZn&#13;
+wC0l5r9JMNqBHonn9djVbtvAE5F283HlEorhinZZscnYKDbMoajiLY8kM2PlYuKFjY+zq1YWqCpc&#13;
+mnL024paFoClQ9cPUg+VyT6Mv1nd2Wy6oSSf9t2n8DusPiXi6PCrnC+mDmHki6oOV3jT9S6dDICs&#13;
+Js5zba7N7Ny6pLQoex02iwLbS8SzyfolxwSw1g==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -479,4 +501,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_2606a714-713a-41a8-ac3e-fcfd978a238b" Target="#_ce3f539f-5e9a-4304-bf05-d934ce0da8e6"><Timestamp>2023-09-06 10:35:07</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_fa76014b-737d-470b-8841-5ffe98a05ced" Target="#_f6a9c37d-37b3-44b5-aa05-4bead58997fd"><Timestamp>2023-09-06 10:38:17</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
