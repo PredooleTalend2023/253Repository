@@ -207,13 +207,13 @@
     <elementParameter field="TEXT" name="USER" value="&quot;Talend&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:Hjde3haKM2WNnwSlzBh0c/ZZWheKJlag/y0qBijPqBxRs8nuwenhaH9f"/>
     <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_txEMpUZXEe6jh5TnZ61a6A - prolog"/>
+    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_txEMpUZXEe6jh5TnZ61a6A - prologs"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;prologs&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;CASE WHEN dbo.prologs.Operation='D'&#13;&#10;THEN &#13;&#10;delete prologs where  dbo.prologs.Operation='D'&#13;&#10;ELSE&#13;&#10;select dbo.prologs.product_id,dbo.prologs.product_name,dbo.prologs.price,dbo.prologs.Operation,dbo.prologs.UpdatedOn &#13;&#10;from dbo.prologs&#13;&#10;END &quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="-- Check if there are records with 'D' operation&#13;&#10;DECLARE @HasDeletedRecords BIT;&#13;&#10;&#13;&#10;SELECT @HasDeletedRecords = CASE WHEN EXISTS (SELECT 1 FROM dbo.prologs WHERE Operation = 'D')&#13;&#10;                              THEN 1&#13;&#10;                              ELSE 0&#13;&#10;                         END;&#13;&#10;&#13;&#10;-- Conditional DELETE based on 'Operation' value&#13;&#10;IF @HasDeletedRecords = 1&#13;&#10;BEGIN&#13;&#10;    DELETE FROM dbo.prologs WHERE Operation = 'D';&#13;&#10;END&#13;&#10;&#13;&#10;-- Conditional SELECT based on 'Operation' value&#13;&#10;IF @HasDeletedRecords = 0&#13;&#10;BEGIN&#13;&#10;    SELECT&#13;&#10;        product_id,&#13;&#10;        product_name,&#13;&#10;        price,&#13;&#10;        Operation,&#13;&#10;        UpdatedOn&#13;&#10;    FROM dbo.prologs;&#13;&#10;END&#13;&#10;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -239,7 +239,7 @@
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="prolog" name="tDBInput_1">
+    <metadata connector="FLOW" label="prologs" name="tDBInput_1">
       <column comment="" key="false" length="10" name="product_id" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -249,7 +249,7 @@
       <column comment="" key="false" length="10" name="price" nullable="false" pattern="" precision="2" sourceType="DECIMAL" type="id_BigDecimal" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="30" name="Operation" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="1" name="Operation" nullable="true" pattern="" precision="0" sourceType="CHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="23" name="UpdatedOn" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true">
@@ -305,6 +305,11 @@
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Operation"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="UpdatedOn"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
@@ -319,28 +324,34 @@
     <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
     <elementParameter field="TEXT" name="LABEL" value="targetMysql"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tDBOutput_1">
-      <column comment="" key="true" length="10" name="product_id" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+    <metadata connector="FLOW" label="prologs" name="tDBOutput_1">
+      <column comment="" key="false" length="10" name="product_id" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="255" name="product_name" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="10" name="price" nullable="false" pattern="" precision="2" sourceType="DECIMAL" type="id_BigDecimal" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="1" name="Operation" nullable="true" pattern="" precision="0" sourceType="CHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="23" name="UpdatedOn" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
-    <metadata connector="REJECT" name="REJECT">
-      <column comment="" key="true" length="10" name="product_id" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+    <metadata connector="REJECT" label="prologs" name="REJECT">
+      <column comment="" key="false" length="10" name="product_id" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="255" name="product_name" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="10" name="price" nullable="false" pattern="" precision="2" sourceType="DECIMAL" type="id_BigDecimal" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="1" name="Operation" nullable="true" pattern="" precision="0" sourceType="CHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="23" name="UpdatedOn" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true">
@@ -464,13 +475,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f31797e7-a6e9-49d7-9884-b97329a37824"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>5cu9iM6C7mTz4qQ9ATXXu75H8FUYLP3XxZhkEaJEiP3BAwWZIKb5xe68CTEmt8eZHQWy42B11XTs&#13;
-OQQHq6y8aQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_d3e2c9ed-8b2e-4c62-b598-825bab330693"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>D5gLCiy7G/hQNUEPb3HVdYI7FeIwJEFfL6z51j+waKwMeEbXLS5mvX2Fh9CCp5NRAReUXTjrzNAs&#13;
-ibxG3il78A==</DigestValue></Reference></SignedInfo><SignatureValue>mt6FxjjHE7K6SwvRhdN6kTbGYN3YcAGWY1eUDUMnuBeO8plPI+ru5Q7O91tYewQpW2AzE4GSBZvR&#13;
-lTjlY7gpQM+T0loboMApK1B0ZT2B6YoP+8MM5HQYKW84ztDcewfALQbLxsn504WbdwkF9lyEfLeI&#13;
-X2mNI07gW1V4f2Sg9IBxXpUAYLlZCd/APn8LCqDZF0t+yPv1u3PMb5l09pzSs5O7MJZ1HRKfhhgY&#13;
-dVm4nc8nECWVaNHwwVhr8rYmbgITatXYa+U+UDUEH4RRK+pFDhnDgldb62NLk8RZvaTv/82I5qYA&#13;
-dFPOfLjQz/CIIS7JhYwmUlx/vY6Jvwcre5qvoQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_c9f31bc8-0d8d-4b07-8687-f83a77b9a34b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>HKJUDcQP2+3JxpP1jvuxq56bOKcHhHp7X4NvWvrzKwPNDAZy/BrBHsVuJN1gM/SSaJg6BOxjACAa&#13;
+xmH4Aks4Mw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_401cccf6-5d81-43f4-9f2b-b807f7a68372"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Jali/4YbUcJCbs2SI3zUq8MeQcdx9/ULLVssH7DddXtUM3LhxSKRXsYbUWDLp7fkLSMUBpWXCWxf&#13;
+1w8XLwbQkg==</DigestValue></Reference></SignedInfo><SignatureValue>In6Frl82TZQiecYnMzBoTJeTy18e5q+wFNLE2CUgORqk7I9cIvFdzDEmO1nM/bHspx6KTeTH8TN7&#13;
+erV79pYD5Yu0/40eI37c0zB5DjtycdnVAQopijqXxHWFz0gry0Rc2AHDaI1+ZN0Ys6GM5MH+3Ozx&#13;
+SbWtHq/PTxIyf7/hUQqpaoFipbp3JIk+rP2BhQydCnI4AKc8QIR9OIKMecyKIDlfKLLUvJkv6IHG&#13;
+0Cb4bxkfrF0pXODvfrFcf8PPfCdVRPb0twmwwxkKyVVEAUi85cw45MQ9DjHh4JHy6o6LAHJjmHrc&#13;
++f01N3JoaOMy6ku7Ts4VjRvAX+QS8igKYA/BZQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -492,4 +503,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_d3e2c9ed-8b2e-4c62-b598-825bab330693" Target="#_f31797e7-a6e9-49d7-9884-b97329a37824"><Timestamp>2023-09-06 07:07:31</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_401cccf6-5d81-43f4-9f2b-b807f7a68372" Target="#_c9f31bc8-0d8d-4b07-8687-f83a77b9a34b"><Timestamp>2023-09-06 07:22:27</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
