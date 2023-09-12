@@ -361,29 +361,11 @@
     <elementParameter field="CHECK" name="CREATEDIR" show="false" value="true"/>
     <elementParameter field="TEXT" name="EXTERNAL_SORT_BUFFERSIZE" show="false" value="1000000"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="Orders" name="tSortRow_1">
-      <column comment="" key="true" length="10" name="order_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="orderdate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="255" name="region" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
+    <metadata connector="FLOW" name="tSortRow_1">
       <column comment="" key="false" length="255" name="item" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="units" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="unitcost" nullable="true" pattern="" precision="2" sourceType="DECIMAL" type="id_BigDecimal" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
       <column comment="" key="false" length="10" name="total" nullable="true" pattern="" precision="2" sourceType="DECIMAL" type="id_BigDecimal" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="255" name="rep" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
@@ -465,6 +447,10 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
   </connection>
+  <connection connectorName="FLOW" label="row5" lineStyle="0" metaname="tSortRow_1" offsetLabelX="0" offsetLabelY="0" source="tSortRow_1" target="tAggregateSortedRow_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row5"/>
+  </connection>
   <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tAggregateSortedRow_1" offsetLabelX="0" offsetLabelY="0" source="tAggregateSortedRow_1" target="tLogRow_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
@@ -479,18 +465,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tAggregateSortedRow_1"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_ca8c9a95-60a8-4979-b4c6-ea1fbefdf92c"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>YglnDtLBDS2WVMJqfTWGCIUgN8OWhGkZ+bUIsQ8RVUTtjozb5CUvV2A100gMMqCvDbDqRv+bYnlx&#13;
-rSt8XmDUqA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_60129da5-19f2-4481-9ddd-74aedf48cc40"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>4E+yqV5+t7m/91JbC6qB7i6cBXh4ydATC6EnpJgOf/fiCpSLhVx/iLhEabtUvvY41W8e+yhByflJ&#13;
-IyndSAIZqg==</DigestValue></Reference></SignedInfo><SignatureValue>iP6hnGJkAPGN9Qe9serPQqvORRnKI2rMDIBJVPlOyOxl6GSsYRFKFXyeJqLVE8/VmP9OGvFOx9CQ&#13;
-ehHvTq+msXg4W2beUdcUVCDxYK2QmRNZYp+FJEECxVQYjkML5yMgv4bqUsfirsRBTYRg8iBP6BNs&#13;
-giuaUqfaplFKb3TDkeLD91Oad59OgDzBFDKm567tQUS2HVo1Rs+nzQmY58YefFPuzx/sJwAsXW/N&#13;
-no8CeqyGyAeVdCwZwkwaaUODuDC+w0QLWo4PT2p+7IjZZVoh+CwCF8abR+JUm5vxA5q6gi+9sISc&#13;
-VvuA8dnSfUT8nzuFBDD+vZAB6fh63MDalvIfGA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_5d816373-7861-4a4f-a701-35b9f09191c3"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>WU8scOSt40lC19+yhV+bdi6Xad9Ntk0PTHEmvAcisig/77AUGe54zKS4bw3sTpwfcEjthJeNf4bo&#13;
+I1XttiCB7g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_b274e6b1-ee79-43b5-8bc5-c5c597a1c3dd"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>qs9zavS8iQLFBrjkSpbF2kn40SfB3s6XhXaWm0n89znnXDFfKH5QjWdffi5RNs9mg1/CgHPMYv5q&#13;
+ZVnChnsjRA==</DigestValue></Reference></SignedInfo><SignatureValue>bpnMRayCu4SyiEtDWwWPPO6hMphmCjpB04vq6bqdaV3K1Efrjq0IramyecFeYGPXui08g5k0KpZL&#13;
+fiiRBedPZ/X3s5nkiAHnk6WgESX78WOPyWnhh1spwNKT3FAlqYzI3TwO0zN7MNNlHGg9txtefXnz&#13;
+eXHibZMnOFneir7vAfK5v2gz08OQzXYC6/Rdnfw2GIrlv5JqvU1yvJ962C17NV8NDstfHV2jLlNW&#13;
+pLXzjU5HduTg5W6Z42JZ8vraYNxRYRlKdTU9WlD8m/i94a8ejnVujBr27uxXBHceFPWGkSQiIPuy&#13;
+SH2bnwg98Kz6Pl8iWzVSmnbuh91TIs9TejWNqA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -512,4 +493,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_60129da5-19f2-4481-9ddd-74aedf48cc40" Target="#_ca8c9a95-60a8-4979-b4c6-ea1fbefdf92c"><Timestamp>2023-09-12 10:38:48</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_b274e6b1-ee79-43b5-8bc5-c5c597a1c3dd" Target="#_5d816373-7861-4a4f-a701-35b9f09191c3"><Timestamp>2023-09-12 10:39:35</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
