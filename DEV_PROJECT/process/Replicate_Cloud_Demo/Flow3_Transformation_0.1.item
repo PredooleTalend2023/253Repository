@@ -2,7 +2,7 @@
   <context confirmationNeeded="false" name="Default"/>
   <parameters>
     <elementParameter field="CLOSED_LIST" name="LOG4J_RUN_LEVEL" show="false" value="Info"/>
-    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="544"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" show="false" value="548"/>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" show="false" value="0"/>
     <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" show="false" value=""/>
     <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" show="false" value=""/>
@@ -127,14 +127,12 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Classicmodels&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;qdimainuser&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:7O7xLkVLZ4dRhNItycm7WaaMTkxdWuRoafdJkYEuD63iZkyY5H97YzCl"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_9mDVQFg7Ee6Kq4wovtFs1w - OrdersMaster"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;OrdersMaster&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT Classic_Masters.OrdersMaster.orderNumber,&#10;&#9;&#9;Classic_Masters.OrdersMaster.productCode,&#10;&#9;&#9;Classic_Masters.OrdersMaster.quantityOrdered,&#10;&#9;&#9;Classic_Masters.OrdersMaster.priceEach,&#10;&#9;&#9;Classic_Masters.OrdersMaster.orderDate,&#10;&#9;&#9;Classic_Masters.OrdersMaster.requiredDate,&#10;&#9;&#9;Classic_Masters.OrdersMaster.shippedDate,&#10;&#9;&#9;Classic_Masters.OrdersMaster.status,&#10;&#9;&#9;Classic_Masters.OrdersMaster.customerNumber,&#10;&#9;&#9;Classic_Masters.OrdersMaster.productName,&#10;&#9;&#9;Classic_Masters.OrdersMaster.quantityInStock,&#10;&#9;&#9;Classic_Masters.OrdersMaster.buyPrice,&#10;&#9;&#9;Classic_Masters.OrdersMaster.MSRP&#10;FROM&#9;Classic_Masters.OrdersMaster&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select Classic_Masters.OrdersMaster.orderNumber,Classic_Masters.OrdersMaster.productCode,Classic_Masters.OrdersMaster.quantityOrdered,Classic_Masters.OrdersMaster.priceEach,Classic_Masters.OrdersMaster.orderDate,Classic_Masters.OrdersMaster.requiredDate,Classic_Masters.OrdersMaster.shippedDate,Classic_Masters.OrdersMaster.status,Classic_Masters.OrdersMaster.customerNumber,Classic_Masters.OrdersMaster.productName,Classic_Masters.OrdersMaster.quantityInStock,Classic_Masters.OrdersMaster.buyPrice,Classic_Masters.OrdersMaster.MSRP,Classic_Masters.OrdersMaster.OrdNumPrdCD &#10;from Classic_Masters.OrdersMaster&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -171,51 +169,28 @@
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="MSRP"/>
       <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="OrdNumPrdCD"/>
+      <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="OrdersMaster" name="tDBInput_2">
-      <column comment="" key="false" length="10" name="orderNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="15" name="productCode" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="quantityOrdered" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="priceEach" nullable="false" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="orderDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="requiredDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="shippedDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="15" name="status" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="customerNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="70" name="productName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="5" name="quantityInStock" nullable="false" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="buyPrice" nullable="false" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="MSRP" nullable="false" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
+    <metadata connector="FLOW" name="tDBInput_2">
+      <column comment="" defaultValue="" key="false" length="10" name="orderNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="15" name="productCode" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="quantityOrdered" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="priceEach" nullable="false" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="orderDate" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="requiredDate" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="shippedDate" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="15" name="status" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="customerNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="70" name="productName" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="5" name="quantityInStock" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="buyPrice" nullable="false" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="MSRP" nullable="false" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="" key="false" length="300" name="OrdNumPrdCD" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="-256" posY="160">
@@ -336,15 +311,16 @@
         <mapperTableEntries name="productCode" type="id_String"/>
         <mapperTableEntries name="quantityOrdered" type="id_Integer"/>
         <mapperTableEntries name="priceEach" type="id_BigDecimal"/>
-        <mapperTableEntries name="orderDate" type="id_Date"/>
-        <mapperTableEntries name="requiredDate" type="id_Date"/>
-        <mapperTableEntries name="shippedDate" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="orderDate" type="id_String"/>
+        <mapperTableEntries name="requiredDate" type="id_String"/>
+        <mapperTableEntries name="shippedDate" nullable="true" type="id_String"/>
         <mapperTableEntries name="status" type="id_String"/>
         <mapperTableEntries name="customerNumber" type="id_Integer"/>
         <mapperTableEntries name="productName" type="id_String"/>
         <mapperTableEntries name="quantityInStock" type="id_Short"/>
         <mapperTableEntries name="buyPrice" type="id_BigDecimal"/>
         <mapperTableEntries name="MSRP" type="id_BigDecimal"/>
+        <mapperTableEntries name="OrdNumPrdCD" type="id_String"/>
       </inputTables>
       <inputTables activateCondensedTool="true" innerJoin="true" lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row2" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row1.customerNumber " name="customerNumber" operator="=" type="id_Integer"/>
@@ -1725,14 +1701,12 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Classicmodels&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;qdimainuser&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:G1S4Hkqc2TPLMVyrFY1oyJU7HXcit1ggPfDfmoA7sUT4s4EBMhrZfhfg"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_9mDVQFg7Ee6Kq4wovtFs1w - CustomerMaster"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;CustomerMaster&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT Classic_Masters.CustomerMaster.customerNumber,&#10;&#9;&#9;Classic_Masters.CustomerMaster.customerName,&#10;&#9;&#9;Classic_Masters.CustomerMaster.contactLastName,&#10;&#9;&#9;Classic_Masters.CustomerMaster.contactFirstName,&#10;&#9;&#9;Classic_Masters.CustomerMaster.phone,&#10;&#9;&#9;Classic_Masters.CustomerMaster.addressLine1,&#10;&#9;&#9;Classic_Masters.CustomerMaster.addressLine2,&#10;&#9;&#9;Classic_Masters.CustomerMaster.city,&#10;&#9;&#9;Classic_Masters.CustomerMaster.state,&#10;&#9;&#9;Classic_Masters.CustomerMaster.postalCode,&#10;&#9;&#9;Classic_Masters.CustomerMaster.country,&#10;&#9;&#9;Classic_Masters.CustomerMaster.salesRepEmployeeNumber,&#10;&#9;&#9;Classic_Masters.CustomerMaster.creditLimit&#10;FROM&#9;Classic_Masters.CustomerMaster&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select Classic_Masters.CustomerMaster.customerNumber,Classic_Masters.CustomerMaster.customerName,Classic_Masters.CustomerMaster.contactLastName,Classic_Masters.CustomerMaster.contactFirstName,Classic_Masters.CustomerMaster.phone,Classic_Masters.CustomerMaster.\&quot;addressLine1\&quot;,Classic_Masters.CustomerMaster.\&quot;addressLine2\&quot;,Classic_Masters.CustomerMaster.city,Classic_Masters.CustomerMaster.state,Classic_Masters.CustomerMaster.postalCode,Classic_Masters.CustomerMaster.country,Classic_Masters.CustomerMaster.salesRepEmployeeNumber,Classic_Masters.CustomerMaster.creditLimit &#10;from Classic_Masters.CustomerMaster&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -1774,46 +1748,20 @@
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="CustomerMaster" name="tDBInput_1">
-      <column comment="" key="true" length="10" name="customerNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="customerName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="contactLastName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="contactFirstName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="phone" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="addressLine1" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="addressLine2" nullable="true" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="city" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="state" nullable="true" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="15" name="postalCode" nullable="true" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="country" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="salesRepEmployeeNumber" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="creditLimit" nullable="true" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
+    <metadata connector="FLOW" name="tDBInput_1">
+      <column comment="" defaultValue="" key="false" length="10" name="customerNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="customerName" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="contactLastName" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="contactFirstName" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="phone" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="addressLine1" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="addressLine2" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="city" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="state" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="15" name="postalCode" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="country" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="salesRepEmployeeNumber" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="creditLimit" nullable="true" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tDBInput_2" offsetLabelX="0" offsetLabelY="0" source="tDBInput_2" target="tMap_1">
@@ -1867,13 +1815,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_934bdf98-c17a-4391-b508-8f2490650011"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Zh5PP6dyAsGJC6vXIdlwOc5124mWyVm4Lr3qxjb+5APBQXKQbcHAEFibPcRhw+JB7Jrv12JeKMkK&#13;
-PN9Fv4q2Sg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_d8996173-9f10-4e1c-a499-15b4e6defa19"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>CyEHYv4ZoU872AxjUg5Llx1gPrPoWsboJQb9oPMyy60BOnW2iRq1H34dRLKhgmZQFpbEP+6Qbd0h&#13;
-39Vx2NSgQA==</DigestValue></Reference></SignedInfo><SignatureValue>JBvSUnqcwdT/XCW6v+WG6saddraGhQGBxUEjRZnag+jF+CPXyRm1FoLG37gvS/qJHrA3S8F99s9e&#13;
-GjlIJhr0fqKUXgGG/LzCzwDCY5NoyYM7LKHtIPDi7kWPBfvya1VPGUyuUMCor/V7UMy3WQjGFwAf&#13;
-B70QcV48pEsNTy8e+D1zjQrfKtHRnRxu8jUSA74CaMWvgifS79y7owQqSok8V2SqnomEThDsv/Ih&#13;
-vyDZvSHTsTZG7WQ/zD5iZOCuoNtllrtUSa9yWbH8KLPTNMwG7wSMfdzZ6jGvvMJw7P5QO1e3/sus&#13;
-AdRceNaz+uAPa/+aC+c0Uf0UTnJn0Pbr23AmgQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_04d791d3-5f7e-4630-94df-00ff9f8fbaf5"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>vjLT8DhdqZhREmB4zEhC8VdQRiKy0foWIPSIb7pXOylw/fi+uek8YZazxrG3OXImErHujj1wgXMf&#13;
+Emxk1yVriQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_e7af0f89-d041-42fd-8ef6-3ac5c14c5879"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>FR+bHXK60XIgzKvhURBswMs5ttxFRg9HER9NMmYNjuuBjjG66D8LMMIQzasPLPZ1jOsGH3Vaf6yF&#13;
+Zc4dnzNz8w==</DigestValue></Reference></SignedInfo><SignatureValue>IicQShfUJGMshdUmuprZ8YACygCEykz3MA/VG6+9y1v1g8jMMIru/Z0wHi9d47C9OcGCnBNcqvM6&#13;
+NXEqzZ2VMY+5Am1wpQCu/lnhR41E+4ePcb3F5aOoUIZmWwlgMH+mxQpCDuydfMvzJeVlwVuVM6bR&#13;
++29PAZTSLF3sgemBbclo+98EZQVvE26HjqOs9RnFykv+C9psuMy2UKIffAkgjag3it8WydwbB189&#13;
+cQCHM9mUjMXN+pIDguqXgzX5vf6EryqfM3ftqlE6dY2yN2SbJpj8dBudE8PJymZD1lGNPnoYz3ko&#13;
+/OeoaXBknY1ke23pCkaB3Rxtq2g+ifnTwbCkVA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1895,4 +1843,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_d8996173-9f10-4e1c-a499-15b4e6defa19" Target="#_934bdf98-c17a-4391-b508-8f2490650011"><Timestamp>2023-09-25 09:31:54</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_e7af0f89-d041-42fd-8ef6-3ac5c14c5879" Target="#_04d791d3-5f7e-4630-94df-00ff9f8fbaf5"><Timestamp>2023-09-25 09:34:42</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
