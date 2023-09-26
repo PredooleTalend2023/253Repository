@@ -291,7 +291,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select customers.customer_id,customers.first_name,customers.last_name,customers.phone,customers.email,customers.street,customers.city,customers.state,customers.zip_code &#10;from BikeStores.sales.customers&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT customers.customer_id,&#10;&#9;&#9;customers.first_name,&#10;&#9;&#9;customers.last_name,&#10;&#9;&#9;customers.phone,&#10;&#9;&#9;customers.email,&#10;&#9;&#9;customers.street,&#10;&#9;&#9;customers.city,&#10;&#9;&#9;customers.state,&#10;&#9;&#9;customers.zip_code&#10;FROM&#9;customers&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -436,7 +436,6 @@
         <mapperTableEntries name="zip_code" nullable="true" type="id_String"/>
       </inputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row2" sizeState="INTERMEDIATE">
-        <mapperTableEntries name="order_id" type="id_Integer"/>
         <mapperTableEntries expression="row1.customer_id " name="customer_id" nullable="true" operator="=" type="id_Integer"/>
         <mapperTableEntries name="order_status" type="id_Short"/>
         <mapperTableEntries name="order_date" type="id_Date"/>
@@ -444,6 +443,7 @@
         <mapperTableEntries name="shipped_date" nullable="true" type="id_Date"/>
         <mapperTableEntries name="store_id" type="id_Integer"/>
         <mapperTableEntries name="staff_id" type="id_Integer"/>
+        <mapperTableEntries name="order_id" type="id_Integer"/>
       </inputTables>
     </nodeData>
   </node>
@@ -468,7 +468,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select orders.customer_id,orders.order_status,orders.order_date,orders.required_date,orders.shipped_date,orders.store_id,orders.staff_id,orders.order_id &#10;from orders&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT orders.customer_id,&#10;&#9;&#9;orders.order_status,&#10;&#9;&#9;orders.order_date,&#10;&#9;&#9;orders.required_date,&#10;&#9;&#9;orders.shipped_date,&#10;&#9;&#9;orders.store_id,&#10;&#9;&#9;orders.staff_id,&#10;&#9;&#9;orders.order_id&#10;FROM&#9;orders&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -479,8 +479,6 @@
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
     <elementParameter field="TABLE" name="TRIM_COLUMN">
-      <elementValue elementRef="SCHEMA_COLUMN" value="order_id"/>
-      <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="customer_id"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="order_status"/>
@@ -495,15 +493,14 @@
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="staff_id"/>
       <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="order_id"/>
+      <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="orders" name="tDBInput_2">
-      <column comment="" key="true" length="10" name="order_id" nullable="false" pattern="" precision="0" sourceType="INT IDENTITY" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
       <column comment="" key="false" length="10" name="customer_id" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -523,6 +520,9 @@
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="10" name="staff_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="true" length="10" name="order_id" nullable="false" pattern="" precision="0" sourceType="INT IDENTITY" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
@@ -890,13 +890,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6a1eac49-12c4-4cd7-8f55-fcc56b08e1f8"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>NbTbCXp6Ftko51i7aI/PHW/iMe10eFoZsFBbbF0kPPsZrINtjrVZqO+4OVc8A03LXnZcAzhkfVfj&#13;
-WssI/As1sA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_e66105d4-0e31-49a2-ad98-f86fac1e67ae"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>l3zNmy/hqN+5kMm1Sjdd6OXml2umhQtE16uOcUxsSLNrI2X1dWwbg7/QS5zvMvptRDvlnzXezxkw&#13;
-OMe+WY2LMQ==</DigestValue></Reference></SignedInfo><SignatureValue>NTcYeOFzVj0Nc2GKYqdFvjZKX+c3SVcn3Wc68i3iPWvfJ/SUh0l8rg9lUYzHwSSC6XCQxtPfKz+2&#13;
-Um/DQuaro0V1KEmp1U78YLBOkJnTmtBnyFo1zvoYAtpdrairNwkVHLcnmcXzXPOmRkJaQPv5kguz&#13;
-QPsYMpASYaNLfPFjFF+F/+JBGhxSfAzk5ELfW2UUy++Sd+FscEzdxoG20SDsythkmOGEchzca5dp&#13;
-C7UFe7u3Nm237KUAfxPaJ2GMJT1ly1QGhqbWyT53gw67p5jy/ePzN7lLoAu4efg4ZloHXCSC8xGZ&#13;
-/vTf/hMTVmh1cElmgnic+FkR/LI1/cH8n4RabQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_74af49fb-259b-4003-b1ce-e543dbc9d13a"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>jORAb+qD2KQCk5XwZnvHUMIDmx50TfeXEshrT/VAsbtT8OCsuGDEFMqgB7GVBM/CBN9y1UDucgKh&#13;
+6yiYYiWBdA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_b4dd47a8-ec9a-4ae7-8bdb-96f37533f636"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>MKDhQZ9ljUerBww78m21LjZiIPhDQ1+E2iGBI8aSRqzXb0DqZPiY95mBGFsefGMmDaePMCU4/X77&#13;
+nDhkRiqg3w==</DigestValue></Reference></SignedInfo><SignatureValue>UnXI9jvpP1BTPayfQuIjqFW8LY0C28h4T3PV8hmGpI3EnTCb85zW7H8uHtYyzZ0xCJA9HyabmD9E&#13;
+E/m4JiMGvX4LiKYcWwAsA4CJDrANMJzvx0vPV7m7wnFlnNYSv6KELansX0VVI4IZE5zjKgM016ML&#13;
+/Z52M/OOwPQoSBKcblxP5GYJePSljRoSE4+MjGlOG/ZEHCTlgnU5qyvoJxQWSjInzpNg5uvIjX+U&#13;
+pwgTrm5In7wtMlp++soYwvtfLLfS+PG8xxcJ638RyNWaTyZY+N8GJE1iZFWG1cHRiN1GvzZkvKbB&#13;
+MW+W1tSREFPW8wUNr3oVGb49BCusXp6XC+Qw5Q==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -918,4 +918,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_e66105d4-0e31-49a2-ad98-f86fac1e67ae" Target="#_6a1eac49-12c4-4cd7-8f55-fcc56b08e1f8"><Timestamp>2023-09-26 05:36:11</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_b4dd47a8-ec9a-4ae7-8bdb-96f37533f636" Target="#_74af49fb-259b-4003-b1ce-e543dbc9d13a"><Timestamp>2023-09-26 05:37:56</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
