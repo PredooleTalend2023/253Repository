@@ -510,14 +510,12 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;MrunalBikeStores&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;qdimainuser&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:knUf0e6qNlLb2VgGXdbwOLcNlUGC2mkkp74AQD+CTogREfu88yD+04KJ"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_txEMpUZXEe6jh5TnZ61a6A - customers"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;customers&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select sales.customers.city,sales.customers.customer_id,sales.customers.email,sales.customers.first_name,sales.customers.last_name,sales.customers.phone,sales.customers.state,sales.customers.street,sales.customers.zip_code &#10;from sales.customers&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT sales.customers.customer_id,&#10;&#9;&#9;sales.customers.first_name,&#10;&#9;&#9;sales.customers.last_name,&#10;&#9;&#9;sales.customers.email,&#10;&#9;&#9;sales.customers.street,&#10;&#9;&#9;sales.customers.city,&#10;&#9;&#9;sales.customers.state&#10;FROM&#9;sales.customers&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -534,8 +532,6 @@
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="last_name"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="phone"/>
-      <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="email"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="street"/>
@@ -543,8 +539,6 @@
       <elementValue elementRef="SCHEMA_COLUMN" value="city"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="state"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="zip_code"/>
       <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
@@ -561,9 +555,6 @@
       <column comment="" key="false" length="255" name="last_name" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="25" name="phone" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
       <column comment="" key="false" length="255" name="email" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -574,9 +565,6 @@
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="25" name="state" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="5" name="zip_code" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
@@ -596,7 +584,7 @@
     <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="out1">
-      <column comment="" key="true" length="10" name="customer_id" nullable="false" pattern="" precision="0" sourceType="INT IDENTITY" type="id_Integer" usefulColumn="true">
+      <column comment="" key="true" length="10" name="customer_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="255" name="first_name" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -617,12 +605,6 @@
       <column comment="" key="false" length="25" name="state" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="5" name="zip_code" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="25" name="phone" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties shellMaximized="true"/>
@@ -635,19 +617,15 @@
         <mapperTableEntries expression="row1.street " name="street" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row1.city " name="city" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row1.state " name="state" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.zip_code " name="zip_code" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.phone " name="phone" nullable="true" type="id_String"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row1" sizeState="INTERMEDIATE">
         <mapperTableEntries name="customer_id" type="id_Integer"/>
         <mapperTableEntries name="first_name" type="id_String"/>
         <mapperTableEntries name="last_name" type="id_String"/>
-        <mapperTableEntries name="phone" nullable="true" type="id_String"/>
         <mapperTableEntries name="email" type="id_String"/>
         <mapperTableEntries name="street" nullable="true" type="id_String"/>
         <mapperTableEntries name="city" nullable="true" type="id_String"/>
         <mapperTableEntries name="state" nullable="true" type="id_String"/>
-        <mapperTableEntries name="zip_code" nullable="true" type="id_String"/>
       </inputTables>
     </nodeData>
   </node>
@@ -679,16 +657,12 @@
       <elementValue elementRef="LENGTH" value="10"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="state"/>
       <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="zip_code"/>
-      <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="phone"/>
-      <elementValue elementRef="LENGTH" value="10"/>
     </elementParameter>
     <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tLogRow_2">
-      <column comment="" key="true" length="10" name="customer_id" nullable="false" pattern="" precision="0" sourceType="INT IDENTITY" type="id_Integer" usefulColumn="true">
+      <column comment="" key="true" length="10" name="customer_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="255" name="first_name" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -707,12 +681,6 @@
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="25" name="state" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="5" name="zip_code" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="25" name="phone" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
@@ -767,13 +735,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_0bb278cc-9f10-46e4-8320-48dad4d28be7"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>lAHjbZZ/s3LTN433Q54nzEvYJHK9Wa665VzkwNBaMDfYhN8+r3fAOx9bgFhRTPVBIXQ8AI37/wrt&#13;
-QfbSU/j8KA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_4fe61d30-2420-45ff-bbf8-ca2fea1695f4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>H9+I8Payb+8mz0irzuQyTQoZzUb2DDm2IzqkYMT4uKksx8BRIVT1JrdLhsjjUugFigughsjsHRkN&#13;
-8RIal9Makg==</DigestValue></Reference></SignedInfo><SignatureValue>H4cAjJ3QQWh15YSl1BAiOsEoyTbSoZixZDlGi7DNnZUEKlWrGouOgpcpVm+184cLHL1RFR+y5DG4&#13;
-nMayugsfIISIw5i6bvnPtRo7f0CBOQ32uKsjcpMzc+fYnU0ZbSnE18BJV2rZjZgb4vZsC100mG1h&#13;
-2Iv+UnBJZuMmcomvcU5MOj2NsNcZGqU86wr+CO0DHFjzk5SHfgL55/FtX1Cl9jF0ySQq/JTXECGB&#13;
-CqktXJo7ZVblS7nibujlEUDbWGGhPS9E1NBpIwA0pEUJEDMXXDX/bHhZZQQG6hOiiN1O1VKdnuzU&#13;
-z8RVwwIHLhYz19hx3IDAanFh72OB81Ah8US/xw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_91e36775-5c9e-490f-b1a2-67d791275334"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Vn/4Whz/7FA58UEMecd2ZsgoafSV8fZGWP16esTjuao8Wxg/vuutY5Ai2DjkVPSqJnLgud+DIuGl&#13;
+WKFkbEQjuA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_a4b89c7e-2ada-40d8-808f-1a8fc6cb8e3a"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>caFPjH0PMSInZwUgONRAVcrqzEPmwKr5zwYhyETi/wp/k1ZT7/vdBFnM5oSmXgGHFS0DeWEL2205&#13;
+yj16hi6G9g==</DigestValue></Reference></SignedInfo><SignatureValue>J5oGS55j+dHwuDCYLB+epaGTFiHCqbPdCDf/6IvyelZvd8JY9PS01XcL1dn3nJQqMMosIa+gXFtn&#13;
+76aXRnYWf47udhvia1+nZM/0URBe+QqEfkIa6Yp3/zgrsx6BuKdiUvexstcMaIqjIiTWRwUlHfn4&#13;
+4ZYkPLLD8nmNUVVG/E9pLRF1LlFIwD5rZsyTUvErHjSiJA8kVPBN6MdgshUYgfx2asnkb9n3j7lB&#13;
+mFQyAyyCovW2AUuxgh1qkjAfVrw7m8f+2w3t+4sKrb10ImJqudu/jZOIv0yKag0sG5KCRa4kT4jh&#13;
+qe8fTswecLRVHbkw5/WnU06dFQzD9NYyfR2Bqg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -795,4 +763,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_4fe61d30-2420-45ff-bbf8-ca2fea1695f4" Target="#_0bb278cc-9f10-46e4-8320-48dad4d28be7"><Timestamp>2023-09-26 05:57:05</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_a4b89c7e-2ada-40d8-808f-1a8fc6cb8e3a" Target="#_91e36775-5c9e-490f-b1a2-67d791275334"><Timestamp>2023-09-26 06:04:28</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
