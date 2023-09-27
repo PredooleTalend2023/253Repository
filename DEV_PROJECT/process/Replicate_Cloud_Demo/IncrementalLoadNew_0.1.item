@@ -347,20 +347,20 @@
         <mapperTableEntries name="OperationIndecator_O" nullable="true" type="id_String"/>
       </inputTables>
       <inputTables activateCondensedTool="true" lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row2" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="row1.orderNumber " name="orderNumber" type="id_Integer"/>
-        <mapperTableEntries name="shippedDate" nullable="true" type="id_Date"/>
-        <mapperTableEntries name="customerNumber" type="id_Integer"/>
-        <mapperTableEntries name="OrdNumPrdCD" nullable="true" type="id_String"/>
+        <mapperTableEntries name="shippedDate" nullable="true" type="id_String"/>
         <mapperTableEntries name="Date" nullable="true" type="id_Date"/>
         <mapperTableEntries name="MSRP" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="OrdNumPrdCD" nullable="true" type="id_String"/>
         <mapperTableEntries name="buyPrice" nullable="true" type="id_BigDecimal"/>
-        <mapperTableEntries name="orderDate" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="customerNumber" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="orderDate" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row1.orderNumber " name="orderNumber" nullable="true" type="id_Integer"/>
         <mapperTableEntries name="priceEach" nullable="true" type="id_BigDecimal"/>
         <mapperTableEntries name="productCode" nullable="true" type="id_String"/>
         <mapperTableEntries name="productName" nullable="true" type="id_String"/>
         <mapperTableEntries name="quantityInStock" nullable="true" type="id_Short"/>
         <mapperTableEntries expression="" name="quantityOrdered" nullable="true" type="id_Integer"/>
-        <mapperTableEntries name="requiredDate" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="requiredDate" nullable="true" type="id_String"/>
         <mapperTableEntries name="status" nullable="true" type="id_String"/>
       </inputTables>
     </nodeData>
@@ -384,7 +384,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select Classic_Masters.OrdersMaster.orderNumber,Classic_Masters.OrdersMaster.shippedDate,Classic_Masters.OrdersMaster.customerNumber,Classic_Masters.OrdersMaster.OrdNumPrdCD,Classic_Masters.OrdersMaster.Date,Classic_Masters.OrdersMaster.MSRP,Classic_Masters.OrdersMaster.buyPrice,Classic_Masters.OrdersMaster.orderDate,Classic_Masters.OrdersMaster.priceEach,Classic_Masters.OrdersMaster.productCode,Classic_Masters.OrdersMaster.productName,Classic_Masters.OrdersMaster.quantityInStock,Classic_Masters.OrdersMaster.quantityOrdered,Classic_Masters.OrdersMaster.requiredDate,Classic_Masters.OrdersMaster.status &#10;from Classic_Masters.OrdersMaster&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select Classic_Masters.OrdersMaster.shippedDate,Classic_Masters.OrdersMaster.Date,Classic_Masters.OrdersMaster.MSRP,Classic_Masters.OrdersMaster.OrdNumPrdCD,Classic_Masters.OrdersMaster.buyPrice,Classic_Masters.OrdersMaster.customerNumber,Classic_Masters.OrdersMaster.orderDate,Classic_Masters.OrdersMaster.orderNumber,Classic_Masters.OrdersMaster.priceEach,Classic_Masters.OrdersMaster.productCode,Classic_Masters.OrdersMaster.productName,Classic_Masters.OrdersMaster.quantityInStock,Classic_Masters.OrdersMaster.quantityOrdered,Classic_Masters.OrdersMaster.requiredDate,Classic_Masters.OrdersMaster.status &#10;from Classic_Masters.OrdersMaster&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -395,21 +395,21 @@
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
     <elementParameter field="TABLE" name="TRIM_COLUMN">
-      <elementValue elementRef="SCHEMA_COLUMN" value="orderNumber"/>
-      <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="shippedDate"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="customerNumber"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="OrdNumPrdCD"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="Date"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="MSRP"/>
       <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="OrdNumPrdCD"/>
+      <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="buyPrice"/>
       <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="customerNumber"/>
+      <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="orderDate"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="orderNumber"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="priceEach"/>
       <elementValue elementRef="TRIM" value="false"/>
@@ -431,21 +431,21 @@
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBInput_3">
-      <column comment="" defaultValue="" key="false" length="10" name="orderNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="10" name="shippedDate" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="10" name="customerNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="300" name="OrdNumPrdCD" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="shippedDate" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="23" name="Date" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="18" name="MSRP" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="18" name="buyPrice" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
-      <column comment="" key="false" length="10" name="orderDate" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="18" name="priceEach" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
-      <column comment="" key="false" length="70" name="productCode" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="MSRP" nullable="true" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="" key="false" length="300" name="OrdNumPrdCD" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="buyPrice" nullable="true" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="customerNumber" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="orderDate" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="orderNumber" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="priceEach" nullable="true" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="" key="false" length="15" name="productCode" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="70" name="productName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="5" name="quantityInStock" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="quantityOrdered" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="10" name="requiredDate" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="70" name="status" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="requiredDate" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="15" name="status" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="160">
@@ -1593,13 +1593,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_525a4668-51a6-46c2-8130-b1dd5bd7781a"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>LNk/HIy6ovSRuv3jw/OY8UyD7OxtUdka8UYy0Mew4LvHBe39lbxdPj0Kx6rV0QWebeiNPhI6tT3B&#13;
-aV4VXNRROA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_41931795-f66d-42bb-a0fa-e676586fca14"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>6rwDnLJ53BDFv4l+naAF+cD52EG2poaNdXk3QUbfIDcKbJZBFRhA/RApN5GKxqZbFu+V0ng/k4s+&#13;
-YqIPXE8DrA==</DigestValue></Reference></SignedInfo><SignatureValue>UCsT0qE9ONL2akvLC+H9hYBV857ltv8pugXrHGpqnLOKrlsDgHzxEfVtxGJDAy8Q4pcfNZTALpg0&#13;
-Ik4WkH3p3Y8FFluzpAsgRK32KJLepzNuV7i+zQcQ4bHNm3RlmeLzq+DlwDDCNZ1e1URZkRAW4mkG&#13;
-Av9dwGyRM0MCbdFux4w9qIbjgXHLEr4vBuDbxpZPPvQyX7+u208kTHU1qSl152oA8z7noqEyTYX2&#13;
-uOHvpOoDx3dZEGtICoyZl305xOF5NapPhallrpOq3FxSaeK6vfQe3YPJR0Lno62TFf1MKDm5fwtn&#13;
-qImXVV08iq2Izm0WfgyrNsyL01mgLfYyo45fZw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_8a1cb006-773f-4c4f-b46e-a524835190aa"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>xImttETq0hcHptBpaVKp8A5vWpEEL8B+CUWu+ECCiRvPYDkpVNz3m3tNzTIKEUG+lqcsxG2r1X2P&#13;
+gFChmzCyzA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_20d3c13c-4367-4ed5-a360-ea988f22b6f0"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>IF6qLaznkFvQf/hz01KXw6Lrv+OInBorqJw9ETn8PiFe48a+MYPognGl9nVd5e3ZPyJbiIUqrGHn&#13;
+fFaTCsaabg==</DigestValue></Reference></SignedInfo><SignatureValue>f31OHHWJBbYYv02bwu0PogeFSqSz/f4c0g/HN9X6XHRoD9sTGZdvTsZdcoNFRdS29i5KcOqQgvDZ&#13;
+qtHnxW+ilurXNhPh70/IiJ5InL3ReEqC3m6IP5Jzlsa2ehQYeU+cW5TjUKD9aCZaC8YYiCycCy2o&#13;
+bSshjsSVqn7g0WZJWLotv6AnK9l4BkOYoPHDOaosri2YPDqmKUnjmkyxOHoRlpuOqBOaOSeqwSHq&#13;
+/TUaa7A3Yf2CXpalgoRFPgKQFhfTKKlawdZTYvt55KW1embWyrcDZdXZL2R6GjaGhMq8T+fG4m/d&#13;
+Rpfudn0wQZTa4fo4DhJo0g2yeexeckPmMOxQwg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1621,4 +1621,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_41931795-f66d-42bb-a0fa-e676586fca14" Target="#_525a4668-51a6-46c2-8130-b1dd5bd7781a"><Timestamp>2023-09-27 11:33:11</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_20d3c13c-4367-4ed5-a360-ea988f22b6f0" Target="#_8a1cb006-773f-4c4f-b46e-a524835190aa"><Timestamp>2023-09-27 11:34:25</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
