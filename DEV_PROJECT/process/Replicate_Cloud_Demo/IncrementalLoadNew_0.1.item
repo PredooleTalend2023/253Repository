@@ -348,20 +348,20 @@
       </inputTables>
       <inputTables activateCondensedTool="true" lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row2" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row1.orderNumber " name="orderNumber" type="id_Integer"/>
-        <mapperTableEntries name="productCode" type="id_String"/>
-        <mapperTableEntries expression="" name="quantityOrdered" type="id_Integer"/>
-        <mapperTableEntries name="priceEach" type="id_BigDecimal"/>
-        <mapperTableEntries name="orderDate" type="id_Date"/>
-        <mapperTableEntries name="requiredDate" type="id_Date"/>
-        <mapperTableEntries name="shippedDate" nullable="true" type="id_Date"/>
-        <mapperTableEntries name="status" type="id_String"/>
+        <mapperTableEntries name="shippedDate" nullable="true" type="id_String"/>
         <mapperTableEntries name="customerNumber" type="id_Integer"/>
-        <mapperTableEntries name="productName" type="id_String"/>
-        <mapperTableEntries name="quantityInStock" type="id_Short"/>
-        <mapperTableEntries name="buyPrice" type="id_BigDecimal"/>
-        <mapperTableEntries name="MSRP" type="id_BigDecimal"/>
         <mapperTableEntries name="OrdNumPrdCD" type="id_String"/>
         <mapperTableEntries name="Date" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="MSRP" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="buyPrice" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="orderDate" nullable="true" type="id_String"/>
+        <mapperTableEntries name="priceEach" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="productCode" nullable="true" type="id_String"/>
+        <mapperTableEntries name="productName" nullable="true" type="id_String"/>
+        <mapperTableEntries name="quantityInStock" nullable="true" type="id_Short"/>
+        <mapperTableEntries expression="" name="quantityOrdered" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="requiredDate" nullable="true" type="id_String"/>
+        <mapperTableEntries name="status" nullable="true" type="id_String"/>
       </inputTables>
     </nodeData>
   </node>
@@ -379,14 +379,12 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Classicmodels&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;qdimainuser&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:qAMOfAyX8OGRvaJ97G0kS/WnHjC8LEXIn4CwjI9D/HyU/+uMocbopuZb"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_9mDVQFg7Ee6Kq4wovtFs1w - OrdersMaster"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;OrdersMaster&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT Classic_Masters.OrdersMaster.orderNumber,&#10;&#9;&#9;Classic_Masters.OrdersMaster.productCode,&#10;&#9;&#9;Classic_Masters.OrdersMaster.quantityOrdered,&#10;&#9;&#9;Classic_Masters.OrdersMaster.priceEach,&#10;&#9;&#9;Classic_Masters.OrdersMaster.orderDate,&#10;&#9;&#9;Classic_Masters.OrdersMaster.requiredDate,&#10;&#9;&#9;Classic_Masters.OrdersMaster.shippedDate,&#10;&#9;&#9;Classic_Masters.OrdersMaster.status,&#10;&#9;&#9;Classic_Masters.OrdersMaster.customerNumber,&#10;&#9;&#9;Classic_Masters.OrdersMaster.productName,&#10;&#9;&#9;Classic_Masters.OrdersMaster.quantityInStock,&#10;&#9;&#9;Classic_Masters.OrdersMaster.buyPrice,&#10;&#9;&#9;Classic_Masters.OrdersMaster.MSRP,&#10;&#9;&#9;Classic_Masters.OrdersMaster.OrdNumPrdCD,&#10;&#9;&#9;Classic_Masters.OrdersMaster.Date&#10;FROM&#9;Classic_Masters.OrdersMaster&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select Classic_Masters.OrdersMaster.orderNumber,Classic_Masters.OrdersMaster.shippedDate,Classic_Masters.OrdersMaster.customerNumber,Classic_Masters.OrdersMaster.OrdNumPrdCD,Classic_Masters.OrdersMaster.Date,Classic_Masters.OrdersMaster.MSRP,Classic_Masters.OrdersMaster.buyPrice,Classic_Masters.OrdersMaster.orderDate,Classic_Masters.OrdersMaster.priceEach,Classic_Masters.OrdersMaster.productCode,Classic_Masters.OrdersMaster.productName,Classic_Masters.OrdersMaster.quantityInStock,Classic_Masters.OrdersMaster.quantityOrdered,Classic_Masters.OrdersMaster.requiredDate,Classic_Masters.OrdersMaster.status &#10;from Classic_Masters.OrdersMaster&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -399,85 +397,55 @@
     <elementParameter field="TABLE" name="TRIM_COLUMN">
       <elementValue elementRef="SCHEMA_COLUMN" value="orderNumber"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="productCode"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="shippedDate"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="quantityOrdered"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="customerNumber"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="priceEach"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="OrdNumPrdCD"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Date"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="MSRP"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="buyPrice"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="orderDate"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="requiredDate"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="priceEach"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="shippedDate"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="status"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="customerNumber"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="productCode"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="productName"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="quantityInStock"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="buyPrice"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="quantityOrdered"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="MSRP"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="requiredDate"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="OrdNumPrdCD"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="Date"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="status"/>
       <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="OrdersMaster" name="tDBInput_3">
-      <column comment="" key="false" length="10" name="orderNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="15" name="productCode" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="quantityOrdered" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="priceEach" nullable="false" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="orderDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="requiredDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="shippedDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="15" name="status" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="customerNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="70" name="productName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="5" name="quantityInStock" nullable="false" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="buyPrice" nullable="false" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="MSRP" nullable="false" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="true" length="300" name="OrdNumPrdCD" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="23" name="Date" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
+    <metadata connector="FLOW" name="tDBInput_3">
+      <column comment="" defaultValue="" key="false" length="10" name="orderNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="shippedDate" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="customerNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="300" name="OrdNumPrdCD" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="23" name="Date" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="18" name="MSRP" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="18" name="buyPrice" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="orderDate" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="18" name="priceEach" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="" key="false" length="70" name="productCode" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="70" name="productName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="5" name="quantityInStock" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="quantityOrdered" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="requiredDate" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="70" name="status" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tMSSqlOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="512" posY="256">
@@ -830,20 +798,20 @@
       </inputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="ALL_ROWS" name="row5" sizeState="INTERMEDIATE">
         <mapperTableEntries name="orderNumber" type="id_Integer"/>
-        <mapperTableEntries name="productCode" type="id_String"/>
-        <mapperTableEntries name="quantityOrdered" type="id_Integer"/>
-        <mapperTableEntries name="priceEach" type="id_BigDecimal"/>
-        <mapperTableEntries name="orderDate" type="id_Date"/>
-        <mapperTableEntries name="requiredDate" type="id_Date"/>
-        <mapperTableEntries name="shippedDate" nullable="true" type="id_Date"/>
-        <mapperTableEntries name="status" type="id_String"/>
+        <mapperTableEntries name="shippedDate" nullable="true" type="id_String"/>
         <mapperTableEntries name="customerNumber" type="id_Integer"/>
-        <mapperTableEntries name="productName" type="id_String"/>
-        <mapperTableEntries name="quantityInStock" type="id_Short"/>
-        <mapperTableEntries name="buyPrice" type="id_BigDecimal"/>
-        <mapperTableEntries name="MSRP" type="id_BigDecimal"/>
         <mapperTableEntries name="OrdNumPrdCD" type="id_String"/>
         <mapperTableEntries name="Date" nullable="true" type="id_Date"/>
+        <mapperTableEntries name="MSRP" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="buyPrice" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="orderDate" nullable="true" type="id_String"/>
+        <mapperTableEntries name="priceEach" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries name="productCode" nullable="true" type="id_String"/>
+        <mapperTableEntries name="productName" nullable="true" type="id_String"/>
+        <mapperTableEntries name="quantityInStock" nullable="true" type="id_Short"/>
+        <mapperTableEntries name="quantityOrdered" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="requiredDate" nullable="true" type="id_String"/>
+        <mapperTableEntries name="status" nullable="true" type="id_String"/>
       </inputTables>
     </nodeData>
   </node>
@@ -1334,14 +1302,12 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Classicmodels&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;qdimainuser&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:5fTPj7fs10O3LpN8xd5fTa/6m7zbgLnCOmhNDVwBsl+3l3NVvcTU/jZ7"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_9mDVQFg7Ee6Kq4wovtFs1w - OrdersMaster"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;OrdersMaster&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT Classic_Masters.OrdersMaster.orderNumber,&#10;&#9;&#9;Classic_Masters.OrdersMaster.productCode,&#10;&#9;&#9;Classic_Masters.OrdersMaster.quantityOrdered,&#10;&#9;&#9;Classic_Masters.OrdersMaster.priceEach,&#10;&#9;&#9;Classic_Masters.OrdersMaster.orderDate,&#10;&#9;&#9;Classic_Masters.OrdersMaster.requiredDate,&#10;&#9;&#9;Classic_Masters.OrdersMaster.shippedDate,&#10;&#9;&#9;Classic_Masters.OrdersMaster.status,&#10;&#9;&#9;Classic_Masters.OrdersMaster.customerNumber,&#10;&#9;&#9;Classic_Masters.OrdersMaster.productName,&#10;&#9;&#9;Classic_Masters.OrdersMaster.quantityInStock,&#10;&#9;&#9;Classic_Masters.OrdersMaster.buyPrice,&#10;&#9;&#9;Classic_Masters.OrdersMaster.MSRP,&#10;&#9;&#9;Classic_Masters.OrdersMaster.OrdNumPrdCD,&#10;&#9;&#9;Classic_Masters.OrdersMaster.Date&#10;FROM&#9;Classic_Masters.OrdersMaster&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select Classic_Masters.OrdersMaster.orderNumber,Classic_Masters.OrdersMaster.shippedDate,Classic_Masters.OrdersMaster.customerNumber,Classic_Masters.OrdersMaster.OrdNumPrdCD,Classic_Masters.OrdersMaster.Date,Classic_Masters.OrdersMaster.MSRP,Classic_Masters.OrdersMaster.buyPrice,Classic_Masters.OrdersMaster.orderDate,Classic_Masters.OrdersMaster.priceEach,Classic_Masters.OrdersMaster.productCode,Classic_Masters.OrdersMaster.productName,Classic_Masters.OrdersMaster.quantityInStock,Classic_Masters.OrdersMaster.quantityOrdered,Classic_Masters.OrdersMaster.requiredDate,Classic_Masters.OrdersMaster.status &#10;from Classic_Masters.OrdersMaster&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -1354,85 +1320,55 @@
     <elementParameter field="TABLE" name="TRIM_COLUMN">
       <elementValue elementRef="SCHEMA_COLUMN" value="orderNumber"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="productCode"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="shippedDate"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="quantityOrdered"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="customerNumber"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="priceEach"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="OrdNumPrdCD"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Date"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="MSRP"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="buyPrice"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="orderDate"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="requiredDate"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="priceEach"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="shippedDate"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="status"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="customerNumber"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="productCode"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="productName"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="quantityInStock"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="buyPrice"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="quantityOrdered"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="MSRP"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="requiredDate"/>
       <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="OrdNumPrdCD"/>
-      <elementValue elementRef="TRIM" value="false"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="Date"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="status"/>
       <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="OrdersMaster" name="tDBInput_6">
-      <column comment="" key="false" length="10" name="orderNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="15" name="productCode" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="quantityOrdered" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="priceEach" nullable="false" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="orderDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="requiredDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="shippedDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="15" name="status" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="customerNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="70" name="productName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="5" name="quantityInStock" nullable="false" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="buyPrice" nullable="false" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="MSRP" nullable="false" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="true" length="300" name="OrdNumPrdCD" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="23" name="Date" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
+    <metadata connector="FLOW" name="tDBInput_6">
+      <column comment="" defaultValue="" key="false" length="10" name="orderNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="shippedDate" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="customerNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="300" name="OrdNumPrdCD" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="23" name="Date" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="18" name="MSRP" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="18" name="buyPrice" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="orderDate" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="18" name="priceEach" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
+      <column comment="" key="false" length="70" name="productCode" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="70" name="productName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="5" name="quantityInStock" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="quantityOrdered" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="requiredDate" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="70" name="status" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tDBConnection_1">
@@ -1515,13 +1451,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_d7cc15db-a14f-4855-97fb-78e6de20dae5"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>kG3u9H0GTh+cwFsMh4f+mI2HEV38u6TvsYCWnLMKb0/0OTokucs0/H/oRdXPgf8Ytf2jklgVDzXe&#13;
-EFITiAIgoQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_72e6a5bb-7ccb-47be-971f-6e2a9acbe7f4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>UERIK15hLOwF5shIeI+UTnOpKKWXXsYMGD0Dyy7facfzHX7swYQWoZ/I0eFJl5DBti5hI/XHqdUd&#13;
-h1MY5Ao/iw==</DigestValue></Reference></SignedInfo><SignatureValue>fXXnxbc+PWp8KZz+pHcrI2uLWeuuYWAdoi3XOSsV0xy68/que819rrMVaVXryABA9Y8Ntz7BVW2a&#13;
-1BQG7O/MdigWUXgZoZWHJTIWp4dTS32YDp1jG352quAZBe+aAOpKs+HserGKuO1q8YHvDnjzkq1o&#13;
-ZLd8haCWaLrx/sdcQw4rXyGg4t837Azx7SrH9cSTEACysWqoSH3zzLdD38iIeLaaMG9y3hf78BIF&#13;
-0Nb7Ufmi0Xm1pCCRK4JOkwA9rrt/5kdKkMw3inGJPB5FiR7XUEYv+OCM2gaL2wTLV9g1d5nhf81c&#13;
-WvwP7vfIhhYh53ie6MGHqIHJhE4XGl49CwDkuA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_0eac9e73-c692-43d3-88a9-7dd277d62757"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>oMtfzDA50G2wQ0rbbyGQNP6nRVGYgTyCZcGLGEGSqoNHTp/sHJwgkUUOhDtZQpoeMKGFoy/llWms&#13;
+OYdlLeIpKQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_43a40b3e-54e6-4be5-877e-e20a3d238bdd"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>H2xd4JKQJtn3JB8Ybcv/Ca3V+Ce32HfBPK4hb70djcpgVdPZy2ex1p1HPT5vM6Pvw9KmQT7A5Srs&#13;
+oW3WNzrhUQ==</DigestValue></Reference></SignedInfo><SignatureValue>Ik4seK9GekqrIpDSCJTWbbAHlxeaN9BVUgAT/FzOLz6UabXjZoP1ozeCit3VjPLmcmji+RTwvPR7&#13;
+af/IzkCx5taU0tpCi017xOZjGZeFr6VTivVYdp/v4W0HryBzpxfLRutbhyYV0c9LGVpnVOCEfBmr&#13;
+evCJB5sWJTp7EkcSjh4BuPk6JY/ncleLnWciPPZImTdqTPMRJCEhwike7Xggc/DGNonQwXRnL1Md&#13;
+F/bB2/Hp4EsFErNewV4EB0a/7ORN3f+qpz1ZyDY1EkOxHzx+dW6ebmCRdMeeRcQ4smVGmQ0ugp0Y&#13;
+8K5bJNym/FW33SBNZQhQwf9jfXZRW96R7A9VHg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1543,4 +1479,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_72e6a5bb-7ccb-47be-971f-6e2a9acbe7f4" Target="#_d7cc15db-a14f-4855-97fb-78e6de20dae5"><Timestamp>2023-09-27 10:15:40</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_43a40b3e-54e6-4be5-877e-e20a3d238bdd" Target="#_0eac9e73-c692-43d3-88a9-7dd277d62757"><Timestamp>2023-09-27 10:18:11</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
