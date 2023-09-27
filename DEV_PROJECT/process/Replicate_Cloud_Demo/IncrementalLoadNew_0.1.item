@@ -326,7 +326,7 @@
         <mapperTableEntries expression="row2.quantityInStock " name="quantityInStock" nullable="true" type="id_Short"/>
         <mapperTableEntries expression="row2.buyPrice " name="buyPrice" nullable="true" type="id_BigDecimal"/>
         <mapperTableEntries expression="row2.MSRP " name="MSRP" nullable="true" type="id_BigDecimal"/>
-        <mapperTableEntries expression="(row2.OrdNumPrdCD==null)?&quot;null&quot;:row2.OrdNumPrdCD " name="OrdNumPrdCD" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row2.OrdNumPrdCD " name="OrdNumPrdCD" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row2.Date " name="Date" nullable="true" type="id_Date"/>
         <mapperTableEntries expression="row1.orderNumber " name="orderNumber" type="id_Integer"/>
         <mapperTableEntries expression="row1.orderDate " name="orderDate" nullable="true" type="id_Date"/>
@@ -602,7 +602,7 @@
       <column comment="" key="false" length="23" name="Date" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" defaultValue="" key="true" length="10" name="orderNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="orderNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="10" name="orderDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
       <column comment="" key="false" length="10" name="requiredDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
       <column comment="" key="false" length="10" name="shippedDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
@@ -639,7 +639,7 @@
       <column comment="" key="false" length="23" name="Date" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" defaultValue="" key="true" length="10" name="orderNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="orderNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="10" name="orderDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
       <column comment="" key="false" length="10" name="requiredDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
       <column comment="" key="false" length="10" name="shippedDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
@@ -766,7 +766,7 @@
         <mapperTableEntries expression="row4.quantityInStock " name="quantityInStock" type="id_Short"/>
         <mapperTableEntries expression="row4.buyPrice " name="buyPrice" type="id_BigDecimal"/>
         <mapperTableEntries expression="row4.MSRP " name="MSRP" type="id_BigDecimal"/>
-        <mapperTableEntries expression="(row5.OrdNumPrdCD==&quot;Null&quot;)? row3.orderNumber+&quot; &quot;+row3.orderLineNumber:row5.OrdNumPrdCD " name="OrdNumPrdCD" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="(row5.OrdNumPrdCD==null)? row3.orderNumber+&quot; &quot;+row3.orderLineNumber:row5.OrdNumPrdCD " name="OrdNumPrdCD" nullable="true" type="id_String"/>
         <mapperTableEntries expression="TalendDate.getCurrentDate() " name="Date" nullable="true" type="id_Date"/>
         <mapperTableEntries expression="row5.orderNumber " name="orderNumber" type="id_Integer"/>
         <mapperTableEntries expression="row5.orderDate " name="orderDate" nullable="true" type="id_Date"/>
@@ -1143,7 +1143,7 @@
     <metadata connector="FLOW" name="tDBOutput_3">
       <column comment="" defaultValue="" key="false" length="10" name="quantityOrdered" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="priceEach" nullable="false" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
-      <column comment="" key="true" length="15" name="productCode" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="15" name="productCode" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="70" name="productName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
@@ -1165,16 +1165,16 @@
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" defaultValue="" key="false" length="10" name="orderNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="10" name="orderDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="NVARCHAR" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="10" name="requiredDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="NVARCHAR" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="10" name="shippedDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="NVARCHAR" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="15" name="status" nullable="true" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="orderDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="requiredDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="shippedDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="15" name="status" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="5" name="orderLineNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" name="REJECT">
       <column comment="" defaultValue="" key="false" length="10" name="quantityOrdered" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="priceEach" nullable="false" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
-      <column comment="" key="true" length="15" name="productCode" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="15" name="productCode" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="70" name="productName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
@@ -1196,10 +1196,10 @@
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" defaultValue="" key="false" length="10" name="orderNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="10" name="orderDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="NVARCHAR" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="10" name="requiredDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="NVARCHAR" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="10" name="shippedDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="NVARCHAR" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="15" name="status" nullable="true" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="orderDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="requiredDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="shippedDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="15" name="status" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="5" name="orderLineNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
@@ -1280,10 +1280,10 @@
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" defaultValue="" key="false" length="10" name="orderNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="10" name="orderDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="NVARCHAR" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="10" name="requiredDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="NVARCHAR" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="10" name="shippedDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="NVARCHAR" type="id_Date" usefulColumn="true"/>
-      <column comment="" key="false" length="15" name="status" nullable="true" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="orderDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="requiredDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="10" name="shippedDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="15" name="status" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="5" name="orderLineNumber" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
@@ -1451,13 +1451,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_c7495d75-8848-4b0c-b9ca-d98a710bbb88"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>jEtKso/PPWWKlPHBaUZx9cKMA2AddjtgFUrKQxDiSizDEcDmVb9mwFKUapbtIfPpbifj7hs35jd9&#13;
-z0LiQ4ua3Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_f9e88ce0-a334-4704-9034-dfd7b405775d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>nBRJSNCZJeHzVvAoa0AiCmoWEgzfQaPJNvnfayemd5DhBas5MtgcGII5uOdjvQNc525OVsWBiVTp&#13;
-sGeGgFV5pg==</DigestValue></Reference></SignedInfo><SignatureValue>BrA30RjP7U2Gq79Bh4Zaa7jjn/o0B5JSOmn8m7taSRNWzQiea0cy1zj9fLIQ/Ka8yk/KoOnluWBf&#13;
-ef9ytNF+ejbe+kJEiKY6PuxewdPcfQqHUt1s0At+p62T7kCJJ+MNylU5W0vqkOh9rDuoULYXbFvl&#13;
-YdfFjo20RwiumwrwLVgcIBr+R4rf4qoMn4mDHZmCcn1yR6sV0U5wi5G+ZnVxHjkMdfDIXuzjqO3w&#13;
-ZyOpj4eIbFPJTlFUadoThudLfnQkokPe2I7YQFZyvtciDgZubL3M50WjY9dJZEKc10oCSg/kFN0g&#13;
-0cdCc/T6kJilyTJWYJFAjpxM06bcHJ5WuvSbWQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b64a9721-a759-4201-aea6-8650a78e14d1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+wOMbGpRKWfEIoX3h/XLxne3UKYCDibMGO6E+1h4373KjRNK5pMiTSQpk+LF0m0e7qV96isQkhRa&#13;
+w/7fnB4VNw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_ab15a2f9-18ca-4656-8fab-9e9e27aad0e9"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Yaj26DkBXc00Wyk0E2QZ+n7Urh6YPLXJoOQOCTZbv4FDibzSPmGiA2l1X04/vYpHizs+jpXnU3BQ&#13;
+IFT2HbAaxw==</DigestValue></Reference></SignedInfo><SignatureValue>HmEFaoIkK+Y2U7cGU6WV7U+2ZHYcBRVuKDUCcVBGlJjdC3HZxd8jc8CfQnNuu/LfH5C7zIzjhX2H&#13;
+NkP/z58KLdad0yA6MjNMTGIZ/wFsgdCG45ovjjsA7x3GSqcHcK1bhz8SfT9Wp+yUX9hrEXOI1+aW&#13;
+lTsJp4NXmUxopx+GT0AUcuLwgAg/u5DxzyJ3e2IhDmfghik1E0+NTcgUiCtd40rHJtbSWSD+JSca&#13;
+A3NyWvyobAuzEMg4CPJXAGdNHIKD4c6f/KJJTM75pPjJdc1xDZwA66NMvBzl6IajAatPxj6B91vX&#13;
+DdPvqtxW0d1GNDHOaB1zPPj3aafPNc9CscMO4A==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -1479,4 +1479,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_f9e88ce0-a334-4704-9034-dfd7b405775d" Target="#_c7495d75-8848-4b0c-b9ca-d98a710bbb88"><Timestamp>2023-09-27 10:20:39</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_ab15a2f9-18ca-4656-8fab-9e9e27aad0e9" Target="#_b64a9721-a759-4201-aea6-8650a78e14d1"><Timestamp>2023-09-27 10:35:26</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
