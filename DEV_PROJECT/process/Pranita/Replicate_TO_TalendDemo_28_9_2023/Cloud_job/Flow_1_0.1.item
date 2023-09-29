@@ -389,7 +389,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select pranita_classicmodels.customers.customerNumber,pranita_classicmodels.customers.customerName,pranita_classicmodels.customers.contactLastName,pranita_classicmodels.customers.contactFirstName,pranita_classicmodels.customers.phone,pranita_classicmodels.customers.\&quot;addressLine1\&quot;,pranita_classicmodels.customers.\&quot;addressLine2\&quot;,pranita_classicmodels.customers.city,pranita_classicmodels.customers.state,pranita_classicmodels.customers.postalCode,pranita_classicmodels.customers.country,pranita_classicmodels.customers.salesRepEmployeeNumber,pranita_classicmodels.customers.creditLimit,pranita_classicmodels.customers.UpdateTime &#10;from pranita_classicmodels.customers&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select pranita_classicmodels.customers.customerNumber,pranita_classicmodels.customers.customerName,pranita_classicmodels.customers.contactLastName,pranita_classicmodels.customers.contactFirstName,pranita_classicmodels.customers.phone,pranita_classicmodels.customers.\&quot;addressLine1\&quot;,pranita_classicmodels.customers.\&quot;addressLine2\&quot;,pranita_classicmodels.customers.city,pranita_classicmodels.customers.state,pranita_classicmodels.customers.postalCode,pranita_classicmodels.customers.country,pranita_classicmodels.customers.salesRepEmployeeNumber,pranita_classicmodels.customers.creditLimit,pranita_classicmodels.customers.UpdateTime,pranita_classicmodels.customers.Flg &#10;from pranita_classicmodels.customers&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -428,6 +428,8 @@
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="UpdateTime"/>
       <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Flg"/>
+      <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
@@ -447,7 +449,8 @@
       <column comment="" key="false" length="50" name="country" nullable="false" originalDbColumnName="0010" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="salesRepEmployeeNumber" nullable="true" originalDbColumnName="0011" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="creditLimit" nullable="true" originalDbColumnName="0012" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
-      <column comment="" key="false" length="26" name="UpdateTime" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="26" name="UpdateTime" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="Flg" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tDataprepRun" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="192">
@@ -456,7 +459,7 @@
     <elementParameter field="TEXT" name="USERNAME" value="&quot;pranita.p@predoolecom_nfr&quot;"/>
     <elementParameter field="PASSWORD" name="PASSWORD" value="enc:system.encryption.key.v1:50a7whyyS73/xAdMJQCGFt6Vao1Nr8qjtisTdO8E4y8p7lHHuSngDIsp6Q=="/>
     <elementParameter field="CHECK" name="USE_PREP_PATH" value="false"/>
-    <elementParameter field="DATA_PREP_ID" name="PREPARATION_ID" value="&quot;e81faed8-98fa-444a-afad-1510f23523f7&quot;"/>
+    <elementParameter field="DATA_PREP_ID" name="PREPARATION_ID" value="&quot;8074e9b9-22f7-4c86-92f9-fd4b9d1a9ebc&quot;"/>
     <elementParameter field="TEXT" name="PREPARATION_NAME" show="false" value="DEV_PROJECT_Flow_1_tDataprepRun_2_0.1_Default"/>
     <elementParameter field="DP_VERSION" name="VERSION_NAME" value=""/>
     <elementParameter field="TEXT" name="VERSION_ID" show="false" value=""/>
@@ -466,7 +469,7 @@
     <elementParameter field="TEXT" name="LIMIT_PREVIEW" value="1000"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDataprepRun_2">
-      <column comment="" key="false" length="-1" name="customerNumber" nullable="false" originalDbColumnName="0000" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="customerNumber" nullable="false" originalDbColumnName="0000" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="customerName" nullable="false" originalDbColumnName="0001" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="contactLastName" nullable="false" originalDbColumnName="0002" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="contactFirstName" nullable="false" originalDbColumnName="0003" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_String" usefulColumn="true"/>
@@ -479,6 +482,8 @@
       <column comment="" key="false" length="-1" name="country" nullable="false" originalDbColumnName="0010" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="salesRepEmployeeNumber" nullable="false" originalDbColumnName="0011" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="creditLimit" nullable="false" originalDbColumnName="0012" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="26" name="UpdateTime" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="NVARCHAR" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="Flg" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="192">
@@ -521,12 +526,16 @@
       <elementValue elementRef="LENGTH" value="10"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="creditLimit"/>
       <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="UpdateTime"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Flg"/>
+      <elementValue elementRef="LENGTH" value="10"/>
     </elementParameter>
     <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tLogRow_1">
-      <column comment="" key="false" length="-1" name="customerNumber" nullable="false" originalDbColumnName="0000" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="customerNumber" nullable="false" originalDbColumnName="0000" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="customerName" nullable="false" originalDbColumnName="0001" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="contactLastName" nullable="false" originalDbColumnName="0002" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="contactFirstName" nullable="false" originalDbColumnName="0003" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_String" usefulColumn="true"/>
@@ -539,6 +548,8 @@
       <column comment="" key="false" length="-1" name="country" nullable="false" originalDbColumnName="0010" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="salesRepEmployeeNumber" nullable="false" originalDbColumnName="0011" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="creditLimit" nullable="false" originalDbColumnName="0012" originalLength="-1" pattern="" precision="-1" sourceType="String" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="26" name="UpdateTime" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="NVARCHAR" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="Flg" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="FLOW" label="row5" lineStyle="0" metaname="tDBInput_3" offsetLabelX="0" offsetLabelY="0" source="tDBInput_3" target="tDataprepRun_3">
@@ -556,6 +567,14 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tDataprepRun_2" offsetLabelX="0" offsetLabelY="0" source="tDataprepRun_2" target="tLogRow_1">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="Flg"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="UpdateTime"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
   </connection>
@@ -569,13 +588,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_5ebc345c-6795-4b4e-951b-cd96e5c121cd"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>lJTj/XbDzGGE3iX3EvGQox9qtSkgU98HklXDn7jokOO3sBsC+fSneLnSCVbvtwdLj8aiuwcTjYBP&#13;
-S8x42fVEqQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_6cbc01a7-b0ea-4718-807e-776c13e1c61e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>x8SmMcEQYasN1CxBn/7jrBWqPMPH+0DAwXQjSZ0mBAEWKxyYM7toTfi6/tvRCQh0oiDCchEZifq4&#13;
-DoBW1k2PYg==</DigestValue></Reference></SignedInfo><SignatureValue>RCpP0aSVF+KXEgTwFKhV4lzejoSHtcrygXEIRf1vYWmX+T/qo3n5RrOcsL/rDzd8ZuY4f/kl4vgw&#13;
-6YV1Azywm2JjccQYHX8a+7Yf72tCJrw2iEiHCgIrVrPx7dIFaygAYH+C/R6kXG/2FpjkCjOfDiB3&#13;
-TNTq/vQEcCjdax+tMu9QDtEKBouJfTT0JEiujHRe02X50dFStfdaAPooSXvbqvsYjQ1be93SZW6I&#13;
-V6rofsmuKozh+Igl8k9JcE3hyZQWtTsN57fBc/SlBrw4MnSLyol7hDc9CL8N1qiDdkdeQ1Eb2ZJw&#13;
-OVD3yUQpld762EXlcjA6v+c6A539wcFcum4pag==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6e8e8c21-6421-4864-85c0-15daaf840b0f"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>RVZcp9m6CzJJUeToDrYHP4aG+aShgWKNhO+/DLIXV7KV8dor5npVAx998xj+crCEMi2tYaEcpce9&#13;
+sg7RoxpexQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_4d917ea6-9d55-4b78-a29e-0f3eac867428"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>JK7n2BO7d6kxIMZn/pD/OadHHNsEc30ykFhXc5I+zsl7eePCe4AEqBFZU70geZOleZP6eqYLU32G&#13;
+ZWqa5Dcjwg==</DigestValue></Reference></SignedInfo><SignatureValue>MTlu5vgH+OlPOaRMe+TE9TukJMV5NwGWrab6xqAWgd0LclJlMoK7/WTPP2PH8MAOSDwGmSm1Dqgd&#13;
+FB9hNapum5teSUkboOv2uM1xAdu6qPGKv1ckamb4ts6R2M5x+zA6bXKnrswiWspOaJW0iFG8B2FE&#13;
+rb3GMmyb7++9He/C8f5Q7Uq8t2sWWZfpudMuSSGDbnao+bChEFl34l7qUYTBk1NKzeRUgjyl1Lhf&#13;
+x493HcYogMXOWwh+7L3lLA8akh7XIuJWTVnUE466drmCe3pSHpTt+1+ZIzO6b5eCvNtvDCeS/pn+&#13;
+FU+xMsftXoVMtUugeKaNweeR6Vwd8HTmnbMNVg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -597,4 +616,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_6cbc01a7-b0ea-4718-807e-776c13e1c61e" Target="#_5ebc345c-6795-4b4e-951b-cd96e5c121cd"><Timestamp>2023-09-28 09:27:58</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_4d917ea6-9d55-4b78-a29e-0f3eac867428" Target="#_6e8e8c21-6421-4864-85c0-15daaf840b0f"><Timestamp>2023-09-29 09:14:11</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
