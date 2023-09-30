@@ -463,8 +463,6 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Mrunaltarget&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;qdimainuser&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:9BenF/d9/EOnlY+PzlCisaApMb0TrLw2RmsGmJkkoylKR3TZQuOK5vmv"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_IxW6ZlOSEe6_feAcm5rRZg - masterTable"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;masterTable&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
@@ -480,12 +478,16 @@
     <elementParameter field="ENCODING_TYPE" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
-    <elementParameter field="TABLE" name="TRIM_COLUMN"/>
+    <elementParameter field="TABLE" name="TRIM_COLUMN">
+      <elementValue elementRef="SCHEMA_COLUMN" value="UpdatedOn"/>
+      <elementValue elementRef="TRIM" value="false"/>
+    </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="masterTable" name="tDBInput_4">
+      <column comment="" key="false" length="-1" name="UpdatedOn" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
       <column comment="" key="true" length="10" name="customer_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="false">
         <additionalField key="Comment" value=""/>
       </column>
@@ -523,7 +525,39 @@
     <elementParameter field="MEMO_JAVA" name="CODE" value="&#10;context.Last_Success=TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,input_row.UpdatedOn);&#10;context.Current_Success= TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,TalendDate.getCurrentDate());&#10;&#10;&#10;System.out.println(&quot;Last Success: &quot;+context.Last_Success);&#10;&#10;System.out.println(&quot;Current Success: &quot;+context.Current_Success);&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJavaRow_1"/>
+    <metadata connector="FLOW" label="masterTable" name="tJavaRow_1">
+      <column comment="" key="false" length="-1" name="UpdatedOn" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="DATETIME" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="true" length="10" name="customer_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="20" name="first_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="25" name="last_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="25" name="email" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="city" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="state" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="order_date" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="payment_method" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="deliever_date" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="23" name="UpdatedOn" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+    </metadata>
   </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tDBConnection_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
@@ -568,13 +602,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_adb293a8-2dd7-4b21-b4a7-b7a8398ac98e"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>KAIcAk+C5Qxi6monNqwxSkAw5dotlnSz3Kng6DKbFdxAxGFYQaP2XOSvvuTq02NdbEN0mE9ju9qP&#13;
-r99IKLVU3A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_aa7a4c87-ba91-4490-9b95-385c5d150ece"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ee0vn7Qrym0wDpj0AG93DgUYfc4MNQVRMxBunx80zgH5H531aAHyd3Kg2zxIgyspde0lwJ/TFd8n&#13;
-QssDZ+Vj0g==</DigestValue></Reference></SignedInfo><SignatureValue>UZPaeqoL8qcR07+VGdU6kdhKtjL4nJxv0RZMPwuHKgNUuA/qu6xhcdaRN2Z7uAEIAwUZ4v4Gk5zk&#13;
-osegkFAQ1DG3et6ouT0XV500czzjD1oMJNEHh6k16zQhEMG4uKdH4RLOjjwHcr/Ri2crvqfZEVoa&#13;
-mKXpYTNJeMwCl2wMMzsTdK+o+P+hOrlqegNfBF8O5hjuC5qB/lY72qfG8oAc8r059APLapT2iP+f&#13;
-khCdl46R6yt9J7ChGfBJkFuiVC4mypC37tr2kyBgm3lWCR93SSsekdHYfDc1M7MYDo+aobuypHKR&#13;
-e8iAk4BGnRRCNjjCake/0/d53Dfc7BHQlSZhMg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_aad29f7e-41d1-4191-902d-8e14ded85e1d"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>sfAsrxoyvZSBdkrJKYI37sOKPvu4j1bltKYj9Nf9CXDz6nZOMhKOxHiydxfqZ3VzacDOgHuvhwRO&#13;
+zupysMtDxw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_507b67e8-fc37-4b48-95db-984ba426ea0b"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>cTzw1OPNBKdaehTJmkNbGWO4lgnCO3op1FCMG2QNFY0zB8xhYbfIXXiqOgK0cvhGg+vuEFEO2PmQ&#13;
+15L/kQAysQ==</DigestValue></Reference></SignedInfo><SignatureValue>jRhIMJT4UJhN1z7Ro13on+oHoEuMgJN/egdHQ1L0c7JYhXXWMzDh2EGrmcibvIBwJJ8QROxmmEZS&#13;
+gTpeompBovrmQhx2vpIfyiu2Ql3wDEWph23JMXtjZxPhs37wbnZ03tW+9nfG4AQJLbLkw89+e88w&#13;
++7g2+eVLsCE/+tolb6dz/sZgfqbshj75C8p5P7sVQ70uCzee6YMqctviEDG93tDix3S/mAcmEnzO&#13;
+X/HY4LcB2W2fiUXmmCYNieCsXyb4nkjQcXEiiIsm1FlPBLoKr4hGAeFJPb7z8VRcJ1mMDwmcd5vW&#13;
+wlN9L8dQXr7wjPxoigysfTILU4Z7GH1DUVNmzw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -596,4 +630,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_aa7a4c87-ba91-4490-9b95-385c5d150ece" Target="#_adb293a8-2dd7-4b21-b4a7-b7a8398ac98e"><Timestamp>2023-09-30 05:24:25</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_507b67e8-fc37-4b48-95db-984ba426ea0b" Target="#_aad29f7e-41d1-4191-902d-8e14ded85e1d"><Timestamp>2023-09-30 05:26:21</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
