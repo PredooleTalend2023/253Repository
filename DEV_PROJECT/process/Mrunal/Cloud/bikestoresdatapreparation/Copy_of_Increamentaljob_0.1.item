@@ -236,7 +236,7 @@
       </column>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="out1" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row1.product_id " name="product_id" type="id_Integer"/>
@@ -360,7 +360,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="896" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.last_success = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, input_row.last_Success);&#10;context.Current_run = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, TalendDate.getCurrentDate());&#10;&#10;System.out.println(&quot;last_success : &quot; +context.last_success);&#10;System.out.println(&quot;Current_run  : &quot; +context.Current_run);"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.last_success = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, input_row.last_Success);&#10;&#10;System.out.println(&quot;last_success : &quot; +context.last_success);&#10;&#10;&#10;&#10;import java.util.Calendar;&#10;&#10;// Get the current date and time from the context variable&#10;java.util.Date currentDateTime = TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, context.Current_run);&#10;&#10;// Convert the date and time to a Calendar object&#10;Calendar cal = Calendar.getInstance();&#10;cal.setTime(currentDateTime);&#10;&#10;// Add 5 hours and 30 minutes&#10;cal.add(Calendar.HOUR_OF_DAY, 5);&#10;cal.add(Calendar.MINUTE, 30);&#10;&#10;// Get the updated date and time&#10;java.util.Date updatedDateTime = cal.getTime();&#10;&#10;// Convert the updated date and time back to a formatted string&#10;String updatedDateTimeStr = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, updatedDateTime);&#10;&#10;// Set the updated date and time back to the context variable&#10;context.Current_run = updatedDateTimeStr;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="masterTable" name="tJavaRow_1">
@@ -512,13 +512,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_af86eff4-6eab-4665-a676-938f938172e1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>TL+4PZDOWdTvSFXuyuPU6ANoWknzZmORrmGCZx9OnsCYKD5K0L44lUtWEpQjhaU9l5xgCJzF6rfQ&#13;
-zfq6pzI1Kg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_3c20f182-c06d-4f76-9cfb-dc65aefdee3b"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>wYwBHsahUg/peBinTXWlxpDKnpaIU8TIthdIxOmQEtqX3+KKd6bIxELO5MXFXEISA6JvUwEvtZ/m&#13;
-URNXYKk92g==</DigestValue></Reference></SignedInfo><SignatureValue>dPzZ8S4HM0FV9Lb2CZ3YhPJgje4yXBupptIs6nGdxttAHC8ctCU0Y4zFjTTYOgwmwPzEb2z/qyWK&#13;
-Z7h4ah49K7n10LRDn1xMY9kemyes+jM5n2OlAKFaaBzm3Erm1+Bnba6UwXQ6DljE7qElxTQX05a5&#13;
-EPfT7OPsznQgBTeAXlTLRktZP7V6M24UQQ7cyffEYkoeQveKVlggN4vDUd+6iMEdg7RuBNXZlxhZ&#13;
-5czSAvrFhhxk3YPpieGD7cWYrjwvsL9Ur8uHjRCwQinUk2m784RW9qqZl0n8UfpVZFYeZeeHMPA+&#13;
-QV3f7/kc0jnWs9eNEvDDkp3UXzGGCrw9uRdjFQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_93957c52-4aa8-4671-acde-26363f204003"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>yb9jIj4eb3rwjKtJYcupAhqNTIVrMbH7o+fOg1qxCENzFpWEZNhbO+eSP3WoH17Vjueaz4I92HaC&#13;
+3gf1phQucQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_b9bbd694-f003-4691-be07-cb2c3ee69eaf"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>QVl1iqwELkEBmEYm+mkD4f3drJ/AMtiIOp4wJFkPs8el+QKnv/Yg09Yr7w3xOAC4SWuXJ/5wifyX&#13;
+eNQbqsXPRQ==</DigestValue></Reference></SignedInfo><SignatureValue>a6/8272qZdRylj43bpMp84M+9gXG5Lbu1HEZOLaf+BfTLyRu5NC0MxRO1b/yh6NOdEBof3+rqZJd&#13;
+KJPUN+O5ix919AIT1vOJZNOdl+9agYSxQNSWZQRfj0+gnaN1/As5Nkod2+ZJ6f1I0V0DFuUrFzEJ&#13;
+4Wbs4JVlGIBZaUJTRlck8iiDv+EIOVOJiC0Ye+/kBa4lVl+wnZFheEz2eNiAEZlNiKvCkhQ4oqtU&#13;
+j9Nghm9cDBWCP3eX+KPYjUbwzTyFbHfEGbyQrNCu1LJJE/SeCuNvURhUUL8ipXc4izxPVDmee2oy&#13;
+3aQCwdqQKjMmcqoA9+NcvL6Tokjhx49WwmEjUg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -540,4 +540,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_3c20f182-c06d-4f76-9cfb-dc65aefdee3b" Target="#_af86eff4-6eab-4665-a676-938f938172e1"><Timestamp>2023-10-03 08:55:38</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_b9bbd694-f003-4691-be07-cb2c3ee69eaf" Target="#_93957c52-4aa8-4671-acde-26363f204003"><Timestamp>2023-10-03 09:01:03</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
