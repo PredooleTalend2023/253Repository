@@ -181,6 +181,9 @@
     <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="out1">
+      <column comment="" key="true" length="10" name="customer_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
       <column comment="" key="false" length="255" name="product_name" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -222,6 +225,7 @@
       <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="out1" sizeState="INTERMEDIATE">
+        <mapperTableEntries expression="row5.customer_id " name="customer_id" type="id_Integer"/>
         <mapperTableEntries expression="row2.product_name " name="product_name" type="id_String"/>
         <mapperTableEntries expression="row3.list_price " name="list_price" type="id_BigDecimal"/>
         <mapperTableEntries expression="row1.quantity " name="quantity" nullable="true" type="id_Integer"/>
@@ -589,6 +593,9 @@
     <elementParameter field="MEMO_JAVA" name="ADVANCED_COND" show="false" value="// code sample : use input_row to define the condition.&#10;// input_row.columnName1.equals(&quot;foo&quot;) ||!(input_row.columnName2.equals(&quot;bar&quot;))&#10;// replace the following expression by your own filter condition &#10;input_row.columnName1.equals(input_row.columnName2)&#10;&#9;&#9;&#9;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFilterRow_6">
+      <column comment="" key="true" length="10" name="customer_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
       <column comment="" key="false" length="255" name="product_name" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -627,6 +634,9 @@
       </column>
     </metadata>
     <metadata connector="FILTER" name="FILTER">
+      <column comment="" key="true" length="10" name="customer_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
       <column comment="" key="false" length="255" name="product_name" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -665,6 +675,9 @@
       </column>
     </metadata>
     <metadata connector="REJECT" name="REJECT">
+      <column comment="" key="true" length="10" name="customer_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
       <column comment="" key="false" length="255" name="product_name" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -718,6 +731,8 @@
     <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
     <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
     <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="customer_id"/>
+      <elementValue elementRef="LENGTH" value="10"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="product_name"/>
       <elementValue elementRef="LENGTH" value="10"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="list_price"/>
@@ -747,6 +762,9 @@
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tLogRow_1">
+      <column comment="" key="true" length="10" name="customer_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
       <column comment="" key="false" length="255" name="product_name" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -790,6 +808,11 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <connection connectorName="FLOW" label="out1" lineStyle="0" metaname="out1" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tFilterRow_6">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="customer_id"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out1"/>
   </connection>
@@ -818,13 +841,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b210a7c4-8301-46c8-9d56-7caf2c78444d"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Kd3L96K301XF4Uja8nsgD8ZZ4z9ksQqw+Imb5zGCX0gJettAfGBugC4E5Z+96vK2M/hOhqK1d+rq&#13;
-MudQKau81g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_527d6ab2-d54b-4eee-8456-c9df7d518d01"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>gWXJLD2kmmkIB9BzKoSlyr1XYb1UCZcu0HxL1NktfjAq11NC5lhjlUbV9u7aFFWdOdioa8pVsfEL&#13;
-XvK2pja/Zg==</DigestValue></Reference></SignedInfo><SignatureValue>jVlqF8Svjekn7h9gwQYaCDEyncoc+PFDVUHnRzSMKr67wVQKYhlmx4YX8btn1JL+qslY+ydXLyxK&#13;
-+0SYXbppeoxIxmwtouB5oqMrYTb6k8DnmcF7keQZvVsNi4f9anFGy/Hcdj7NoW2C7u9oqnvjOu++&#13;
-FyW/ZFbXtstB8BqfrJD0b1X6736nzAik+sFWBfyrajYpFCOSfQkNgtXb31HyFl9kHLEi8EkpOQQK&#13;
-oTcWlWsuhR1nVPaN62ARDK9AAYCWPpW3bjw6jdUe7ZKkvbcWLINYnZbAcbCrwBwjFdhCh6633Nmv&#13;
-Mb6eb2xgTZKeFFHNqILpiCHJ4KgsgzwQW/ut4g==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_133e1803-31ee-4112-99af-f1636d3715a6"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>DMgtIQwo7d0GTxrs1jd6a6H2ftOaUUhgdue7mfsJnW8pAiYmbR90L7+6E+SWIjuX3InF6xO88c9T&#13;
+QFyyzg38BA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_273a70f6-c804-471e-81a5-12a0e3f444f3"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>QMhCEblWXChT8xMUV+14te3JpJQu1x78aZcmf9nxpEoBfrKICORenHxFeIxcY0Fpo+LFBK2vMjdr&#13;
+dZZ80UpVTw==</DigestValue></Reference></SignedInfo><SignatureValue>mfttT2Jo1AIc1j8LBq8teFvA48Hozc7fCEbBpyixeUMM/glZ2geZuehWrzGajGmKQHNOzrQl/QIe&#13;
+VkRDbP7MT7LrLqWRIop4hLPw2EokP8M0B5x0VB9LiSuXewbbOoL3mRPMcW8ENKuAR7ZRsorjGKXE&#13;
+3rqMbCyoI3RuP+jSa2vqOqiJIaslWp2M/c8TvyKysjV/IGomnqoRL/7Z4b/OatFbBXu0AM54pdiH&#13;
+iaTxETGh0nDJxVd+b0PK56q1IfP2aU5kDLBgiDiVjNjOZKEeiQEMU6MIak4KYCLm9TO4rPz0XsfP&#13;
+54FThtvoN0BYa1kvHeEF4tgs80yWOAUnUAw9JA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -846,4 +869,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_527d6ab2-d54b-4eee-8456-c9df7d518d01" Target="#_b210a7c4-8301-46c8-9d56-7caf2c78444d"><Timestamp>2023-10-03 05:21:31</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_273a70f6-c804-471e-81a5-12a0e3f444f3" Target="#_133e1803-31ee-4112-99af-f1636d3715a6"><Timestamp>2023-10-03 05:22:43</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
