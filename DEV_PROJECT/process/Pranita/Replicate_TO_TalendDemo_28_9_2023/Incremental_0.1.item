@@ -208,31 +208,31 @@
     <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="out1">
-      <column comment="" key="true" length="10" name="orderDetailsNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="true" length="10" name="orderDetailsNumber" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="orderNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="false" length="15" name="productCode" nullable="true" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="15" name="productCode" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="10" name="priceEach" nullable="true" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="priceEach" nullable="false" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
+      <column comment="" key="false" length="10" name="orderDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="orderDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="requiredDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
+      <column comment="" key="false" length="10" name="requiredDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="10" name="shippedDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="15" name="status" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="15" name="status" nullable="true" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="customerNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="false" length="10" name="customerNumber" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="orderNumber" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
@@ -240,15 +240,15 @@
       <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables activateColumnNameFilter="true" activateCondensedTool="true" activateExpressionFilter="true" columnNameFilter="" name="out1" rejectInnerJoin="true" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="row1.orderDetailsNumber " name="orderDetailsNumber" type="id_Integer"/>
-        <mapperTableEntries expression="row1.orderNumber " name="orderNumber" type="id_Integer"/>
-        <mapperTableEntries expression="row1.productCode " name="productCode" type="id_String"/>
-        <mapperTableEntries expression="row1.priceEach " name="priceEach" type="id_BigDecimal"/>
-        <mapperTableEntries expression="row2.orderDate " name="orderDate" type="id_Date"/>
-        <mapperTableEntries expression="row2.requiredDate " name="requiredDate" type="id_Date"/>
+        <mapperTableEntries expression="row1.orderDetailsNumber " name="orderDetailsNumber" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="row1.productCode " name="productCode" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row1.priceEach " name="priceEach" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries expression="row2.orderDate " name="orderDate" nullable="true" type="id_Date"/>
+        <mapperTableEntries expression="row2.requiredDate " name="requiredDate" nullable="true" type="id_Date"/>
         <mapperTableEntries expression="row2.shippedDate " name="shippedDate" nullable="true" type="id_Date"/>
-        <mapperTableEntries expression="row2.status " name="status" type="id_String"/>
-        <mapperTableEntries expression="row2.customerNumber " name="customerNumber" type="id_Integer"/>
+        <mapperTableEntries expression="row2.status " name="status" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row2.customerNumber " name="customerNumber" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="row2.orderNumber " name="orderNumber" nullable="true" type="id_Integer"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row1" sizeState="INTERMEDIATE">
         <mapperTableEntries name="orderDetailsNumber" type="id_Integer"/>
@@ -260,7 +260,7 @@
         <mapperTableEntries name="UpdateTime" nullable="true" type="id_Date"/>
         <mapperTableEntries name="Flag" nullable="true" type="id_String"/>
       </inputTables>
-      <inputTables activateCondensedTool="true" lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row2" sizeState="INTERMEDIATE">
+      <inputTables activateCondensedTool="true" lookupMode="LOAD_ONCE" matchingMode="ALL_MATCHES" name="row2" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row1.orderNumber " name="orderNumber" operator="=" type="id_Integer"/>
         <mapperTableEntries name="orderDate" type="id_Date"/>
         <mapperTableEntries name="requiredDate" type="id_Date"/>
@@ -316,11 +316,6 @@
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="orderNumber"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="productCode"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
@@ -356,6 +351,11 @@
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="orderNumber"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
     </elementParameter>
     <elementParameter field="CHECK" name="IGNORE_DATE_OUTOF_RANGE" value="false"/>
     <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
@@ -367,60 +367,60 @@
     <elementParameter field="TEXT" name="LABEL" value="Replicate_Talend_Target_Masters"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBOutput_1">
-      <column comment="" key="true" length="10" name="orderDetailsNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="true" length="10" name="orderDetailsNumber" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="orderNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="false" length="15" name="productCode" nullable="true" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="15" name="productCode" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="10" name="priceEach" nullable="true" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="priceEach" nullable="false" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
+      <column comment="" key="false" length="10" name="orderDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="orderDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="requiredDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
+      <column comment="" key="false" length="10" name="requiredDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="10" name="shippedDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="15" name="status" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="15" name="status" nullable="true" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="customerNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="false" length="10" name="customerNumber" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="orderNumber" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
     <metadata connector="REJECT" name="REJECT">
-      <column comment="" key="true" length="10" name="orderDetailsNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="true" length="10" name="orderDetailsNumber" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="orderNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="false" length="15" name="productCode" nullable="true" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="15" name="productCode" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="10" name="priceEach" nullable="true" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="priceEach" nullable="false" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true">
+      <column comment="" key="false" length="10" name="orderDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="orderDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="requiredDate" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
+      <column comment="" key="false" length="10" name="requiredDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="10" name="shippedDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="15" name="status" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="15" name="status" nullable="true" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="customerNumber" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="false" length="10" name="customerNumber" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="orderNumber" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
@@ -700,13 +700,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_27737ee5-e05d-436f-a5c2-5203b600c3de"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>bhJtHCw+7q8gvpdFw4sfkDlkUzcq6p4DEl4o8hp+jG0g1oiz/0yznD4ZZWOLBsfb1OQOmq80/fRK&#13;
-6I5pyXg4DA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_c63e7458-414f-4262-b8ab-fb1846bb70e3"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>IrB7pyNxvNXdXTU2t9wbLfZknGAHC4hF10U+ZOPM2e1FJYWL3SGjPMHSzqHJwMeBXE+4n1S8Ul+S&#13;
-ZIdIL6WiFw==</DigestValue></Reference></SignedInfo><SignatureValue>PMCpMK4vdRyVurDlR1laoeWJxMipaQKc4je1hVzR1ReeFFeLI9Vbt1fMmA7VNUuITdKbWajpP4Bi&#13;
-0BIdJHChTBkLsCNgfZkA3NGab69kkT6ZYfRHwzvn1jXZVASvVbrXgJIblTPgw9FcP6s9VI9bPSKg&#13;
-4dT8Wi0HuzMKWMLKptiKGtlMt0TzFc3mHyMh/YUKaQd65RchTJ2G8FJCdWfbG9vzVNjD7fRwcKoJ&#13;
-ELOPPT24EuCRb8zN0v+p59kW627WDWoUTCGgrRCMNwqKXJyY6tNdLkXpJLo+CgO1BHCxnl47DxBl&#13;
-QLEM4FlFEgdg/6JsZylEZlm8pA9hP6GIaj0Wfw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_70b6eb22-aa9c-4e33-95b0-d34d4a5a378e"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+GfZOq3vOW1bzyINSi/le7XDBA9c5P5xidOypLdllvoLaHQ52sHdCj11XVzua3YNk4SFTPv21vsQ&#13;
+xdpKsKEfZQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_8d98da11-5c90-4d1f-b2ae-359720a7e209"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>swbotZDGjohPE0ggmcNe1RkT6tuJkPFc1WiJvIYwTfIKcjTccneBhnj6x3+QcTsdCz/ntl0xyCeI&#13;
+YLWOB8m/0g==</DigestValue></Reference></SignedInfo><SignatureValue>CnLhsDUQP3PLmgy76cSNR7BDxhTcEqTN2xy89ZD1GhQNv69hE9YnUQzSCDatf9gwJ/fxotCNmQrO&#13;
+ZOFnKTQyrrHxLqPV3m84qrRRHOUolvDcyRywC52O6RnLbfpSuEYLLVMXm/eYVEv0P4K5Yzvwkco5&#13;
+5gWtraLyaJJEBSkmE7fi/SpR3ia7J9efXitdZxpAURdXDepntEf4gNPUe4KVqrXZPyjRq+23mF8y&#13;
+1SruoM5KuTbLhG2s3W0N/V3jvhjzuAGR8DNqBFp3rhj+iK8LaA1vWQNlACOEtWzam0e3n0smzwvH&#13;
+yw3EI5JkysZcfeQXRHGV/IcUMTmYDKGrtqPSKg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -728,4 +728,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_c63e7458-414f-4262-b8ab-fb1846bb70e3" Target="#_27737ee5-e05d-436f-a5c2-5203b600c3de"><Timestamp>2023-10-04 05:38:07</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_8d98da11-5c90-4d1f-b2ae-359720a7e209" Target="#_70b6eb22-aa9c-4e33-95b0-d34d4a5a378e"><Timestamp>2023-10-04 05:43:49</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
