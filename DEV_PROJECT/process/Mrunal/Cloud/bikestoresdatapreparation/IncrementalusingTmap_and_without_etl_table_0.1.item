@@ -155,7 +155,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select max(ActionType)ActionType&#13;&#10;from dbo.CustomerSales&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select max(AuditDate)AuditDate&#13;&#10;from dbo.CustomerSales&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -166,13 +166,13 @@
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
     <elementParameter field="TABLE" name="TRIM_COLUMN">
-      <elementValue elementRef="SCHEMA_COLUMN" value="ActionType"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="AuditDate"/>
       <elementValue elementRef="TRIM" value="false"/>
     </elementParameter>
     <elementParameter field="CHECK" name="SET_QUERY_TIMEOUT" value="false"/>
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <metadata connector="FLOW" label="CustomerSales" name="tDBInput_1">
-      <column comment="" key="false" length="10" name="ActionType" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="10" name="AuditDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="true" length="10" name="AuditID" nullable="false" pattern="" precision="0" sourceType="INT IDENTITY" type="id_Integer" usefulColumn="false">
@@ -209,11 +209,41 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="-7" offsetLabelY="-13" posX="640" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.last_success=TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,input_row.ActionType);&#10;context.Current_Success=TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,TalendDate.getCurrentDate());&#10;&#10;System.out.println(&quot;Last Success : &quot;+context.last_success);&#10;&#10;System.out.println(&quot;Current Success: &quot;+context.Current_Success);"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.last_success=TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,input_row.AuditDate);&#10;context.Current_Success=TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,TalendDate.getCurrentDate());&#10;&#10;System.out.println(&quot;Last Success : &quot;+context.last_success);&#10;&#10;System.out.println(&quot;Current Success: &quot;+context.Current_Success);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJavaRow_1">
-      <column comment="" key="false" length="10" name="ActionType" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+    <metadata connector="FLOW" label="CustomerSales" name="tJavaRow_1">
+      <column comment="" key="false" length="10" name="AuditDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="true" length="10" name="AuditID" nullable="false" pattern="" precision="0" sourceType="INT IDENTITY" type="id_Integer" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="CustomerID" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="20" name="FirstName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="20" name="LastName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="50" name="Email" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="SaleDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="TotalAmount" nullable="true" pattern="" precision="2" sourceType="DECIMAL" type="id_BigDecimal" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="'getdate()'" key="false" length="23" name="Created_at" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" defaultValue="null" key="false" length="23" name="AuditDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="false">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="ActionType" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="false">
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
@@ -629,13 +659,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_3e02c60a-78a5-4e66-a416-b4c6f2e943a4"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>icFSDO805IRTiY/OxURKaK/HIufPXbEwFxfft1V1vUEE4dsmcHeEpe3vfWJthwbzWMyGvJ+OD1jh&#13;
-1DySASr37w==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_9bf7111a-984a-4ac1-9e0b-ae6864b70646"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>DO+zff55ROK8+Ay4fJaKw49m+2pksJ/QM4eGKvLsEe3NlDrg3Ih6c3OZ+5rdXoBQWz0B7IIPhwJI&#13;
-3NEWsqvkoA==</DigestValue></Reference></SignedInfo><SignatureValue>fZImYnyBpHoGTlarENJy1LyHu1p4+U4MjHQhEN8uM8AWnfk+/ej4n4uFxrMOiUqHXP2J7ydsn7sb&#13;
-WPPAoUsFzM7oRiT+KeWaJbRowy2y+fHowgj4/ZDRaC8TGwE4tloKr2p5B5k3+3p46vrGap8nq/n0&#13;
-fx113pG9GMUgJxae1I/qA9EB5+LA7BFzW4Zcabl2oS8dcHW/C0RMfkI1ziaFm8TO5CBMGkZmzd21&#13;
-jUXZ9Q7+cxAcbORMDd/YY2ONQN+GI0HGVa0QMzrd3mP99N2oXBi4zSmUelBdy0Mm7catxlLXoXw8&#13;
-zoBCfRkbigYP6l+1qYxabU56GBvyVlXmKmKvsQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b53090f8-1f87-453d-9a01-70cbe513187f"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>htGZvx3lhPGipE3W3HJxUq1QFWGtQhr/mgvvFz07H7fUv+OmtGp1wjr97QtuTm5mAMHxyM8xCqMM&#13;
+X0tq/x1+bw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_194b988c-383b-49fd-aa59-a6a1e06c9270"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>K9fzbun6kLlmy3OOMe44vZBdQIILoHGvcaUEr93ef0ADVkcclNsnYoxjHX5s7jkVCq+Mqa04kmf5&#13;
+eWKBZSpiKw==</DigestValue></Reference></SignedInfo><SignatureValue>IZlGpfCnP+rygKXGFEsEcUM/iKdzs1rmhB0HQ8FzTyvBBHtIUCJCTCgPcERTO9i6xok6F27YOB3L&#13;
+xFrJ060RZmf/ZZgeuDI7nZgXwkknetY/qTXLdPzGjhuPMW3US2u5UT9pEiVbmuUhVfbTqWZkbJWL&#13;
+az59hGXX/jS8J+R5X61KonVV5J+FeHfzeBJnEe0u9GQYCTFe2KmjcJLtrp7gqH61/FFeGmK+FZpn&#13;
+t/LaMx1KgKIiJ3e/sOjPtQLgvf7VxIHP2CBZcOdLBtyCR1t2epCEVf3JrSFjZt2DjG/FfU4Zrwqv&#13;
+CSuHdJ55BY407+55O4xVS+z9NTncjqaOj6nMVg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -657,4 +687,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_9bf7111a-984a-4ac1-9e0b-ae6864b70646" Target="#_3e02c60a-78a5-4e66-a416-b4c6f2e943a4"><Timestamp>2023-10-04 08:50:01</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_194b988c-383b-49fd-aa59-a6a1e06c9270" Target="#_b53090f8-1f87-453d-9a01-70cbe513187f"><Timestamp>2023-10-04 08:55:50</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
