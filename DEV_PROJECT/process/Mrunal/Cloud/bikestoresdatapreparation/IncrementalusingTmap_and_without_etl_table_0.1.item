@@ -155,7 +155,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select  max(sport.dbo.CustomerSales.created_at) as last_success &#13;&#10;from sport.dbo.CustomerSales&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select max(ActionType)ActionType&#13;&#10;from dbo.CustomerSales&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -177,7 +177,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.last_success=TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,input_row.last_success);&#10;context.Current_Success=TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,TalendDate.getCurrentDate());&#10;&#10;System.out.println(&quot;Last Success : &quot;+context.last_success);&#10;&#10;System.out.println(&quot;Current Success: &quot;+context.Current_Success);"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.last_success=TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,input_row.ActionType);&#10;context.Current_Success=TalendDate.formatDate(&quot;YYYY-MM-dd HH:mm:ss&quot;,TalendDate.getCurrentDate());&#10;&#10;System.out.println(&quot;Last Success : &quot;+context.last_success);&#10;&#10;System.out.println(&quot;Current Success: &quot;+context.Current_Success);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_1">
@@ -203,7 +203,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT * from sport.dbo.Customers where sport.dbo.Customers.created_at &gt;'&quot; + context.last_success  + &quot;'&#13;&#10;or sport.dbo.Customers.modified_at &gt; '&quot; + context.last_success  + &quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT dbo.Customers.CustomerID,&#10;&#9;&#9;dbo.Customers.FirstName,&#10;&#9;&#9;dbo.Customers.LastName,&#10;&#9;&#9;dbo.Customers.Email,&#10;&#9;&#9;dbo.Customers.created_at,&#10;&#9;&#9;dbo.Customers.modified_at&#10;FROM&#9;dbo.Customers&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -342,7 +342,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&#13;&#10;&quot;SELECT * from sport.dbo.Sales where sport.dbo.Sales.created_at &gt;'&quot; + context.last_success  + &quot;'&#13;&#10;or sport.dbo.Sales.modified_at &gt; '&quot; + context.last_success  + &quot;'&quot;&#13;&#10;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT dbo.Sales.SaleID,&#10;&#9;&#9;dbo.Sales.CustomerID,&#10;&#9;&#9;dbo.Sales.SaleDate,&#10;&#9;&#9;dbo.Sales.TotalAmount,&#10;&#9;&#9;dbo.Sales.created_at,&#10;&#9;&#9;dbo.Sales.modified_at&#10;FROM&#9;dbo.Sales&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -577,13 +577,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_d9d8d1df-27d5-4ab4-8ff3-a4b2becb119f"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>5ruyQzdHvQK+uL+zHWk8QZAJv54q4iuS5wRZF+REupu3zRYtvGD2eHBZ3uVdEpR2HOu/tGgeKzEe&#13;
-FQyGRM3oTw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_abb8100a-ee29-4b2d-b553-e33f9aa5e89e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>dyOlnTX4mHM+fdm8LSECtrjr3rdKAfvFAF+0locXFcYCLMNQN6KDrCNVT7OmhpKXag2L1IupW7Jb&#13;
-EZhu4ELNIg==</DigestValue></Reference></SignedInfo><SignatureValue>DNHWOpn1EehQBytcnk6ADB2e4uleupS3cFyVl5NC/EPvRXkMuDnQO/Kb4uUxGrWsmmXFQc4aYOi/&#13;
-xhGHXuvw3jLQi2/8lenDAQQEAzJRvz+hpCnwxw3B6rYJrxNP3MqP0f3/97q/RkzxJznGcY9MZHX0&#13;
-e25sWwCDvNx6Or0OICE1riFXN87tUxTYZSbQhwQI7lyuFvamMUds5sj679fsNI9UMfTp+bd8jDgr&#13;
-WI2NNv7QdoLLght4U3FiLqyvNTQHraiRMehQe28epqQVauZlvbTTymn04V+PGvMw+sx0Xc0OBf+C&#13;
-aM3IEC3kOplZ7O3zsb/6Tx24bASvlU4c3TeUrg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_72980444-b33f-48ba-99f2-b34a32098189"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>HK7F4OczVDLZ9XSF5bSWIQBj92GyNsavQaolN2GsQkZOnYS8BwnGaVQPRZ2f4LWQ3MQ+KE//njk4&#13;
+GFuQRTlu+Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_fea1ba5b-c967-424d-9211-4529375b271d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>VSZKgy9tUIq91/v/XXxYHU/cFz5f7W/XaVTOuYBl2z6QsXI28VkuduCF2uFlAx1kODj3aZuTN0Ex&#13;
+qDfCAoJywQ==</DigestValue></Reference></SignedInfo><SignatureValue>FE7O3tWVkIMTEfEAbYj1o9n6jg1RXniTJVWpp6Uc5YJG/py1d48WDg4pODHOOqIpS19tpQLIdduD&#13;
+HrpRbKewg99lkFtkx6NtO9ikoDqY5l7QhT5I0ISLYOZSQaR9bxxr7wuRPzVFd+s0NWp+dpvQ+9ou&#13;
+o3HSnHCBgq67IfYzzjcyC6wsOrrD1PomO2dP8NtTW7OinhnzNrjqKfiTh1L1MUxxj0FES5YENYhj&#13;
+TzViOlXMzxEWewQrXBWj0Ef7axbOPBzBcAnwRD5ehibEVd51ZtecjNej2PIajCTLp9WQy/UyfDyY&#13;
+9HTdlqBxtN09MN437I9eK2IV/uI3DZqZl+G+pQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -605,4 +605,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_abb8100a-ee29-4b2d-b553-e33f9aa5e89e" Target="#_d9d8d1df-27d5-4ab4-8ff3-a4b2becb119f"><Timestamp>2023-10-04 07:11:41</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_fea1ba5b-c967-424d-9211-4529375b271d" Target="#_72980444-b33f-48ba-99f2-b34a32098189"><Timestamp>2023-10-04 07:27:56</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
