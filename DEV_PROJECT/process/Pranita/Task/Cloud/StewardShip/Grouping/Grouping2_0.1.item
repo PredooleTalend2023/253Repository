@@ -127,14 +127,12 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Pranita_Talend&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;qdimainuser&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:sQpDfnUTlUoIErxkANhqWHaqaGUCFh/H+m5rZK44LcTmZuJ17p4grPCy"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_5gOkwHFoEe6OT4Dc5fYbHw - People"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;People&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT People.Name,&#10;&#9;&#9;People.Age,&#10;&#9;&#9;People.Location&#10;FROM&#9;People&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select People.FirstName,People.LastName,People.Age,People.Location,People.EmailID &#10;from People&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
@@ -160,22 +158,12 @@
     <elementParameter field="TEXT" name="QUERY_TIMEOUT_IN_SECONDS" show="false" value="30"/>
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="People" name="tDBInput_1">
-      <column comment="" key="false" length="50" name="FirstName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="LastName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="Age" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="Location" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="100" name="EmailID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
+    <metadata connector="FLOW" name="tDBInput_1">
+      <column comment="" key="false" length="50" name="FirstName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="LastName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="Age" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="Location" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="100" name="EmailID" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tMatchGroup" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="128">
@@ -210,110 +198,60 @@
     <elementParameter field="CHECK" name="DISPLAY_ATTR_LABELS" show="false" value="false"/>
     <elementParameter field="CHECK" name="DEACTIVATE_MATCHING_COMPUTATION" value="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" label="People" name="tMatchGroup_1">
-      <column comment="" key="false" length="50" name="FirstName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="LastName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="Age" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="Location" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="100" name="EmailID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
+    <metadata connector="FLOW" name="tMatchGroup_1">
+      <column comment="" key="false" length="50" name="FirstName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="LastName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="Age" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="Location" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="100" name="EmailID" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="60" name="GID" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="GRP_SIZE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="MASTER" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Boolean" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="SCORE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Double" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="GRP_QUALITY" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Double" usefulColumn="true"/>
     </metadata>
-    <metadata connector="FLOW_OUTPUT" label="People" name="FLOW_OUTPUT">
-      <column comment="" key="false" length="50" name="FirstName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="LastName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="Age" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="Location" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="100" name="EmailID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
+    <metadata connector="FLOW_OUTPUT" name="FLOW_OUTPUT">
+      <column comment="" key="false" length="50" name="FirstName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="LastName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="Age" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="Location" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="100" name="EmailID" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="60" name="GID" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="GRP_SIZE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="MASTER" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Boolean" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="SCORE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Double" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="GRP_QUALITY" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Double" usefulColumn="true"/>
     </metadata>
-    <metadata connector="UNIQUE_ROWS" label="People" name="UNIQUE_ROWS">
-      <column comment="" key="false" length="50" name="FirstName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="LastName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="Age" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="Location" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="100" name="EmailID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
+    <metadata connector="UNIQUE_ROWS" name="UNIQUE_ROWS">
+      <column comment="" key="false" length="50" name="FirstName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="LastName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="Age" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="Location" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="100" name="EmailID" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="60" name="GID" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="GRP_SIZE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="MASTER" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Boolean" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="SCORE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Double" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="GRP_QUALITY" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Double" usefulColumn="true"/>
     </metadata>
-    <metadata connector="CONFIDENT_GROUPS" label="People" name="CONFIDENT_GROUPS">
-      <column comment="" key="false" length="50" name="FirstName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="LastName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="Age" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="Location" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="100" name="EmailID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
+    <metadata connector="CONFIDENT_GROUPS" name="CONFIDENT_GROUPS">
+      <column comment="" key="false" length="50" name="FirstName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="LastName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="Age" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="Location" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="100" name="EmailID" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="60" name="GID" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="GRP_SIZE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="MASTER" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Boolean" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="SCORE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Double" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="GRP_QUALITY" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Double" usefulColumn="true"/>
     </metadata>
-    <metadata connector="UNCERTAIN_GROUPS" label="People" name="UNCERTAIN_GROUPS">
-      <column comment="" key="false" length="50" name="FirstName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="LastName" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="Age" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="50" name="Location" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="100" name="EmailID" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
+    <metadata connector="UNCERTAIN_GROUPS" name="UNCERTAIN_GROUPS">
+      <column comment="" key="false" length="50" name="FirstName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="LastName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="Age" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="Location" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="100" name="EmailID" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="60" name="GID" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="GRP_SIZE" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column defaultValue="" key="false" length="20" name="MASTER" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_Boolean" usefulColumn="true"/>
@@ -322,27 +260,92 @@
     </metadata>
     <nodeData xsi:type="tdqmatching:MatchingData">
       <ruleMatchers>
+        <joinkeys>
+          <columnMap key="MATCHING_TYPE" value="Jaro-Winkler"/>
+          <columnMap key="SURVIVORSHIP_FUNCTION" value="Concatenate"/>
+          <columnMap key="HANDLE_NULL" value="nullMatchNull"/>
+          <columnMap key="ATTRIBUTE_THRESHOLD" value="1.0"/>
+          <columnMap key="CONFIDENCE_WEIGHT" value="1"/>
+          <columnMap key="INPUT_COLUMN" value="FirstName"/>
+          <columnMap key="CUSTOM_MATCHER" value="&quot;&quot;"/>
+          <columnMap key="TOKENIZATION_TYPE" value="No"/>
+        </joinkeys>
         <matchParamMap key="INTERVAL_RULE" value="0.85"/>
         <matchParamMap key="MATCHING_ALGORITHM" value="Simple VSR Matcher"/>
       </ruleMatchers>
     </nodeData>
   </node>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="128">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" show="false" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="FirstName"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="LastName"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Age"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="Location"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="EmailID"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="GID"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="GRP_SIZE"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="MASTER"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SCORE"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="GRP_QUALITY"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tLogRow_1">
+      <column comment="" key="false" length="50" name="FirstName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="LastName" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="Age" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="50" name="Location" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="100" name="EmailID" nullable="true" originalLength="-1" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="60" name="GID" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="20" name="GRP_SIZE" nullable="true" originalLength="-1" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="20" name="MASTER" nullable="true" originalLength="-1" precision="0" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="20" name="SCORE" nullable="true" originalLength="-1" precision="0" sourceType="FLOAT" type="id_Double" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="20" name="GRP_QUALITY" nullable="true" originalLength="-1" precision="0" sourceType="FLOAT" type="id_Double" usefulColumn="true"/>
+    </metadata>
+  </node>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tDBInput_1" offsetLabelX="0" offsetLabelY="0" source="tDBInput_1" target="tMatchGroup_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
+  </connection>
+  <connection connectorName="FLOW_OUTPUT" label="row2" lineStyle="0" metaname="FLOW_OUTPUT" offsetLabelX="0" offsetLabelY="0" source="tMatchGroup_1" target="tLogRow_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBInput_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_345975de-a5f3-491b-ae60-e934149b712f"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>mynSXKFMV2AOGvd+gUFbNe1ffJeTdY8/eCY4cmgpkDLKgC5URuof3p4CsgXaNhfkHFn9qmz+2CPs&#13;
-m1Pa45ISyw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_4d8442a7-6be6-40e4-9158-f4d1861168a1"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>EOF5I4BhAjlrXJMWIwy1n0+fj9B6GfdWUNgMTg0U+ZkjwJVhxDArVCv340lhk586hqjdhsl6XFpP&#13;
-+itXF6DEcg==</DigestValue></Reference></SignedInfo><SignatureValue>M71B/Kg5r3EvvS08b7JX4lLf8zNc8z+VfnIOmg6nRczQXBn9VZfdopbtBkOc0kHA4ttWsz53zTNY&#13;
-xu+DSr+t18wPHrcqWIh8epu8lZ+t17Z7hVd9LG/UgdhgV2Cph+tBM1Ee2CZlGjvXmteM3+06Ke6e&#13;
-aW2ElTck6YQsJDF07opgFqAoJRBkBIurCLpX6c0NgOSgaKM9t8xjbAgESCdAOzy88cYZ28/Hiar8&#13;
-WDdOQyxdWSbqr7qYqzHuCU63VQuD4R+BxekkFPFVg6xUZDbqMGCefNpXkEa0bOmZPqyzdaKxHdld&#13;
-CmV3+a3Wa59LNMHZG3kXUvco+XQQJ/qbg0tJ9A==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_d435d055-634c-4913-bf25-0b0ccdd10979"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>8Qm/vbnjhCRTBt8VH7Ss4nBD/OQOGsCzjky/Llh8v7F/hd/HJ6GbFkuURKU830pMp/unhetyN8oj&#13;
+BK23bZjMVQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_099b2747-f3f8-46ae-aea8-ab5cfda60c01"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>jmkDpZpGH22V5tCqn9buZezd+veD70q8ftkfr/QXMpe+qzW490F7SUGz83rUgX/zVSSeky9c9OsT&#13;
+NOHIqr/bSg==</DigestValue></Reference></SignedInfo><SignatureValue>O8gszDKw7Br+va5IY/hNw/+x7XEWmaL2R8k2WsgY8s+0e8AdtZuS1pbSFrgllxia+f1ssHhM+oCa&#13;
+XfTXkLjaNwHivjTfLxQRHZIrQlFlz5LRdq5TjpxEgeXNXEcc/ETmEmiHLWgQXejXrRcWFakBG7+z&#13;
+EUdIRqn/fDmVrS6kb06RHqt/T3ElIktdFXt95QwHbgFiZ7p60yig7cPXa9lSZinnQnepakf/BE8W&#13;
+QpjJ38rTWb637iOFqUP989lY0xftdZiBhdLUmhNyEfqdfl+2okDBJUam2ssOcYsf+0K3t6a9xmQI&#13;
+HrsW30ubWMIyYtaUWSn1qu+pwYCeVZBTb14IbQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -364,4 +367,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_4d8442a7-6be6-40e4-9158-f4d1861168a1" Target="#_345975de-a5f3-491b-ae60-e934149b712f"><Timestamp>2023-10-27 12:06:23</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_099b2747-f3f8-46ae-aea8-ab5cfda60c01" Target="#_d435d055-634c-4913-bf25-0b0ccdd10979"><Timestamp>2023-10-30 04:40:30</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
