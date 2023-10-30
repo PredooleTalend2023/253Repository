@@ -127,8 +127,6 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;NorthwindMrunal&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;qdimainuser&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:1losdxIlwRsPDb5gCmjiSGTAK9j5x7SP4momYB60v4a4YRLGUsz4zav+"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_ujYCcG5DEe6QzIH54T-4_A - Products"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Products&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
@@ -186,7 +184,7 @@
       <column comment="" key="false" length="20" name="QuantityPerUnit" nullable="true" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" defaultValue="'(0)'" key="false" length="19" name="UnitPrice" nullable="true" pattern="" precision="4" sourceType="MONEY" type="id_Object" usefulColumn="true">
+      <column comment="" defaultValue="'(0)'" key="false" length="19" name="UnitPrice" nullable="true" pattern="" precision="4" sourceType="MONEY" type="id_BigDecimal" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" defaultValue="((0))" key="false" length="5" name="UnitsInStock" nullable="true" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true">
@@ -218,21 +216,27 @@
     <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="true"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="out1">
-      <column comment="" key="false" length="15" name="CategoryName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="true" length="10" name="SupplierID" nullable="false" pattern="" precision="0" sourceType="INT IDENTITY" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="40" name="ProductName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="40" name="CompanyName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="-1" name="TotalSales" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="UnitPrice" nullable="true" pattern="" precision="4" sourceType="MONEY" type="id_BigDecimal" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="true" length="10" name="ProductID" nullable="false" pattern="" precision="0" sourceType="INT IDENTITY" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="out1" sizeState="INTERMEDIATE">
-        <mapperTableEntries name="CategoryName" type="id_String"/>
-        <mapperTableEntries name="ProductName" type="id_String"/>
-        <mapperTableEntries name="TotalSales" nullable="true" type="id_Integer"/>
+        <mapperTableEntries expression="row2.SupplierID " name="SupplierID" type="id_Integer"/>
+        <mapperTableEntries expression="row2.CompanyName " name="CompanyName" type="id_String"/>
+        <mapperTableEntries expression="row1.UnitPrice " name="UnitPrice" nullable="true" type="id_BigDecimal"/>
+        <mapperTableEntries expression="row1.ProductID " name="ProductID" type="id_Integer"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row1" sizeState="INTERMEDIATE">
         <mapperTableEntries name="ProductID" type="id_Integer"/>
@@ -240,7 +244,7 @@
         <mapperTableEntries name="SupplierID" nullable="true" type="id_Integer"/>
         <mapperTableEntries name="CategoryID" nullable="true" type="id_Integer"/>
         <mapperTableEntries name="QuantityPerUnit" nullable="true" type="id_String"/>
-        <mapperTableEntries name="UnitPrice" nullable="true" type="id_Object"/>
+        <mapperTableEntries name="UnitPrice" nullable="true" type="id_BigDecimal"/>
         <mapperTableEntries name="UnitsInStock" nullable="true" type="id_Short"/>
         <mapperTableEntries name="UnitsOnOrder" nullable="true" type="id_Short"/>
         <mapperTableEntries name="ReorderLevel" nullable="true" type="id_Short"/>
@@ -276,24 +280,31 @@
     <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
     <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
     <elementParameter field="TABLE" name="LENGTHS" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="CategoryName"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="SupplierID"/>
       <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="ProductName"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="CompanyName"/>
       <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="TotalSales"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="UnitPrice"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ProductID"/>
       <elementValue elementRef="LENGTH" value="10"/>
     </elementParameter>
     <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tLogRow_1">
-      <column comment="" key="false" length="15" name="CategoryName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="true" length="10" name="SupplierID" nullable="false" pattern="" precision="0" sourceType="INT IDENTITY" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="40" name="ProductName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="40" name="CompanyName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="-1" name="TotalSales" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="UnitPrice" nullable="true" pattern="" precision="4" sourceType="MONEY" type="id_BigDecimal" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="true" length="10" name="ProductID" nullable="false" pattern="" precision="0" sourceType="INT IDENTITY" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
     </metadata>
   </node>
   <node componentName="tMSSqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="256">
@@ -405,6 +416,18 @@
       <elementValue elementRef="TRACE_COLUMN" value="TotalSales"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="SupplierID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="CompanyName"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="UnitPrice"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="ProductID"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out1"/>
@@ -418,13 +441,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_000b9c9d-1619-4921-9e94-ee168d849367"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>mcNlByHuIySIfQfpWauD24e+2g2lt973emKzkSHFrvme//HVL817QARa3IzvdfpBghOZ42qRViME&#13;
-Y7Ahtz42Tg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_6bf15626-a99c-4222-97b1-878f9e2b42f4"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>rtWlkuXvhJYhFlR0uLsgmMl3xlBq9NFCxg/I4E7jLLJ8epvK9MD0Orv/g/s8mcS2EL1iozh2yyKW&#13;
-hBqG4Fpfbw==</DigestValue></Reference></SignedInfo><SignatureValue>Mo50Jc03+eWh6RDfYHIAAS7wHFDPDpM+Bh37RCNtx6RTf8Ngp+6j9s1g9uvDgDZ/XAlqgROsINoe&#13;
-QNmoiR4AgASrTFsG0WntGvhLQ56lUKX0zZ8aqs/YtkOl7sMpiYj0mPtLCwWpc7LIHAl+WToV2AX7&#13;
-ZwMaPSgxJJ/9ud/1U5/yN9yhs/ka1IURd3f2UO7fkJ2SzOeJrZ04US1O2ayzS0FVhfkAPW9LrD2j&#13;
-T2WeVZhDi+s7S4KLZ41InP5L9EF0ryX5P7nMzxIv7jUHQt0mhhP1Cw7L3idO8yvqF/r6W0ooqjic&#13;
-XjyrqDqMh7QNiZ8uzXnkcLG2lanOEq7RgY3Llw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_3221c5a5-1868-421b-9c45-f870ce509361"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>n1o0uHZ32hJNgNiIqMd2Je+08bI2JV91NoTxOTXC214wQYkvWQ+N9GUIwyH4vmItLBbQh/eYH6x9&#13;
+9MhMmwS2Fw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_f481e2ae-4596-474e-beeb-7b0afd52212d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ft4MYVt9XglkwFicOEBt9C1Cj5Mr208Fra8n3rypap7vktVJX7/T24fROMpanN/wC8fwhjcgxZIn&#13;
+wQDDlAIj+w==</DigestValue></Reference></SignedInfo><SignatureValue>pqfnyuP2vx8WrUH4C2rOHGZL5YtWtpBrIxUtUaESdjCgA1LkGjD+TXs4LNAW/Wk8X/sRrQIjotcG&#13;
+jY9Te12E0JuP0cZXb8csOBd3TgRy5zyU/8xAHZu7IbHixEIFKpZl7S633UJw3YwAxI3SVoc5xHSF&#13;
+pwHcM/yK3R9O6vIJxSsWDnSVXCt3jJ8zaz8nfmuPMUEALcXSoszn3+hWpK90hmUEOw/Uu8iP36ad&#13;
+UCUaa6s4wU9JQkcyuF4pme7rPiXCmB+A3avVxjloIFaBSv//tROt7AJIXzcBp+JUzbBwZreJJdvM&#13;
+trqk9L28Ex+4zUmu9WhfbQp3/o9eh0qcM2y0Sg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -446,4 +469,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_6bf15626-a99c-4222-97b1-878f9e2b42f4" Target="#_000b9c9d-1619-4921-9e94-ee168d849367"><Timestamp>2023-10-30 09:44:15</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_f481e2ae-4596-474e-beeb-7b0afd52212d" Target="#_3221c5a5-1868-421b-9c45-f870ce509361"><Timestamp>2023-10-30 09:45:03</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
