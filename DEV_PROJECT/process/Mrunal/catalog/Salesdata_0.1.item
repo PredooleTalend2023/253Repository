@@ -252,7 +252,7 @@
       <column comment="" key="false" length="40" name="ProductName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" defaultValue="'(0)'" key="false" length="19" name="UnitPrice" nullable="false" pattern="" precision="4" sourceType="MONEY" type="id_Object" usefulColumn="true">
+      <column comment="" defaultValue="'(0)'" key="false" length="19" name="UnitPrice" nullable="false" pattern="" precision="4" sourceType="MONEY" type="id_BigDecimal" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" defaultValue="((1))" key="false" length="5" name="Quantity" nullable="false" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true">
@@ -272,7 +272,7 @@
         <mapperTableEntries expression="row1.OrderDate " name="OrderDate" nullable="true" type="id_Date"/>
         <mapperTableEntries expression="row4.ProductID " name="ProductID" type="id_Integer"/>
         <mapperTableEntries expression="row4.ProductName " name="ProductName" type="id_String"/>
-        <mapperTableEntries expression="row3.UnitPrice " name="UnitPrice" type="id_Object"/>
+        <mapperTableEntries expression="row3.UnitPrice " name="UnitPrice" type="id_BigDecimal"/>
         <mapperTableEntries expression="row3.Quantity " name="Quantity" type="id_Short"/>
         <mapperTableEntries expression="row3.Discount " name="Discount" type="id_Float"/>
       </outputTables>
@@ -308,7 +308,7 @@
       <inputTables activateCondensedTool="true" innerJoin="true" lookupMode="LOAD_ONCE" matchingMode="ALL_MATCHES" name="row3" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row1.OrderID" name="OrderID" type="id_Integer"/>
         <mapperTableEntries name="ProductID" type="id_Integer"/>
-        <mapperTableEntries name="UnitPrice" type="id_Object"/>
+        <mapperTableEntries name="UnitPrice" type="id_BigDecimal"/>
         <mapperTableEntries name="Quantity" type="id_Short"/>
         <mapperTableEntries name="Discount" type="id_Float"/>
       </inputTables>
@@ -468,8 +468,6 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;NorthwindMrunal&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;qdimainuser&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:cSQlJCqBSmDw0FZsgwJVYynoLlVsg39mk0Urej7hf3KeZ7WeucL1HJo/"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:SCHEMA_TYPE" show="false" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA:REPOSITORY_SCHEMA_TYPE" show="false" value="_ujYCcG5DEe6QzIH54T-4_A - Order_Details"/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;Order Details&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
@@ -508,7 +506,7 @@
       <column comment="" key="true" length="10" name="ProductID" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" defaultValue="'(0)'" key="false" length="19" name="UnitPrice" nullable="false" pattern="" precision="4" sourceType="MONEY" type="id_Object" usefulColumn="true">
+      <column comment="" defaultValue="'(0)'" key="false" length="19" name="UnitPrice" nullable="false" pattern="" precision="4" sourceType="MONEY" type="id_BigDecimal" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" defaultValue="((1))" key="false" length="5" name="Quantity" nullable="false" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true">
@@ -660,7 +658,7 @@
       <column comment="" key="false" length="40" name="ProductName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" defaultValue="'(0)'" key="false" length="19" name="UnitPrice" nullable="false" pattern="" precision="4" sourceType="MONEY" type="id_Object" usefulColumn="true">
+      <column comment="" defaultValue="'(0)'" key="false" length="19" name="UnitPrice" nullable="false" pattern="" precision="4" sourceType="MONEY" type="id_BigDecimal" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" defaultValue="((1))" key="false" length="5" name="Quantity" nullable="false" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true">
@@ -756,52 +754,52 @@
     <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBOutput_1">
-      <column comment="" key="true" length="10" name="OrderID" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="true" length="10" name="OrderID" nullable="false" pattern="" precision="0" sourceType="INT IDENTITY" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="true" length="5" name="CustomerID" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="36" name="CompanyName" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="true" length="5" name="CustomerID" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="36" name="CompanyName" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="23" name="OrderDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="true" length="10" name="ProductID" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="true" length="10" name="ProductID" nullable="false" pattern="" precision="0" sourceType="INT IDENTITY" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="40" name="ProductName" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="40" name="ProductName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" defaultValue="'(0)'" key="false" length="19" name="UnitPrice" nullable="false" pattern="" precision="4" sourceType="BIGINT" type="id_Object" usefulColumn="true">
+      <column comment="" defaultValue="'(0)'" key="false" length="19" name="UnitPrice" nullable="false" pattern="" precision="4" sourceType="MONEY" type="id_BigDecimal" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" defaultValue="((1))" key="false" length="5" name="Quantity" nullable="false" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" defaultValue="((0))" key="false" length="24" name="Discount" nullable="false" pattern="" precision="0" sourceType="DOUBLE" type="id_Float" usefulColumn="true">
+      <column comment="" defaultValue="((0))" key="false" length="24" name="Discount" nullable="false" pattern="" precision="0" sourceType="REAL" type="id_Float" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
     </metadata>
     <metadata connector="REJECT" name="REJECT">
-      <column comment="" key="true" length="10" name="OrderID" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="true" length="10" name="OrderID" nullable="false" pattern="" precision="0" sourceType="INT IDENTITY" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="true" length="5" name="CustomerID" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="36" name="CompanyName" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="true" length="5" name="CustomerID" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="36" name="CompanyName" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="23" name="OrderDate" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="3" sourceType="DATETIME" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="true" length="10" name="ProductID" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="true" length="10" name="ProductID" nullable="false" pattern="" precision="0" sourceType="INT IDENTITY" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="40" name="ProductName" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+      <column comment="" key="false" length="40" name="ProductName" nullable="false" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" defaultValue="'(0)'" key="false" length="19" name="UnitPrice" nullable="false" pattern="" precision="4" sourceType="BIGINT" type="id_Object" usefulColumn="true">
+      <column comment="" defaultValue="'(0)'" key="false" length="19" name="UnitPrice" nullable="false" pattern="" precision="4" sourceType="MONEY" type="id_BigDecimal" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" defaultValue="((1))" key="false" length="5" name="Quantity" nullable="false" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" defaultValue="((0))" key="false" length="24" name="Discount" nullable="false" pattern="" precision="0" sourceType="DOUBLE" type="id_Float" usefulColumn="true">
+      <column comment="" defaultValue="((0))" key="false" length="24" name="Discount" nullable="false" pattern="" precision="0" sourceType="REAL" type="id_Float" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
@@ -837,13 +835,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_03371672-0fa8-4e27-8d56-cb490b2e1620"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>RiskmZb4cWyhqBg74vIaA+18w5Oi/Xt4lF+fF6Ryai42URrql2ejFiz7iuCOz5KXRlaLcdFW6zEX&#13;
-LNYcnWtMBw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_aafdf201-69f5-4f26-9b4d-7d6e0da40f83"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>UcGeyLrbxE2UdKBsMAx7pfN5FroGwOzcbxtpHwsdRep5nB9H7xS9pBFs2I53C4qwMkCv4oGAOYn9&#13;
-dnRSQFKR0g==</DigestValue></Reference></SignedInfo><SignatureValue>o70/GwBzyPLABvgOq96X9Xk44v90s88WY+D4a/DKYK1IdQfNApXbqZdMOmXGZwaZwuuYx+NTYiDz&#13;
-2JWW1ku+Vrif1G41AxmEQQP3fic0q7v7at1pYgrXM+uwwjM9mpw0fl+wTNbPEcaiSDrUdbkmV/Gl&#13;
-M5Lp4kHOKkiIEnex1q0M0Etx8Man5fsZXoJCB9jG1hjB2Nm00X3nPd0hyEql5i8PruAYNVSxXDgY&#13;
-59PvBzw3tZW5wHuJi3g7Grz0O0vrIWN28tg66cuM3ewUVXD8X4uaMZ4DLxHkmxnYdNS0NGu8gXOn&#13;
-eWIoEfLNmYBhhylZ4pT/NKsYipU4WgLkjz2uKA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b6d8acb0-c301-46bb-932f-3249b1063e5a"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>v18XnrsXzLeuxuOSuJ0l1XksWyRggtO5TpxOP4MOOoMpbcC51W1VADCmx+avCVQclsARY7I61CVG&#13;
+cLciuYVnCw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_2036723d-7b0e-4a9c-854a-5003caecc100"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Oxh+x5lx/cm5qwzTYA0VzYR43Zt9Jy6UBHfdaydJsa6i7Q36tKmtri/0Kd3UIy4tX5LzwvLz0LEl&#13;
+1V2vUau/Hg==</DigestValue></Reference></SignedInfo><SignatureValue>fmcNvJUYa6rTXV3Ayt63GEVN0Xd+9FqZx43wv3l/5vXH4y+IwWC2h7uUMP/4LLebtKW6GjP7CXZ5&#13;
+zFyZlmX53i5e2XET3PucUzgP6tJjXyYZd4j2l4tDRoQVjnDZe4zt4+vWzsHj5v0j4MU3IjnvUIEC&#13;
+BxLlrAt+4Q7RBTt2XYWIuq1W3uPDJqVp338/syi+PdDdFMjlgVdzsQVdAIgW7csivaNhD3qOzSqL&#13;
+9INdtX8+uDcdhw708nahrY7dCTHRscF8QlqhgCezmOGkk8NCHSjD2em9TUhkcC6O/2HPe7S4SFwp&#13;
+rcLlTWvVqO86LM7aP/ESAVCDhQNh8ZOGw5Y1pg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -865,4 +863,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_aafdf201-69f5-4f26-9b4d-7d6e0da40f83" Target="#_03371672-0fa8-4e27-8d56-cb490b2e1620"><Timestamp>2023-10-30 06:30:48</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_2036723d-7b0e-4a9c-854a-5003caecc100" Target="#_b6d8acb0-c301-46bb-932f-3249b1063e5a"><Timestamp>2023-10-30 06:32:48</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
