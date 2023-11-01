@@ -166,23 +166,23 @@
       <column comment="" defaultValue="" key="false" length="10" name="MSRP" nullable="false" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMSSqlSCD" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="160">
+  <node componentName="tMysqlSCD" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBSCD_1"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
-    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_9mDVQFg7Ee6Kq4wovtFs1w"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" show="false" value="_fre3YHL0Ee6S356RZfkpGg"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="MYSQL_8"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
-    <elementParameter field="CLOSED_LIST" name="DRIVER" value="JTDS"/>
-    <elementParameter field="TEXT" name="SERVER" value="&quot;20.204.123.250&quot;"/>
-    <elementParameter field="TEXT" name="PORT" value="&quot;1433&quot;"/>
-    <elementParameter field="TEXT" name="DB_SCHEMA" value="&quot;Classic_Masters&quot;"/>
-    <elementParameter field="TEXT" name="DBNAME" value="&quot;Classicmodels&quot;"/>
-    <elementParameter field="TEXT" name="TYPE" show="false" value="MSSQL"/>
-    <elementParameter field="TEXT" name="USER" value="&quot;qdimainuser&quot;"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:1nboz9s7MUq/cwyZqonUracGR1jgDYyCZm3OnAxLtPZzIiR7hbIRxrVq"/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;SCD&quot;"/>
+    <elementParameter field="TEXT" name="TYPE" show="false" value="MYSQL"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;20.204.123.250&quot;"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;3306&quot;"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;Pranita_Talend&quot;"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;monty&quot;"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:yrAg4lnygPJGltyQTZ4hQBH7ok8+emzYJ3fNFQYrKFaSOvYte7sTUVsjbg=="/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;Product_SCD&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="CREATE"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
-    <elementParameter field="COLUMN_LIST" name="SURROGATE_KEY" show="false" value="Product_key"/>
+    <elementParameter field="COLUMN_LIST" name="SURROGATE_KEY" show="false" value="Product_Key"/>
     <elementParameter field="CLOSED_LIST" name="SK_CREATION" show="false" value="TABLE_MAX"/>
     <elementParameter field="PREV_COLUMN_LIST" name="SK_INPUT_FIELD" show="false" value="productCode"/>
     <elementParameter field="TEXT" name="SK_ROUTINE" show="false" value="Numeric.sequence(&quot;seq&quot;, 1, 1)"/>
@@ -190,9 +190,8 @@
       <elementValue elementRef="NAME" value="productCode"/>
     </elementParameter>
     <elementParameter field="CHECK" name="USE_SAVE_MEM_MODE" value="false"/>
-    <elementParameter field="CHECK" name="SOURCE_KEY_INC_NULL" value="true"/>
+    <elementParameter field="CHECK" name="SOURCE_KEY_INC_NULL" value="false"/>
     <elementParameter field="CHECK" name="USE_L0" show="false" value="false"/>
-    <elementParameter field="TABLE" name="L0_FIELDS" show="false"/>
     <elementParameter field="CHECK" name="USE_L1" show="false" value="true"/>
     <elementParameter field="TABLE" name="L1_FIELDS" show="false">
       <elementValue elementRef="NAME" value="productName"/>
@@ -213,28 +212,27 @@
     <elementParameter field="CHECK" name="USE_L2_ACTIVE" show="false" value="true"/>
     <elementParameter field="COLUMN_LIST" name="L2_ACTIVE_FIELD" show="false" value="scd_active"/>
     <elementParameter field="CHECK" name="USE_L2_VERSION" show="false" value="false"/>
-    <elementParameter field="COLUMN_LIST" name="L2_VERSION_FIELD" show="false" value="scd_version"/>
+    <elementParameter field="COLUMN_LIST" name="L2_VERSION_FIELD" show="false" value=""/>
     <elementParameter field="LABEL" name="NOTE" show="false" value="(Version must be an Integer)"/>
     <elementParameter field="CHECK" name="USE_L3" show="false" value="false"/>
     <elementParameter field="TABLE" name="L3_FIELDS" show="false"/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
     <elementParameter field="TEXT" name="L2_ENDDATE_TIME_DETAILS" show="false" value="&quot;12:00:00&quot;"/>
     <elementParameter field="LABEL" name="NOICE" show="false" value="(Time pattern: 'HH:mm:ss')"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;noDatetimeStringSync=true&amp;enabledTLSProtocols=TLSv1.2,TLSv1.1,TLSv1&quot;"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="CHECK" name="DEBUG" value="false"/>
-    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;"/>
-    <elementParameter field="CHECK" name="ACTIVE_DIR_AUTH" show="false" value="false"/>
-    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tDBSCD_1">
       <column comment="" key="false" length="15" name="productCode" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="70" name="productName" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="5" name="quantityInStock" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="buyPrice" nullable="false" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="MSRP" nullable="false" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
-      <column comment="Column generated by scd editor." defaultValue="" key="true" length="-1" name="Product_key" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="Column generated by scd editor." key="false" length="-1" name="scd_start" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
-      <column comment="Column generated by scd editor." key="false" length="-1" name="scd_end" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="Column generated by scd editor." defaultValue="" key="false" length="-1" name="scd_start" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="Column generated by scd editor." defaultValue="" key="false" length="-1" name="scd_end" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
       <column comment="Column generated by scd editor." defaultValue="" key="false" length="-1" name="scd_active" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Boolean" usefulColumn="true"/>
+      <column comment="Column generated by scd editor." defaultValue="" key="true" length="-1" name="Product_Key" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" name="REJECT">
       <column comment="" key="false" length="15" name="productCode" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="NVARCHAR" type="id_String" usefulColumn="true"/>
@@ -242,10 +240,6 @@
       <column comment="" defaultValue="" key="false" length="5" name="quantityInStock" nullable="false" originalLength="-1" pattern="" precision="0" sourceType="SMALLINT" type="id_Short" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="buyPrice" nullable="false" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="MSRP" nullable="false" originalLength="-1" pattern="" precision="2" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
-      <column comment="Column generated by scd editor." defaultValue="" key="true" length="-1" name="Product_key" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
-      <column comment="Column generated by scd editor." key="false" length="-1" name="scd_start" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
-      <column comment="Column generated by scd editor." key="false" length="-1" name="scd_end" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
-      <column comment="Column generated by scd editor." defaultValue="" key="false" length="-1" name="scd_active" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Boolean" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
@@ -261,13 +255,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_1897cdc4-3234-401b-8d87-90d5351ed5c6"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>DcuEBh/aoVxKDRFTaOcT65HC5VijKrzEDKLWdOJQxopuoGqlxkhpvowteUzZEWQNve6xniwUboC2&#13;
-l+v8RnlJ0Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_ab250bc4-b07c-43f2-ac89-6f23c41ad371"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>KVJRJTAviU8zYXzF7IUGe6Yb6YJ4Mls63tkQo1rF8ZRVo3vwOCiQIhijVkyBVNIyMkKgxgUaSZHe&#13;
-jqHWo8WodA==</DigestValue></Reference></SignedInfo><SignatureValue>Sg87szRByvYrdRLpMle+qRByJLs/5zmBU70b3MVzPBhAAcc+1Wy/t6B+oq1GKNR1nAXsdo5W5FUv&#13;
-yAMiqXxT+dRsuCISgV6SoHZ6oOkQ64/lpUSD69/yTJYYPQSIAoF4LVXh0YV3sfvqRdnU61u5phfA&#13;
-vEQk4TCelyKRqHRT2IwbSUOKnUUtxFselGjmIz5ol4dMPXyOc6bDsxkzMiuVw04YgpyjWAv4C4X6&#13;
-mrJN5tWoAuLZle01bc1cysoJ4yAmNjwvJ18j9nAWcvZe4WSA/n8ISGfzYbF/DA12QyQewqGPps5d&#13;
-ob8NHrRwHuo7RQPFJFHPHxI+XOmAJWESrbyV5g==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_76bab321-9cb4-47b3-af31-8adec350ec5a"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>fj062smHkwC8pWBpprSgav4Iw0EkJd5FWPjWx63ixRGKo+J/zx1k7OJZU0FY/q2ZmCOU9blKczd5&#13;
++L3gvc8XcA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_b9f8c670-52ee-4c63-a232-2798e6fb4d0d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>w4eJ4i8+EDXyxuEfSm0KtcrBVZ8+Uak/8+hp6kRI2gAatg3zM6FaAaZ7grxMh+HTjqq+LqMJm9La&#13;
+02vazIcPtw==</DigestValue></Reference></SignedInfo><SignatureValue>IfA2ofehEq1pWqSsZfQhP3In+X6YjBs7I0JKn15jHjCTp2Ko9hz5d76fC96mD3ku4cdj3vFtjgsv&#13;
+jb2vxB8WNhW9CvmQuHd9hOtu4Pt2X/ZVLhHpSGAMzLlPUShiLI6vC+z07dTEPZcpBoR16YdCbcY6&#13;
+c5/kBRp2RO3XEbg1lhMYncRmmJSoVOqGSeSzq4koYF5NFREFyqx56Gu6b/K0MQTK/VUQXmqPjWJ4&#13;
+kmv2c0jghqXDOY6B8W7MWkG9tAQ0TfbZRCcMBF58aoW8k78a/IcQjyvCvqSA+48fI7D5vR9x6ft2&#13;
+lN9kGmgEkBZCiBBZg00Haw5jz5QWf9vHyz8h+A==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -289,4 +283,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_ab250bc4-b07c-43f2-ac89-6f23c41ad371" Target="#_1897cdc4-3234-401b-8d87-90d5351ed5c6"><Timestamp>2023-10-03 11:20:57</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_b9f8c670-52ee-4c63-a232-2798e6fb4d0d" Target="#_76bab321-9cb4-47b3-af31-8adec350ec5a"><Timestamp>2023-10-25 07:08:07</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
