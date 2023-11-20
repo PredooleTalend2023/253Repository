@@ -271,7 +271,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="128">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="// Assuming input_row.list_price is the input column for list_price&#10;BigDecimal listPrice = row2.list_price; // Get list_price from input column&#10;&#10;String priceCategory; // Declare variable to hold the price_category value&#10;&#10;// Evaluate list_price and assign price_category based on defined ranges&#10;if (listPrice &gt; 1000) {&#10;    priceCategory = &quot;High&quot;;&#10;} else if (listPrice &gt; 500) {&#10;    priceCategory = &quot;Medium&quot;;&#10;} else {&#10;    priceCategory = &quot;Low&quot;;&#10;}&#10;&#10;// Assign the calculated price_category value to the output column&#10;output_row.priceCategory = priceCategory;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="BigDecimal listPrice = row2.list_price; // Get list_price from input column&#10;&#10;String priceCategory; // Declare variable to hold the price_category value&#10;&#10;// Define BigDecimal constants for comparison&#10;BigDecimal highThreshold = new BigDecimal(&quot;1000&quot;);&#10;BigDecimal mediumThreshold = new BigDecimal(&quot;500&quot;);&#10;&#10;// Evaluate list_price and assign price_category based on defined ranges&#10;if (listPrice.compareTo(highThreshold) == 1) { // listPrice &gt; highThreshold&#10;    priceCategory = &quot;High&quot;;&#10;} else if (listPrice.compareTo(mediumThreshold) == 1) { // listPrice &gt; mediumThreshold&#10;    priceCategory = &quot;Medium&quot;;&#10;} else {&#10;    priceCategory = &quot;Low&quot;;&#10;}&#10;&#10;// Assign the calculated price_category value to the output column&#10;output_row.priceCategory = priceCategory;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="out" name="tJavaRow_1">
@@ -361,13 +361,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_e70bf879-9771-4e00-b8dd-75ea029f6c71"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>q8Fv9sNsAej5CqKh4nEvtIRCBZff5eqOzA9wbHuX+DOammlMF0vRupqJWXM5x/HTtTFAGOO94CRe&#13;
-BnlxNqsx+A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_30cbfa67-743a-4c2f-9d9b-404d40c4fc2a"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>2FVGK1xDHsND0VB3bRK77AlcGS3Ae+/5zn/YZKbdWvrWNjiw43Vy4EK+GsJ/FVcrghay0xkwRoaN&#13;
-Atl9qFm9OQ==</DigestValue></Reference></SignedInfo><SignatureValue>f93HqhCIIKWO2OttehXMs2kxpknXvGzCXUPk1NW88vtcd8NVEh5x8Mng8B1g7J7MAjJDQwYONGfl&#13;
-d2aGoAtHfXPepyHTC1LDyd4shE5pqTl9dC56jLDhGqLwc8yZ/iX67kTqfsWuEqLlFZJHuyjbdv7O&#13;
-0Kx8P+HyQqpuA3R0cw/NyE7FqWSmJpS97/ZVjO+pdfz9uVQTsD97L+2qWlYOx3VbNdGxuObUGxzR&#13;
-q3NggfEfE8dtd2vhyTzl+3JLutmhXY7wqnTJ7Y8yWaIlhckMey8nsAi1m4dogiVjD3uqiEmtN66z&#13;
-QkC1GYT6SEbQT06DEed+usGn6OYetms3KcA1Lg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_9b59feed-66e7-40c8-9013-a0d5b369be2c"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>X1dENDF/mdzFTNJ55mNHtH/uhHyn0qbSrUbvQx0OlEtev8RLt/N0dH4IFHmpTzESDGZhxtmlfiLt&#13;
+a2ztDQLagg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_c8cce17f-73b3-4b10-8682-8905f0eeb25d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>0ggzGABAnXgDg60BmFFZ35Kz/hItYflg0ai2JHT6uE7aGCjXAxugjwoPwvv2G3xCjAeOHV8HD5hR&#13;
+1BU2a7qUcw==</DigestValue></Reference></SignedInfo><SignatureValue>YkCghpv5Jrin0T8kGGfYsjxlyrWYndRj+70drRTE6PZ9d9Zkondv1x26TbQr+dhvT3l88pzZP9VU&#13;
+fNL5qfRXdffyoctBGRZREEfZLyQXrl8v4RUHQZ1iuakt4hiBia1wVzSkC+A4bkRrDBMhPzQVTdPQ&#13;
+BEGYa3miHQi9eyuZO8M5H8m2gvV38cUw74ph7QYlNzUsZdCFAAZafi4/3kvhWRkfSWVcgwI8VTcf&#13;
+lsYC1buy/BOrlE83gZS1udFqCf4jQAg59ygVqqpBBLwZEdEAzDv5prfGytjJYUMPQMy8kTVxBJ6V&#13;
+7KS+FVrak0LsUKwfgtMyq9gzxSYFV++mAD065g==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -389,4 +389,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_30cbfa67-743a-4c2f-9d9b-404d40c4fc2a" Target="#_e70bf879-9771-4e00-b8dd-75ea029f6c71"><Timestamp>2023-11-20 13:14:11</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_c8cce17f-73b3-4b10-8682-8905f0eeb25d" Target="#_9b59feed-66e7-40c8-9013-a0d5b369be2c"><Timestamp>2023-11-20 13:16:23</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
