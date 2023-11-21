@@ -143,7 +143,7 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tBigQueryInput_1">
       <column comment="" defaultValue="" key="false" length="-1" name="store_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Integer" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
@@ -222,11 +222,11 @@
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row1" sizeState="INTERMEDIATE">
         <mapperTableEntries name="store_id" nullable="true" type="id_Long"/>
-        <mapperTableEntries name="product_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="product_id" nullable="true" type="id_Integer"/>
         <mapperTableEntries name="quantity" nullable="true" type="id_Integer"/>
       </inputTables>
       <inputTables innerJoin="true" lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row2" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="row1.product_id" name="product_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.product_id" name="product_id" nullable="true" type="id_Integer"/>
         <mapperTableEntries name="product_name" nullable="true" type="id_String"/>
         <mapperTableEntries name="brand_id" nullable="true" type="id_Long"/>
         <mapperTableEntries name="category_id" nullable="true" type="id_Long"/>
@@ -234,10 +234,10 @@
         <mapperTableEntries name="list_price" nullable="true" type="id_BigDecimal"/>
       </inputTables>
       <inputTables innerJoin="true" lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row3" sizeState="INTERMEDIATE">
-        <mapperTableEntries name="order_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="order_id" nullable="true" type="id_Integer"/>
         <mapperTableEntries name="item_id" nullable="true" type="id_Long"/>
-        <mapperTableEntries expression="row1.product_id" name="product_id" nullable="true" type="id_Long"/>
-        <mapperTableEntries name="quantity" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.product_id" name="product_id" nullable="true" type="id_Integer"/>
+        <mapperTableEntries name="quantity" nullable="true" type="id_Short"/>
         <mapperTableEntries name="list_price" nullable="true" type="id_BigDecimal"/>
         <mapperTableEntries name="discount" nullable="true" type="id_BigDecimal"/>
       </inputTables>
@@ -293,7 +293,7 @@
     <elementParameter field="TEXT" name="LABEL" value="products"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tBigQueryInput_2">
-      <column comment="" defaultValue="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="brand_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="category_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
@@ -330,10 +330,10 @@
     <elementParameter field="TEXT" name="LABEL" value="order_items"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tBigQueryInput_3">
-      <column comment="" defaultValue="" key="true" length="-1" name="order_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="true" length="-1" name="order_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Integer" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="item_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Short" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="list_price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="discount" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
     </metadata>
@@ -532,13 +532,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_4bd6aad9-0b30-4256-b7a9-41cacb4c1e26"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>b14VTosY1+UuP8kXmUB+7GsGo+gY1r+xTL4bTjOObzEArwzQVMPQJ4kRXMAXMbAGA083jeOzLJ2m&#13;
-P4nq5OKJvA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_b2f0e9a3-1759-4b8b-856c-4261d1b7466f"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>79QbQZ3mgZVtZrB3D35e+7o/MkBH4+MlYCSI5x2rUVFkQ/SbcJG8/eScnSnuDbYX89++G31soUvw&#13;
-Lg6epD/1JQ==</DigestValue></Reference></SignedInfo><SignatureValue>m1a7cdYFKB2qYBLsr+G3E9AD4Pq4GZr9+4NnCLMT/JnrCSHjGxDB3zl8vnMENxWpwaU1XyZK1lZo&#13;
-kFfuef+IocZIazhGylF1aXck+A9IZ4PCNxTOXI1SEpBP+jl5oppYoS+eAMXvlZL0R0AtV4dYE4aR&#13;
-xsu3YKJk2WrNPHQxZiALYwAhRhJ/fDRar0DO0nO8Dqku/TM/mSxV6OnYjYViwVZhfIJK+YrskUVk&#13;
-c/iJ1tzWcyc7O/RGfXgbLAv19YElzLI4QmLz87ii7PhAp1F6syVm9FgqIVVj1YqvwHgFwCMKy6FH&#13;
-e15W2KkWqHMtbo5k+tW2lzO42kDsBPTxMTAIlA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_70e4abce-a4c4-42bd-80cf-1272df9240c6"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>e+rCxb8myO+39S0W+osiviVjm4aqs8V+3fgnUSc1Lphx5jTokqs3a7AGQGM8WgxD2nm5eDZ+SiNn&#13;
+7WNbQxj6zg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_4d2cb297-745e-4c13-9343-c6755726d8a8"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>/8UqkhErt8AVnDCA+ZMH8cmn5IrHraS8y3NGwroU8HAcxek5ppsf5xdo1REyKJXbOPtCKwr5zur6&#13;
+irKU0s82qQ==</DigestValue></Reference></SignedInfo><SignatureValue>NO7Y3e3lDt+sqxi6DuYmJgUrvgwsxP69nvkCskDhx/QFU4fm0MhmU8VE45uBE6vlQBFuKGL2sL4s&#13;
+lmrXsd6g0HHmQmhxSeKokf/RE75oTqAilUCkTHGpMKEqrM0dnZ07a+YZ12wKxRzb8LuX+yFdCPgn&#13;
+/m+ldMxj8hUKRWyRhTpvrLeTEfxP5O2cR6+6IxjjLkel0FfoyF6WfRQ+U1t7mQqmvTn8FJk5vnCE&#13;
+fJT5tKHb5T2Opzqo32rQIb3Km3sjy27aVZ9NOsLindiv+8iCxVNJRD4tFlrjoj68W9rE50QBigZv&#13;
+kvOeAaroNUD56P9xv1aroBxOOp6n3oMcwAbfDA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -560,4 +560,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_b2f0e9a3-1759-4b8b-856c-4261d1b7466f" Target="#_4bd6aad9-0b30-4256-b7a9-41cacb4c1e26"><Timestamp>2023-11-21 05:06:25</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_4d2cb297-745e-4c13-9343-c6755726d8a8" Target="#_70e4abce-a4c4-42bd-80cf-1272df9240c6"><Timestamp>2023-11-21 05:08:15</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
