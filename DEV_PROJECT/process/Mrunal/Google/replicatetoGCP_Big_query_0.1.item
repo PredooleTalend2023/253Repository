@@ -113,7 +113,7 @@
     <routinesParameter id="_pPMG-Dv5Ee6j4v6uG-X0AQ" name="TalendStringUtil"/>
     <routinesParameter id="_pPCV-jv5Ee6j4v6uG-X0AQ" name="TalendString"/>
   </parameters>
-  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="64">
+  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_4"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
@@ -146,7 +146,7 @@
       <column comment="" key="false" length="-1" name="brand_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="544" posY="32">
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="544" posY="128">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tMap_1"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
@@ -199,7 +199,7 @@
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="224">
+  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_1"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
@@ -236,7 +236,7 @@
       <column comment="" defaultValue="" key="false" length="-1" name="list_price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="NUMERIC" type="id_BigDecimal" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="224" posY="448">
+  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="224" posY="544">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_2"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
@@ -269,7 +269,7 @@
       <column comment="" key="false" length="-1" name="category_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="128">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="BigDecimal listPrice = row2.list_price; // Get list_price from input column&#10;&#10;String priceCategory; // Declare variable to hold the price_category value&#10;&#10;// Define BigDecimal constants for comparison&#10;BigDecimal highThreshold = new BigDecimal(&quot;1000&quot;);&#10;BigDecimal mediumThreshold = new BigDecimal(&quot;500&quot;);&#10;&#10;// Evaluate list_price and assign price_category based on defined ranges&#10;if (listPrice.compareTo(highThreshold) &gt; 0) { // listPrice &gt; highThreshold&#10;    priceCategory = &quot;High&quot;;&#10;} else if (listPrice.compareTo(mediumThreshold) &gt; 0) { // listPrice &gt; mediumThreshold&#10;    priceCategory = &quot;Medium&quot;;&#10;} else {&#10;    priceCategory = &quot;Low&quot;;&#10;}&#10;&#10;// Assign the calculated price_category value to the output column&#10;output_row.priceCategory = priceCategory;&#10;&#10;// Copy values of other columns from input to output&#10;output_row.product_id = row2.product_id;&#10;//output_row.Brand_name = row1.brand_name ;&#10;output_row.product_name = row2.product_name;&#10;output_row.model_year = row2.model_year;&#10;output_row.category_name = row3.category_name;&#10;output_row.list_price = row2.list_price; // Assuming you want to keep the original list_price&#10;&#10;// Ensure to replace 'output_row' and 'row2' with the actual output and input row names respectively&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
@@ -283,8 +283,10 @@
       <column comment="" key="false" length="-1" name="priceCategory" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="96">
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
+    <elementParameter field="CHECK" name="DUMMY" show="false" value="true"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
     <elementParameter field="RADIO" name="VERTICAL" value="false"/>
@@ -322,7 +324,7 @@
       <column comment="" key="false" length="-1" name="priceCategory" nullable="false" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1280" posY="128">
+  <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1280" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryOutput_1"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Users/Laptop_User/workspace/biquery_Product_wise_price_range.txt&quot;"/>
@@ -338,7 +340,7 @@
     <elementParameter field="TEXT" name="DATASET" value="&quot;Talend&quot;"/>
     <elementParameter field="TEXT" name="TABLE" value="&quot;Productwise_price_range&quot;"/>
     <elementParameter field="CHECK" name="CREATE_TABLE_IF_NOT_EXIST" value="true"/>
-    <elementParameter field="CLOSED_LIST" name="ACTION_ON_DATA" value="TRUNCATE"/>
+    <elementParameter field="CLOSED_LIST" name="ACTION_ON_DATA" value="EMPTY"/>
     <elementParameter field="CHECK" name="BULK_FILE_ALREADY_EXIST" show="false" value="false"/>
     <elementParameter field="CLOSED_LIST" name="AUTH_TYPE" value="GS_SERVICE_ACCOUNT"/>
     <elementParameter field="FILE" name="GS_SERVICE_ACCOUNT_KEY" value="&quot;E:/Downloads/replicate-40-d7e290dac998.json&quot;"/>
@@ -418,13 +420,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_87767d00-14f7-4b2d-b5db-6e482a1023b4"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>BbfIb5w6RQSQ9bY/dCkgMboKbOHUKZw3HpD82jD1uMk0kfD07uYeZGF8XSisIV8WpUUkMN+HWD0V&#13;
-RlDJjX0Lgw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_5b582329-9de3-4b89-a4f1-5ffd20bc5656"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>mghg3xvYofjOpOY8JLIRrpuYO0uCtgwQfUe320quz1FTEqNlnj6Ln/p+huUSguT13gLniU6pfb4T&#13;
-pAyl/6bs2g==</DigestValue></Reference></SignedInfo><SignatureValue>ZcjtillTZQL0xKueqAJXEmJGov/pcMMfrnTf6EaTOVAOeulVH+XT04x1kPFq8nlBdF5gVyutxs7f&#13;
-3+vqgufC4GcND3b223BgXCU5F54+3KPHij70GRFfa6C8nHFKZsl9A9JApVjugHDvHaHUO4/JDDpI&#13;
-b0KbEFfYoOQr5PwgWd2Y2nBcgO9oRLyiVNcjBgujIp916wGF1JV8Q0tvuKuuQLUi2NcFkRZ2X/3H&#13;
-muYIbqLYu+2wf2XrDlR3JAXzQQwaq5zzYhd2PZbPOGOuHWhnmRuIh15/YM5aJyO5kJpcJrZj1kBF&#13;
-GsO/2x8xH/zRPCLiz+SvzBk79Q/UBm5q9GD4Rw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b7f08553-2df7-4878-b13c-ff35959fbd94"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ax8DvNwOw4d6MA51w/+3XIJO5vPc4xCUOF/XV78335C9Bm8Ga8QM4ypajKn75v54jk9gJTTieY9f&#13;
+QtTcxZLRuw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_f8e36998-f427-49e4-b49c-3dbbbe1c8982"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+MHTK8/EPwSG8+hc4FTQ1b0zqm7RAoPeKGOOnOYWCmDwbmg25ZnCu/1osASSm58FnRblLC7dRIps&#13;
+odA21/kFWg==</DigestValue></Reference></SignedInfo><SignatureValue>YWIeo9ItAcTbGrtl07toBm1sJ/6zSf6JZSc5V+OB0Sy7mMuNh8UJ1O7jy2ADTFSXcLILb02+doN+&#13;
+96p1OxYH3AEw3AGWOLN8R1560qlSWOXME1swGgp3XRnaWgxG/PMDxBOR1ci4TmVBAR0EXkOXA40r&#13;
+Fm0VKjxvj3aE2qN1BEqGh+F214eRW6DAIywAKg2Szwf1hKzWWevgh4uG5kn2USQoNyhQV4AcUZqT&#13;
+bUYRJznJue4M/EjSuOuxdNgH2QNQDiRFCY1iyaqhUYr+MfSdEAKAWH8KKVPbmEatRb42fZ3zdcM/&#13;
+wVIQR+N9SurNmVVq6O8bqOVd6E3OHlPF0vMzig==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -446,4 +448,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_5b582329-9de3-4b89-a4f1-5ffd20bc5656" Target="#_87767d00-14f7-4b2d-b5db-6e482a1023b4"><Timestamp>2023-11-21 10:55:25</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_f8e36998-f427-49e4-b49c-3dbbbe1c8982" Target="#_b7f08553-2df7-4878-b13c-ff35959fbd94"><Timestamp>2023-11-21 12:19:48</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
