@@ -164,6 +164,7 @@
     <metadata connector="FLOW" name="out1">
       <column comment="" defaultValue="" key="true" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties shellMaximized="true"/>
@@ -171,37 +172,92 @@
       <outputTables name="out1" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row1.product_id " name="product_id" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="row1.quantity " name="quantity" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row2.product_name " name="product_name" nullable="true" type="id_String"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row1" sizeState="INTERMEDIATE">
         <mapperTableEntries name="store_id" nullable="true" type="id_Long"/>
         <mapperTableEntries name="product_id" nullable="true" type="id_Long"/>
         <mapperTableEntries name="quantity" nullable="true" type="id_Long"/>
       </inputTables>
+      <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row2" sizeState="INTERMEDIATE">
+        <mapperTableEntries expression="row1.product_id" name="product_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="product_name" nullable="true" type="id_String"/>
+        <mapperTableEntries name="brand_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="category_id" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="model_year" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="list_price" nullable="true" type="id_BigDecimal"/>
+      </inputTables>
     </nodeData>
   </node>
-  <node componentName="BigtableOutput" componentVersion="2" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="224">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigtableOutput_1"/>
-    <elementParameter field="TECHNICAL" name="TACOKIT_COMPONENT_ID" show="false" value="YmlndGFibGUjQmlndGFibGUjT3V0cHV0"/>
-    <elementParameter field="TEXT" name="configuration.dataset.datastore.projectName" value="replicate-40"/>
-    <elementParameter field="TEXT" name="configuration.dataset.datastore.instanceId" value="5852845400195695368"/>
-    <elementParameter field="PASSWORD" name="configuration.dataset.datastore.googleCredentials" value="enc:system.encryption.key.v1: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"/>
-    <elementParameter field="TACOKIT_VALUE_SELECTION" name="configuration.dataset.tableName" value="Master_table"/>
-    <elementParameter field="CLOSED_LIST" name="configuration.actionOnData" value="INSERT"/>
-    <elementParameter field="TEXT" name="configuration.$maxBatchSize" value="1000"/>
+  <node componentName="tMysqlOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="896" posY="128">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBOutput_1"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="MYSQL_8"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
-    <elementParameter field="TECHNICAL" name="configuration.dataset.__version" show="false" value="2"/>
-    <elementParameter field="TECHNICAL" name="configuration.dataset.datastore.__version" show="false" value="-1"/>
-    <metadata connector="FLOW" name="tBigtableOutput_1">
+    <elementParameter field="TEXT" name="TYPE" show="false" value="MySQL"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;20.204.123.250&quot;"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;3306&quot;"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;mrunaldatawarehouse&quot;"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;monty&quot;"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:8noh+P6YO/MRLy8IfcYb4xHtMbFd+HFSBNfveUjdW3bbCjLQnUW4ahlq"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;Product_master_GCP&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="CREATE_IF_NOT_EXISTS"/>
+    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT_OR_UPDATE"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" show="false" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="mysql_id"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;noDatetimeStringSync=true&quot;"/>
+    <elementParameter field="CHECK" name="EXTENDINSERT" show="false" value="true"/>
+    <elementParameter field="LABEL" name="NOTE" show="false" value="(Not compatible with reject links)"/>
+    <elementParameter field="TEXT" name="NB_ROWS_PER_INSERT" show="false" value="100"/>
+    <elementParameter field="CHECK" name="USE_BATCH_SIZE" show="false" value="true"/>
+    <elementParameter field="TEXT" name="BATCH_SIZE" show="false" value="10000"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" show="false" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000"/>
+    <elementParameter field="TABLE" name="ADD_COLS"/>
+    <elementParameter field="CHECK" name="USE_FIELD_OPTIONS" value="false"/>
+    <elementParameter field="TABLE" name="FIELD_OPTIONS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="product_id"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="quantity"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="product_name"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="USE_HINT_OPTIONS" value="false"/>
+    <elementParameter field="TABLE" name="HINT_OPTIONS" show="false"/>
+    <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
+    <elementParameter field="CHECK" name="ON_DUPLICATE_KEY_UPDATE" show="false" value="false"/>
+    <elementParameter field="TABLE" name="DUPLICATED_KEYS" show="false"/>
+    <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tDBOutput_1">
       <column comment="" defaultValue="" key="true" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
     </metadata>
-    <metadata connector="LOOKUP" name="LOOKUP"/>
-    <metadata connector="MERGE" name="MERGE"/>
-    <metadata connector="REJECT" name="REJECT"/>
+    <metadata connector="REJECT" name="REJECT">
+      <column comment="" defaultValue="" key="true" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+    </metadata>
   </node>
   <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
     <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
@@ -356,26 +412,46 @@
       <column comment="" defaultValue="" key="false" length="-1" name="zip_code" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
+  <node componentName="BigtableOutput" componentVersion="2" offsetLabelX="0" offsetLabelY="0" posX="1472" posY="256">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigtableOutput_1"/>
+    <elementParameter field="TECHNICAL" name="TACOKIT_COMPONENT_ID" show="false" value="YmlndGFibGUjQmlndGFibGUjT3V0cHV0"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
+    <elementParameter field="TEXT" name="configuration.dataset.datastore.projectName" value="replicate-40"/>
+    <elementParameter field="TEXT" name="configuration.dataset.datastore.instanceId" value="5852845400195695368"/>
+    <elementParameter field="PASSWORD" name="configuration.dataset.datastore.googleCredentials" value="enc:system.encryption.key.v1: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"/>
+    <elementParameter field="TACOKIT_VALUE_SELECTION" name="configuration.dataset.tableName" value="Master_table"/>
+    <elementParameter field="CLOSED_LIST" name="configuration.actionOnData" value="INSERT"/>
+    <elementParameter field="TEXT" name="configuration.$maxBatchSize" value="1000"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" show="false" value=""/>
+    <elementParameter field="TECHNICAL" name="configuration.dataset.__version" show="false" value="2"/>
+    <elementParameter field="TECHNICAL" name="configuration.dataset.datastore.__version" show="false" value="-1"/>
+    <metadata connector="FLOW" name="tBigtableOutput_1">
+      <column comment="" defaultValue="" key="true" length="-1" name="product_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="quantity" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="LOOKUP" name="LOOKUP"/>
+    <metadata connector="MERGE" name="MERGE"/>
+    <metadata connector="REJECT" name="REJECT"/>
+  </node>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tBigQueryInput_2" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_2" target="tMap_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
-  <connection connectorName="FLOW" label="out1" lineStyle="0" metaname="out1" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tBigtableOutput_1">
+  <connection connectorName="FLOW" label="out1" lineStyle="0" metaname="out1" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tDBOutput_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
-      <elementValue elementRef="TRACE_COLUMN" value="product_id"/>
+      <elementValue elementRef="TRACE_COLUMN" value="product_name"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out1"/>
   </connection>
+  <connection connectorName="FLOW" label="row2" lineStyle="8" metaname="tBigQueryInput_1" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_1" target="tMap_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
+  </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_2"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
@@ -394,13 +470,18 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b20f5168-9f04-4ab1-95ef-c9b88d7ce257"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Umhq8O5kEFagWkJjo7HLGb3dD2hSHuKIjfGDeeN4cx8Zw9eIBJjRi3KdYigSM7Fjqqk5mmq5mnUc&#13;
-u0pvoeOI6A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_ecde74e8-becc-495b-a129-283b3819228b"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>hJ/WRNQ9V72xYmvp59rplKl3wkVZkbEAXN0/r0DYMsjlUGnh4V2S1Jje6BRS2lgmn4DvUjGf8oUg&#13;
-8nWnkLBh8Q==</DigestValue></Reference></SignedInfo><SignatureValue>Vh1iNcVVkF7CIg6C1rf0KRsETEpLRoNEqfVWyE1p3e08F4ioITxzhHMeLu6+T+fKU6D+IREJgBDB&#13;
-pdkfqw3KqqFjNV9dKrlj85q9nRRRAvhdksPmQertikoXgdhQF/HFnUbuB8+Tt5taz6OQ2q8ey6ob&#13;
-5CpGVGqKSJetpl/FPIZLf2FHmuqbM1N5yNW8z/2WoZOmo/OEhMK6IYrND3Clu+yoL3PetEiftaex&#13;
-XQ/x7udWcyrEOnqvM4iKf/lv3jRWQu5DPTlcfhzDHGrUjm4bTsEA5qsH8WX2TCWcjlbamdHHZSK2&#13;
-wffu0LG1GWK0e86w7X/hyPtNtuRUE/bzV6p6Nw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigtableOutput_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_653593e9-88e4-4086-b79c-51df00b7ef59"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ZbnXbSqPqfiDDgA1MgrcNEpgoYy5bRlQz6aNpAuhM9AGzEaHZFtdQDXl5DlzIFjt+IEjAF14uM1E&#13;
+q5oPibuNmg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_e315c5ea-5887-40f4-9b33-3415faf013b1"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>BVbBusB7DnRcqZS6VhyrufIUm/jcVh+zvLg4IE/aQu/IyYgWC58UXTwGg5ZaW+VjfKocP1QoY9U9&#13;
+oMs4b0ze6w==</DigestValue></Reference></SignedInfo><SignatureValue>lUI0f7RFStaudq4m5awE7SnpBsM+blgPY9TTRxsSY9oWl4UmGteO6+DJMdlVCZEu7YwZwkbzsWvt&#13;
+IOlr7c4cietCqMFxVQsqzapV35u3Il5THiukTh7COpp6wT6o0OUmGJRiJ7Yhn9DUcsgs44LHSPEM&#13;
+y1OrcM6+YnBH5hhPN5dgo6xPECmPxYdYFH66MZilf//4ygFYJM/Pz9+uPdKcmrFUl8Jz+fNYGaKb&#13;
+SNw+77uA6LSelPM17qYbzkwU478C03dKO5sdsJqkvGf8UW9cK1G2EWwFTvJ0P9YlknyTbavbbDhC&#13;
+6SrkWMu61HNRlrwUay8Rz40Bno6cMHuRQr9GBg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -422,4 +503,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_ecde74e8-becc-495b-a129-283b3819228b" Target="#_b20f5168-9f04-4ab1-95ef-c9b88d7ce257"><Timestamp>2023-11-21 05:51:22</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_e315c5ea-5887-40f4-9b33-3415faf013b1" Target="#_653593e9-88e4-4086-b79c-51df00b7ef59"><Timestamp>2023-11-21 06:20:50</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
