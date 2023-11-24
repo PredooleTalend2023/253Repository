@@ -149,14 +149,14 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="output_row.id = input_row.id;&#10;output_row.name = input_row.name;&#10;output_row.OP_Indicator = input_row.OP_Indicator;&#10;&#10;float floatColumn = input_row.Modified_At;&#10;&#10;// Convert the float to double&#10;double doubleValue = (double) floatColumn;&#10;&#10;// Convert the double to milliseconds (assuming it represents seconds since epoch)&#10;long milliseconds = (long) (doubleValue * 1000);&#10;&#10;// Create a Date object using TalendDate&#10;java.util.Date istDatetime = TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, new java.util.Date(milliseconds)));&#10;&#10;// Format the date in UTC using TalendDate&#10;String utcDatetimeString = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, TalendDate.addDate(istDatetime, -330, &quot;mm&quot;));&#10;&#10;// Parse the UTC string back to a Date object if needed&#10;java.util.Date utcDatetime = TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, utcDatetimeString);&#10;&#10;// Set the output column value&#10;output_row.Modified_At = utcDatetime;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//Code generated according to input schema and output schema&#10;output_row.id = input_row.id;&#10;output_row.name = input_row.name;&#10;output_row.OP_Indicator = input_row.OP_Indicator;&#10; &#10;float floatColumn = input_row.Modified_At;&#10; &#10;// Convert the float to double&#10;double doubleValue = (double) floatColumn;&#10; &#10;// Convert the double to milliseconds (assuming it represents seconds since epoch)&#10;long milliseconds = (long) (doubleValue * 1000);&#10; &#10;// Create a Date object&#10;java.util.Date convertedDatetime = new java.util.Date(milliseconds);&#10; &#10;// Set the output column value&#10;output_row.Modified_At = convertedDatetime;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_1">
       <column comment="" defaultValue="" key="false" length="-1" name="id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="OP_Indicator" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss.SSSSSS&quot;" precision="-1" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss.SSSSSS z&quot;" precision="-1" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="448" posY="64">
@@ -211,7 +211,7 @@
       <column comment="" defaultValue="" key="false" length="-1" name="id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="OP_Indicator" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss.SSSSSS&quot;" precision="-1" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss.SSSSSS z&quot;" precision="-1" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tBigQueryInput_1" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_1" target="tJavaRow_1">
@@ -227,13 +227,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b924d323-fb5c-4497-9347-3b42081bd2c8"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>6RoWaHGN7qxLbp0P4qoVkx4luOJRgv5f+klFkhYV0XHiflhScvWHo9AOyPcVZyW8nZ2FffvowNoA&#13;
-1xQkzYUGCw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_2b87156f-fc5d-4d84-a215-c9122b3caa5b"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>lGRCWtGRibjr/GJlge30AUoQkXhFCZRvTJmWv/0ZqQJicUEBpVSf1KaYqjRx8C3Uv7PpUacSDw8T&#13;
-FEwdqP+qig==</DigestValue></Reference></SignedInfo><SignatureValue>dhWbEJxoCR//NbOS61mcgMtbAJQfRaynBLjvpsOP49nT4z9dymNa59ndU3eYVUHvsIcJuydmPNvY&#13;
-J93xjY3oAgWBWI9vFtJzJ5cPju9gr+fp3Sr4n1X3ytbNjkK59YXviFK9kSdsC2Xx+s8yYqF4J8ed&#13;
-cYnYxg9TsUCMSmpUpJASjTjv2o6NTvTeJG0YESG2WE8TRTGKlSRkCt2iyaxDjuyUBbgTIZ7MKai2&#13;
-wOaq5XcD1UGtbL9bXBkVBS1CR9DlXGIQfKPp29T61yV3pfwoqSrVnO1oRDwSIvRAzRiBfRqRaO/y&#13;
-X6rEP/ZbGoeVyfpzgyxtFQA3VVymsG5cbC/tZw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_9f2a26ea-d4a1-4914-ad05-76d6d38f2745"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+wCLHjNzbf9jR+AhGMnukdk4fwmoaB8yKBZF80ekcDCgMeepMFq4g0f1m+dRRqeN9g7ng5H6nA3z&#13;
+g8vsUmvLBg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_3966ef99-8b43-4fee-b775-c084c1f6d2d3"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>BKK5eDVVCoU593ijxo5P5Ce5P6S3wPxz+IzSw3fuuSMoMuXvCTLJi2ozmpSoVMdnXJKUJYdwL1gP&#13;
+UDyCZ8XLSQ==</DigestValue></Reference></SignedInfo><SignatureValue>YTLFvWU/mf31XwHNyEyMHxTErIJyMi3kLKopb2uSkPTSfDALMm4UilxdYvsY36QHZyHUW+iJct2e&#13;
+VtYCq5yWotDxR2uhlxA/lICTJffGAYR+KtkJ2L7ACq+uC+DNYhtsz43N4f+EYYhiw5P5BmRDY7Ws&#13;
+W7BLJDbyfgDrc6+6lc4jkEl1HOriv6O5ad7xQx+Cyc6ZbI4KRZsq9AFE7gcBhIDjMdglhwuTCm4L&#13;
+2iVJf06K6nlUX2tFbyZSz43vNc7wmEsU6+oqGb8JWox9zW4+89j5/ba0ck7aAmx/VK+upaohbMvy&#13;
+MEAqFCF00XarZo5YpVM4hcAy3ii9UyEyUwcMlw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -255,4 +255,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_2b87156f-fc5d-4d84-a215-c9122b3caa5b" Target="#_b924d323-fb5c-4497-9347-3b42081bd2c8"><Timestamp>2023-11-24 12:37:17</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_3966ef99-8b43-4fee-b775-c084c1f6d2d3" Target="#_9f2a26ea-d4a1-4914-ad05-76d6d38f2745"><Timestamp>2023-11-24 12:42:59</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
