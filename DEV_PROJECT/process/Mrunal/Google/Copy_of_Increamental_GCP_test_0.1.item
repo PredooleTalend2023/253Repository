@@ -193,7 +193,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="// Get the current row&#10;if (input_row != null) {&#10;    // Get the Order_date from input_row as a String&#10;    String orderDateString = input_row.Order_date; // Replace 'order_date' with your actual column name&#10;    &#10;    // Check if the order_date meets the condition for incremental load&#10;    // Assuming 'comparisonDateStr' is a context variable holding the last processed date&#10;    String comparisonDateStr = context.comparisonDateStr; // Get the comparison date from context&#10;    &#10;    // Convert the current order_date to a format to compare with the comparison date&#10;    SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSSSSS&quot;);&#10;    //try {&#10;        Date orderDate = dateFormat.parse(orderDateString);&#10;        Date comparisonDate = dateFormat.parse(comparisonDateStr);&#10;        &#10;        // Compare order_date with the comparison date for incremental load&#10;        if (orderDate.after(comparisonDate)) {&#10;            // Output the row to the next component for incremental load&#10;            output_row.ID = input_row.ID;&#10;            output_row.Product_name = input_row.Product_name;&#10;            output_row.Price = input_row.Price;&#10;            output_row.Order_date = input_row.Order_date;&#10;            &#10;            // Add the row to the output link for incremental load&#10;            //output_rowUtil.Date = output_row; // Replace 'output_rowUtil' with your output link name&#10;       // }&#10;    } catch (ParseException e) {&#10;        // Handle parsing exception if necessary&#10;        e.printStackTrace();&#10;    }&#10;}&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="// Define a Set to store previously loaded order_date values&#10;Set&lt;String&gt; loadedOrderDates = new HashSet&lt;&gt;();&#10;&#10;// Iterate through the previously loaded records and store their order_date values&#10;while (input_row != null) {&#10;    loadedOrderDates.add(input_row.order_date); // Replace 'order_date' with your actual column name&#10;    input_row = input_rowUtil.input_row; // Fetch the next row from the previously loaded records&#10;}&#10;&#10;// Perform incremental load by comparing incoming records with the previously loaded records&#10;while (input_row != null) {&#10;    String orderDateString = input_row.order_date; // Replace 'order_date' with your actual column name&#10;    &#10;    // Check if the incoming order_date exists in the previously loaded records&#10;    if (!loadedOrderDates.contains(orderDateString)) {&#10;        // Output the row to the next component for updated records&#10;        output_row.id = input_row.id;&#10;        output_row.product_name = input_row.product_name;&#10;        output_row.price = input_row.price;&#10;        output_row.order_date = input_row.order_date;&#10;        &#10;        // Add the row to the output link for updated records&#10;        //output_rowUtil.output_row = output_row; // Replace 'output_rowUtil' with your output link name&#10;    }&#10;    &#10;    input_row = input_rowUtil.input_row; // Fetch the next incoming row&#10;}&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_1">
@@ -201,7 +201,6 @@
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="20" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="date" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="928" posY="64">
@@ -253,11 +252,10 @@
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tBigQueryOutput_1">
-      <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="20" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="date" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" type="id_Date" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tBigQueryInput_1">
@@ -291,13 +289,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_7cc2253c-5d21-4b4c-8e4f-b02a4d86b223"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>411saOZ5FfihzxzyaBEYpd6rHmbMFwk88X65/vkLf6Vbane6HCRb5ivUHFYq1lerw89afJeoLx0F&#13;
-HMtHGqKSDQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_b3c96e8a-dcdf-48e9-a2cb-5453128633aa"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>0Ca0K6upYg8YoPO6dxjvGJMSOslxJxc197Vpgoac8OsvAPEYTPl7d48oTpHb5G4Nc2q4imbbj9j1&#13;
-hPmyVuuigg==</DigestValue></Reference></SignedInfo><SignatureValue>VROaXrsh2dV+cygHLe+seGf948Bl3KIBio0sdXiaJ994hALPa+h+7IOKvzQ9OmWg9Tz6XuSLQxlR&#13;
-BkaOoEamI0NxS98RiFhQJKfjA6EEYznsGJkfW5fH2mlkmy5jDr8E+TvUS1q3K0lHmwgFgghh/muO&#13;
-0j4BS9LFumzRekngTsIeLLd0ELVh2fvto9gBfWEJZCcBUnp2PpGZTQcEpgJVcjtcwm9rsoDSUp7V&#13;
-EMEnAJ3bOt55BAX8tm8gtYH+MWjm3m2j/JdVF3K6/BN6d/6RwLNA45jmK89iCOFcs4QYctKYJHas&#13;
-qz3H2WH/xy4DJFQh/l9ZXlOnDznWF9171HMC4Q==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6112ebb3-fba8-4453-b70a-7e8d39698406"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>W8UgyKW3R4RsUus5WSo953G3XBOJWg+nhZr1kJpntNrUgKk+j7VLzAqgOEpMjdSy2PEofuRxmqUL&#13;
+uGjEKBUSGw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_4120afe8-1f6d-4a3a-badf-ffae8f8d99db"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>kQdUk/LLLukTAogwo1mXCYjkLzAlyt6K1wS77nvaDRd3G2L3rrzVnPWweBPx4vZXcR3szMsV98Ht&#13;
+aomfNF4pQQ==</DigestValue></Reference></SignedInfo><SignatureValue>Ya986SOIKsOoZjATwVjbgB+W+J2cLhlmP+GayR0RjhrSKEeXmGa2CdZXFO8NjhMv31m5Vb0hxK66&#13;
+BFNw5oYYAy7jQQYRqsuHAKDcyyL7VvGcbKv/SqRmZlgraLxdXqi0IUknoyA93sS1mcuemcmvyoQ1&#13;
+UNRCKjdkkXbBXmk1BqJRRJ2Kul8HTQeWACevQR1M3Fju0WwvaiED2PgwXHaDc5+0MCYt2Pr74CMp&#13;
+3vKcza5lFg0TkZFN+6uJVRV7gnRdv+RNt01Fqv9Vf5ZoL3JaE44C9N3PHbyDCNKDm2cHrjjFK0qf&#13;
++XLS/H9N6Xu/7yYCfYRHbe3gsliKOpiO8Iw95Q==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -319,4 +317,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_b3c96e8a-dcdf-48e9-a2cb-5453128633aa" Target="#_7cc2253c-5d21-4b4c-8e4f-b02a4d86b223"><Timestamp>2023-11-27 12:13:49</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_4120afe8-1f6d-4a3a-badf-ffae8f8d99db" Target="#_6112ebb3-fba8-4453-b70a-7e8d39698406"><Timestamp>2023-11-27 12:14:39</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
