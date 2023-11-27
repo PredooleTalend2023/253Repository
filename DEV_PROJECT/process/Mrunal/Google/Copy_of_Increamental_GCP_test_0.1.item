@@ -205,7 +205,7 @@
   <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="928" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryOutput_1"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
-    <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Users/Laptop_User/workspace/biquery_ProductOrderstest.csv&quot;"/>
+    <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Users/Laptop_User/workspace/biquery_ProductOrderstest_date.csv&quot;"/>
     <elementParameter field="CHECK" name="APPEND" value="false"/>
     <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
     <elementParameter field="PASSWORD" name="ACCESS_TOKEN" show="false" value="enc:system.encryption.key.v1:/hT6GJHnGUXau09odkOEH4rai3s9g0lmbvUqDNPt"/>
@@ -216,7 +216,7 @@
     <elementParameter field="TEXT" name="AUTHORIZATION_CODE" show="false" value="&quot;&quot;"/>
     <elementParameter field="TEXT" name="PROJECT_ID" value="&quot;replicate-40&quot;"/>
     <elementParameter field="TEXT" name="DATASET" value="&quot;Talend&quot;"/>
-    <elementParameter field="TEXT" name="TABLE" value="&quot;ProductOrderstest&quot;"/>
+    <elementParameter field="TEXT" name="TABLE" value="&quot;ProductOrderstest__date&quot;"/>
     <elementParameter field="CHECK" name="CREATE_TABLE_IF_NOT_EXIST" value="true"/>
     <elementParameter field="CLOSED_LIST" name="ACTION_ON_DATA" value="TRUNCATE"/>
     <elementParameter field="CHECK" name="BULK_FILE_ALREADY_EXIST" show="false" value="false"/>
@@ -225,7 +225,7 @@
     <elementParameter field="PASSWORD" name="GS_ACCESS_TOKEN" show="false" value="enc:system.encryption.key.v1:b9n989pzhfhy4VJC3MSlJf4H2/yDoVtBr4r7KRAt"/>
     <elementParameter field="LABEL" name="GS_ACCESS_TOKEN_WARNING" show="false" value="*Note: If the Access Token Expire we won't be able to refresh it!&quot;"/>
     <elementParameter field="TEXT" name="BUCKET_NAME" value="&quot;talendbuc&quot;"/>
-    <elementParameter field="TEXT" name="GS_FILE" value="&quot;gs://talendbuc/biquery_ProductOrderstest.csv&quot;"/>
+    <elementParameter field="TEXT" name="GS_FILE" value="&quot;gs://talendbuc/biquery_ProductOrderstest_date.csv&quot;"/>
     <elementParameter field="TEXT" name="GS_FILE_HEADER" value="1"/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
     <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
@@ -268,6 +268,10 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out1"/>
   </connection>
+  <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tBigQueryOutput_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
+  </connection>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" show="false" value="true"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tPrejob_1"/>
@@ -279,18 +283,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-  <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryOutput_1"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f73cf74d-643b-4c7a-b1e0-4e27dab9b293"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>DpMNk9Dev01Yyo4kEPd+CGQTm8NH/IY1GpDkWuRMwRhHscqYc9stU3WaiPsZiSMjGgJGsQDcVN+O&#13;
-sGgf9iNPdg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_71b62350-89ff-4d0c-a930-a0b93e3baf88"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>IHbzJkCzrqvMbfTYnXvJj99sbW6z2nDT/IqLP9sWaE8pBrWrEYF5kHrLc7dvUj4PsJibn9YxVGN6&#13;
-TR00AgtkUg==</DigestValue></Reference></SignedInfo><SignatureValue>BB4hgCuOrH24pGABbppkLwBPg6CJYMgcDTm9IS1vMCS38jyc6CSXv+AuOaKD8W4ESuUWSZbScQhY&#13;
-sGdg/hB7Z32GElSJGciD4vbNFE6e4wd3EQvkENcRMPCi1LjxcfXDYYo7iVZuoVKVJHdhXzoucqUx&#13;
-Q9zKVb2R7UD6EukBF+BQdXIf5OLeP2/HfYMoV/ebCIbk8L9eLhj2DWQHgyBzgOrbnK1iV4F9GZl+&#13;
-mkCzrpHxAM9sEdjNTjdXIpE5u30KFmNecZiur4XId/i/Lg7yfpd3RARQAovUZPVKWcJzcLpHvPYy&#13;
-ZP4NSSMxkj5IjwpevocopWUtowjW3776ILGZMg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_a7469f0b-72b0-4e43-8824-bf6e35b8979b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>o3GCj4/n6meyqJnMkV0XdPXgEdwp4TIix5o9nv0KS0WYPi/V0SJonaYs73ivg8Pz/3LQ/soClbpn&#13;
+4Z+ZDnvyPw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_15618839-4976-4f79-8f34-4561a6edba06"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>S5I6+sfcJRK7BsQRFGld6jSdQFLj+harRKi27rWisehKTWtir93j95dZ1Bwu0MWAOqw4u24hp5VC&#13;
+QuiKsvgXvw==</DigestValue></Reference></SignedInfo><SignatureValue>MpAb5I8EKhJ+9BouLa2z3CW+L3Z58WcuT6gcqKm9WDfCkuuQjNG7pOa7adeMUoJfPvmv9A7U18XP&#13;
+vf5xPVVu3RdGUUJn//wPPKA7Z6irT1BIqDbpNBV1gRoljcUW7/FwXOK6gru7Rjh2TkSy1MfstNrK&#13;
+e6PSbZ0J15EEdM5TLxuo5BeW1A+7a4NUODs2uvWmCSDZnuIna7Vtkjv/FoKcFDJFAuNxIUJoALG2&#13;
+3Y0ETkntT16UJn6p5GUaoYcz3xYjk91r0XYsNl6K3lqAW3OZ5apCh3s99Tpu3ayPVnmUQE7OAekq&#13;
+kcn9AEnaZ6mit8Cu98qEIf71KbkvZLX+3yG/WQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -312,4 +311,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_71b62350-89ff-4d0c-a930-a0b93e3baf88" Target="#_f73cf74d-643b-4c7a-b1e0-4e27dab9b293"><Timestamp>2023-11-27 10:51:15</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_15618839-4976-4f79-8f34-4561a6edba06" Target="#_a7469f0b-72b0-4e43-8824-bf6e35b8979b"><Timestamp>2023-11-27 10:52:09</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
