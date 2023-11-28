@@ -149,14 +149,14 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="//Code generated according to input schema and output schema&#10;output_row.id = input_row.id;&#10;output_row.name = input_row.name;&#10;output_row.OP_Indicator = input_row.OP_Indicator;&#10; &#10;&#10; &#10;// Convert the double to milliseconds (assuming it represents seconds since epoch)&#10;long milliseconds = (long) (doubleValue * 1000);&#10; &#10;// Create a Date object&#10;java.util.Date convertedDatetime = new java.util.Date(milliseconds);&#10; &#10;// Set the output column value&#10;output_row.Modified_At = convertedDatetime;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//Code generated according to input schema and output schema&#13;&#10;output_row.id = input_row.id;&#13;&#10;output_row.name = input_row.name;&#13;&#10;output_row.OP_Indicator = input_row.OP_Indicator;&#13;&#10;output_row.Modified_At = input_row.Modified_At;&#13;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_1">
       <column comment="" defaultValue="" key="false" length="-1" name="id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="OP_Indicator" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="FLOAT" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="FLOAT" type="id_Double" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="352" posY="64">
@@ -189,7 +189,7 @@
       <column comment="" defaultValue="" key="false" length="-1" name="id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="OP_Indicator" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="FLOAT" type="id_Double" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="544" posY="64">
@@ -245,7 +245,7 @@
       <column comment="" defaultValue="" key="false" length="-1" name="id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="OP_Indicator" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="FLOAT" type="id_Double" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tBigQueryInput_1" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_1" target="tJavaRow_1">
@@ -271,13 +271,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b143c9c4-5e7e-412b-b180-94363a5e0133"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>cW7imWhfiq+djUCsw+LwGEfDphZWBQSym30gNCKSIso/p6sqCeJ7prstEKumOczfDbUzWBTwHrh0&#13;
-1+hpI51vrA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_cc89a0a5-0719-477b-96ae-14337bcaf3be"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>VC9sqoH4ir4u46otHq0OKWSAPcKmJ7JFJ5edpfWfeOo65yyd0PQZTdbvncBdXhmodEyyxXSZzTWZ&#13;
-mjQUifuwSw==</DigestValue></Reference></SignedInfo><SignatureValue>ZsyMq1ApGA0gXzawDEPSkBh/Xli0ifyS9hB3E+DGmY1GWv727XjXrZmhXHvZMFhAXp3HuCYt6YHb&#13;
-zVBp926YVzcLR9KtWDm0EXLvMhCXgaHYQOKTRQ7+U7LOkroCM2/5IWiWUaw4ymy2w2/edlmg3XCA&#13;
-spOFelMBuImglw7Vgf8/F+I+793K9j7VEZ20sejxdeaJSCmtx05rieqyI6TOl0aojKWDSiRIrVoX&#13;
-6tKd81e3nq9pK7AHjguEMlko7/tCTmRjLRtaErZ/nrctNGKI80Zu3X5KlTJzgDIM5dUa21Q5VXNl&#13;
-HX+oJUilTMXgxrrHzDme+ooTFLBr7m6EJygvPA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_826d83dc-c6a8-4211-be1f-c38ce3460688"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>RWc9uXe78vJPyM3zj7FdHw0KT77NVP/LbpWiaGVTRQHlOs6nlvQ1+K9gIZlM+yBsHKMAq0bW/fY6&#13;
+e7+enJIucw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_1ed66fa3-f605-4226-b740-a94c09d4588a"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>GfMeZrMsjAd2GZwZ1O1FMemBJ9x2htACQFSLSZOfhMmioMMnPg3VkDJbmpFfit8/MexjdT8/+ahN&#13;
+kGeEmJQClg==</DigestValue></Reference></SignedInfo><SignatureValue>Bh5CgsB0OjDllrXpg2cql20q7RUZ7f7/Pc8q7hw3C2vKchxvQZE4uHY0WvqjqKJAthfApgy8jDrw&#13;
+0vFDzWdz1BKTGfXjPPTdW8Du62Ags1IvPn5sAQ2aiGm7w05B/5lsgHWhyNvYBuiJp8slYDqdxKAV&#13;
+dCVFk+2D/NRRRmgSBOj3Gqg9uxraP84m3goSB4BtjQhOpr+LC5DS33l4X/Af+7inTvwuzPKS3UN3&#13;
+E+i0PeiA3/BXDjpKPXU7i8W4DaMRhfyjORBYjh48Eg2bAUEZvLVwlo/AHjm5p/MYYwIyrtemMUNn&#13;
+m6YbKMXdM282nTABml7eratflhkQw55abo38nA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -299,4 +299,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_cc89a0a5-0719-477b-96ae-14337bcaf3be" Target="#_b143c9c4-5e7e-412b-b180-94363a5e0133"><Timestamp>2023-11-28 09:20:31</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_1ed66fa3-f605-4226-b740-a94c09d4588a" Target="#_826d83dc-c6a8-4211-be1f-c38ce3460688"><Timestamp>2023-11-28 09:21:20</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
