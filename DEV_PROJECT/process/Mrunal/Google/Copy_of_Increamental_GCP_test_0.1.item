@@ -181,7 +181,7 @@
         <mapperTableEntries expression="row1.ID " name="ID" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="row1.Product_name " name="Product_name" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row1.Price " name="Price" nullable="true" type="id_Long"/>
-        <mapperTableEntries expression="TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, new java.util.Date(Long.parseLong(row1.Order_date.split(&quot;\\.&quot;)[0]) * 1000 + Long.parseLong(row1.Order_date.split(&quot;\\.&quot;)[1]))) " name="Order_date" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, &#13;&#10;    TalendDate.addDate(&#13;&#10;        TalendDate.addDate(&#13;&#10;            TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, &#13;&#10;                TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, &#13;&#10;                    new java.util.Date(Long.parseLong(row1.Order_date.split(&quot;\\.&quot;)[0]) * 1000 + Long.parseLong(row1.Order_date.split(&quot;\\.&quot;)[1]))&#13;&#10;                )&#13;&#10;            ),&#13;&#10;            -5, &quot;HH&quot;&#13;&#10;        ),&#13;&#10;        -30, &quot;mm&quot;&#13;&#10;    )&#13;&#10;) " name="Order_date" nullable="true" type="id_String"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row1" sizeState="INTERMEDIATE">
         <mapperTableEntries name="ID" nullable="true" type="id_Long"/>
@@ -193,7 +193,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="// Assuming dateString is the string you want to parse into a Date&#10;String dateString = input_row.Order_date; // Replace 'order_date' with your actual column name&#10;&#10;if (dateString != null &amp;&amp; !dateString.isEmpty()) {&#10;    try {&#10;        // Attempt to parse the non-empty date string&#10;        SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSSSSS&quot;);&#10;        Date date = dateFormat.parse(dateString);&#10;        &#10;        // Process the parsed date as needed&#10;        // ...&#10;    } catch (ParseException e) {&#10;        // Handle parsing exception if necessary&#10;        e.printStackTrace();&#10;    }&#10;} else {&#10;    // Handle the case where the date string is empty or null&#10;    // This block will prevent attempting to parse an empty or null string&#10;}&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value=""/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_1">
@@ -290,13 +290,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_8c5e17bf-b1e2-4d6c-8b0d-409463900ecc"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>nVEgRX7GAswcvtsNqAqxXDJfIBzNwaE/tm8elpPU+RNmM01NAc78AxzIbyuOEpbtL3vciqyZP//l&#13;
-rubnibSXRw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_554e19bc-b08b-447e-94ed-af90243b89bb"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>NdTCkrC+i1/iFRjvLRyL/RqT31ZdbpBSqd9YYJdjUJBjniNED1pLZaulX+mS1esejH+XcwpFfeOZ&#13;
-4K2pDTFMAg==</DigestValue></Reference></SignedInfo><SignatureValue>m369X+CydSbBK1gbezGDyl1ECBSEIn1mFDFaK1uHBjRhTWOAHSuY9vlz0Axf4EMCQrGN6NA49gvg&#13;
-5phMvr0si5gS/lPNWyv8ymhi09RDvBBUnY/gRU4MFGxp7itm7OcvJGEKroTW7JjhMAGdaDq5xFbn&#13;
-ZyubW7kzgSvaosvrS4SH0yyEi+mG5wtiU4IHAcFOZpChcS4TERkYyrcmsW38cnVm5bmghNaMbZNZ&#13;
-e93JD14KEIrvHAGtmKJqa1aqgR0SwO4XEHhCvPoDEQHc+p+cNISqLiXK73QDeeagb7hxTkd+ywXL&#13;
-RY3/9BYwpuvIZZDGBiKXezQCLezZnfndrrlJ+Q==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_34d82ea7-0a96-41c2-b9e9-95e3d0c0ce78"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Ocxl55cL/JGRTIcJ7oXvm0tWQkZYUbmDUO9Z1NCsY1/V2VHd0aJcjj40M9U25eIjvKaGR2EtDwse&#13;
+gOqnBVeDkA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_97a5c0b6-ee9d-4078-ae66-bcd49880c8d8"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>dVx/SZgUAN2sND5XSnPxKa8Eu98xowby+bce3HMzh7j6PEBLdQAoTWVE25Eti+XgVxhPCycjkHMl&#13;
+GRnjXc8NGg==</DigestValue></Reference></SignedInfo><SignatureValue>XhSp68sNUJQbHqU00WS2nD8nWTSA6rfjxcXDnLQ86QDjqBT4d+54wZ9rZXF41iyOmBVXCk4xIVZQ&#13;
+OnLSugRRr58ErDRGrOqWzs12gUsmq+erqdNiE3z77Sa9cZ1sXPS/jCLejGip0UmSlvU/nEIQaq4Z&#13;
+UWm4e23UVsJ2nNW1qdY1Hn2tZpIJIV+d127kwGhmbVTWppTw0n9X5kSsuSzNCe1I5dyolQ0t3eQt&#13;
+wbE2FsHMV+rtocfHHXq4htFQXKKVTQ3yqtiLfrAuNwRi4hXjYMWIqgSMxzbbUjr7AtLUTvvFKHDm&#13;
+SfF0kGO9z53MH9fyESoOjC9/NTnU7t3kB1IyOg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -318,4 +318,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_554e19bc-b08b-447e-94ed-af90243b89bb" Target="#_8c5e17bf-b1e2-4d6c-8b0d-409463900ecc"><Timestamp>2023-11-27 12:29:49</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_97a5c0b6-ee9d-4078-ae66-bcd49880c8d8" Target="#_34d82ea7-0a96-41c2-b9e9-95e3d0c0ce78"><Timestamp>2023-11-28 04:48:35</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
