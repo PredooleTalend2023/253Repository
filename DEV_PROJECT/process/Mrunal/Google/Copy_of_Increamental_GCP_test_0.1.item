@@ -180,7 +180,7 @@
         <mapperTableEntries expression="row1.ID " name="ID" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="row1.Product_name " name="Product_name" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row1.Price " name="Price" nullable="true" type="id_Long"/>
-        <mapperTableEntries expression="// Define the last_execution_timestamp&#13;&#10;java.util.Date lastExecutionTimestamp = TalendDate.addDate(TalendDate.getCurrentDate(), -1, &quot;dd&quot;); // Adjust this according to your needs&#13;&#10;&#13;&#10;// Format the last_execution_timestamp and current_timestamp for comparison in the WHERE clause&#13;&#10;String formattedCurrentTimestamp = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, TalendDate.getCurrentDate());&#13;&#10;String formattedLastExecutionTimestamp = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, lastExecutionTimestamp);&#13;&#10;&#13;&#10;// Filter condition to select records falling within the date range&#13;&#10;TalendDate.compareDate(row1.Order_date, formattedLastExecutionTimestamp, &quot;yyyy-MM-dd HH:mm:ss.SSS&quot;) &gt;= 0 &amp;&amp;&#13;&#10;TalendDate.compareDate(row1.Order_date, formattedCurrentTimestamp, &quot;yyyy-MM-dd HH:mm:ss.SSS&quot;) &lt;= 0 " name="Order_date" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, row1.Order_date)&#13;&#10;TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, row1.Order_date)&#13;&#10;    .compareTo(last_execution_timestamp) &gt; 0 " name="Order_date" nullable="true" type="id_String"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row1" sizeState="INTERMEDIATE">
         <mapperTableEntries name="ID" nullable="true" type="id_Long"/>
@@ -189,6 +189,38 @@
         <mapperTableEntries name="Order_date" nullable="true" type="id_String"/>
       </inputTables>
     </nodeData>
+  </node>
+  <node componentName="tFilterRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="768" posY="96">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFilterRow_10"/>
+    <elementParameter field="CLOSED_LIST" name="LOGICAL_OP" value="&amp;&amp;"/>
+    <elementParameter field="TABLE" name="CONDITIONS">
+      <elementValue elementRef="INPUT_COLUMN" value="Order_date"/>
+      <elementValue elementRef="FUNCTION" value=""/>
+      <elementValue elementRef="OPERATOR" value="&gt;"/>
+      <elementValue elementRef="RVALUE" value="&quot;last_execution_timestamp&quot;"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="USE_ADVANCED" value="false"/>
+    <elementParameter field="MEMO_JAVA" name="ADVANCED_COND" show="false" value="// code sample : use input_row to define the condition.&#10;// input_row.columnName1.equals(&quot;foo&quot;) ||!(input_row.columnName2.equals(&quot;bar&quot;))&#10;// replace the following expression by your own filter condition &#10;input_row.columnName1.equals(input_row.columnName2)&#10;&#9;&#9;&#9;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tFilterRow_10">
+      <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="FILTER" name="FILTER">
+      <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="REJECT" name="REJECT">
+      <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
   </node>
   <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1088" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryOutput_1"/>
@@ -267,9 +299,13 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
-  <connection connectorName="FLOW" label="out1" lineStyle="0" metaname="out1" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tBigQueryOutput_1">
+  <connection connectorName="FLOW" label="out1" lineStyle="0" metaname="out1" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tFilterRow_10">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out1"/>
+  </connection>
+  <connection connectorName="FILTER" label="row2" lineStyle="0" metaname="FILTER" offsetLabelX="0" offsetLabelY="0" source="tFilterRow_10" target="tBigQueryOutput_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" show="false" value="true"/>
@@ -287,13 +323,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_855b83b5-87f6-435d-be78-5b7a9d6445a1"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>J098inXqnZ2mYhRBfea19hd0UmMQhSIuUdvKid0yyEclx9IXVEgW3QvWvN3wLZx66moBAiUQ8Fjw&#13;
-HTongfdNyQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_639a22cb-d425-4407-b19a-797ace3cff9e"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>LB8g3Cv5Fbhhwy3Nhek5XhitpJb1MwQu+yw4VOXidJ7naDdGtipXyPlgD5R60MMRYIgtYNthsrlc&#13;
-i4DVF/B/xA==</DigestValue></Reference></SignedInfo><SignatureValue>RI0IGcc2N5BUH8JpgL/tZnFFGFXBykfPaEqwru9+7gENvkC4s6cOeZqZ6UK88JXZ/NCZi39MXvKB&#13;
-sZbi8+b/iZaEMatj8Yy9p+jnVMuFAFJIixDNQNp+D4YcXe0CdUQ7HT1FFEmMfRACt1xrxiTBNx1H&#13;
-ux3mEgAHNtp9yWp4iqQw7juHHgHAoqEvE/7McggMGqEfOxUVHNOSUnGWFN/nNjIMPNZRdFlRCWTP&#13;
-SoiE49PN4It2SDberfSt2qbytKqi7K5z6tnNDrYykDYmL/4I66uGn4juUxcxkF8EnJK7RrQ5N2KU&#13;
-/gEvvYfd0tcCsMa0AdtCZDM5RnDsMPpECkPJsg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_61ee44e2-aa06-4cca-b627-fe933cb35ccf"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>ijTP5M0m4uLPLd3bRQALb1famn98UP75ql6//VPc4wCm0hmPLzLybaUH2q+XyXQYx//Ur+QG2rRO&#13;
+2qJ8tkqEWg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_7548f1ac-fabf-4bd6-bcfe-694d7f254507"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>vVYXLoF1xKV/j9gHP/H+jsLNbIdv3HiYjC+T6iWGyCbc8suz2ozDZqQdzqJWlBB84NbP+n4AhYYV&#13;
+RWOMd2qQJA==</DigestValue></Reference></SignedInfo><SignatureValue>E0OhU+CYF4UWAXDWugh09TFN6ZgcTC/NanKbL9/X9Gv6iWWb+NXV2mu3q9VZevfy5+QzGZ7X4Tiy&#13;
+bkZKvy9QagMCahZ67N4GGm+LarJkFX9uspqVAtQyScBjM6uS9gJqeLTWlj7bceLcKwCdql7A8HkJ&#13;
+2/YPhMJKtXrOVh20E+vHZjCzn9J6hZcGZMUDOMteXKE6iXWdsSEMUAJ+Cb/4jUGqkyVTLIhIJYOY&#13;
+ukMmNeOPYhtGg6O/MWk3lwKeATyCd5oELpe8oAncCIJpvOPTYB89uMLZn/09FJwFRgFj2r/I9oT3&#13;
+i4YjbsS5abWM3Y3AStVQavpCPM6vY/30zEwNCQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -315,4 +351,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_639a22cb-d425-4407-b19a-797ace3cff9e" Target="#_855b83b5-87f6-435d-be78-5b7a9d6445a1"><Timestamp>2023-11-28 09:22:19</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_7548f1ac-fabf-4bd6-bcfe-694d7f254507" Target="#_61ee44e2-aa06-4cca-b627-fe933cb35ccf"><Timestamp>2023-11-28 09:34:50</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
