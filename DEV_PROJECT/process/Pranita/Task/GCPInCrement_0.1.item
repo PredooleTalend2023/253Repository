@@ -115,7 +115,7 @@
     <routinesParameter id="_pPMG-Dv5Ee6j4v6uG-X0AQ" name="TalendStringUtil"/>
     <routinesParameter id="_pPCV-jv5Ee6j4v6uG-X0AQ" name="TalendString"/>
   </parameters>
-  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="64">
+  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_1"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
@@ -149,7 +149,7 @@
       <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_Double" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="64">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="//Code generated according to input schema and output schema&#10;output_row.id = input_row.id;&#10;output_row.name = input_row.name;&#10;output_row.OP_Indicator = input_row.OP_Indicator;&#10;&#10;// Assuming input_row.Modified_At is a double representing seconds since epoch&#10;&#10;// Assuming input_row.Modified_At is a double representing seconds since epoch&#10;double doubleValue = input_row.Modified_At;&#10;&#10;// Convert the double to milliseconds&#10;long milliseconds = (long) (doubleValue * 1000);&#10;&#10;// Subtract 30 minutes (30 * 60 * 1000 milliseconds)&#10;long modifiedMilliseconds = milliseconds - (330 * 60 * 1000);&#10;&#10;// Create a new Date object with the modified milliseconds&#10;java.util.Date modifiedDatetimeMinus30Minutes = new java.util.Date(modifiedMilliseconds);&#10;&#10;// Set the output column value&#10;output_row.Modified_At = modifiedDatetimeMinus30Minutes;&#10;&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
@@ -161,15 +161,15 @@
       <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="448" posY="64">
+  <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="480" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryOutput_1"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Users/Laptop_User/workspace/biquery_bulk.txt&quot;"/>
     <elementParameter field="CHECK" name="APPEND" value="false"/>
-    <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
+    <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="APPLICATION_DEFAULT_CREDENTIALS"/>
     <elementParameter field="PASSWORD" name="ACCESS_TOKEN" show="false" value="enc:system.encryption.key.v1:3LkPr9WJeZoEHNzQ+EyYf2Yc9bQgVd5FEEuZ8ElY"/>
     <elementParameter field="LABEL" name="ACCESS_TOKEN_WARNING" show="false" value="*Note: If the Access Token Expire we won't be able to refresh it!&quot;"/>
-    <elementParameter field="FILE" name="SERVICE_ACCOUNT_CREDENTIALS_FILE" value="&quot;C:/Users/Laptop_User/Downloads/replicate-40-7d7a23ff43b3.json&quot;"/>
+    <elementParameter field="FILE" name="SERVICE_ACCOUNT_CREDENTIALS_FILE" show="false" value="&quot;C:/Users/Laptop_User/Downloads/replicate-40-7d7a23ff43b3.json&quot;"/>
     <elementParameter field="TEXT" name="CLIENT_ID" show="false" value="&quot;&quot;"/>
     <elementParameter field="PASSWORD" name="CLIENT_SECRET" show="false" value="enc:system.encryption.key.v1:T/JVNoxdrvPAMYYXIT8/OpJ67QdyPcbFmq796q3R"/>
     <elementParameter field="TEXT" name="AUTHORIZATION_CODE" show="false" value="&quot;&quot;"/>
@@ -216,9 +216,8 @@
       <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="192">
+  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="160" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
     <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
@@ -230,7 +229,7 @@
     <elementParameter field="TEXT" name="PROJECT_ID" value="&quot;replicate-40&quot;"/>
     <elementParameter field="TEXT" name="AUTHORIZATION_CODE" show="false" value="&quot;&quot;"/>
     <elementParameter field="CHECK" name="USE_LEGACY_SQL" value="false"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT * FROM `replicate-40.Incremental.Temp` where Modified_At&gt; context.Last_Success&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT max( Modified_At) FROM `replicate-40.Incremental.Temp`&quot;"/>
     <elementParameter field="CLOSED_LIST" name="RESULT_SIZE" value="SMALL"/>
     <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
     <elementParameter field="TEXT" name="REGION_ENDPOINT_BQ" show="false" value="&quot;https://bigquery.googleapis.com&quot;"/>
@@ -245,28 +244,20 @@
     <elementParameter field="CHECK" name="FORCE_SINGLE_QUERY_EXEC" value="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tBigQueryInput_2">
-      <column comment="" defaultValue="" key="false" length="-1" name="id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="OP_Indicator" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="FLOAT" type="id_Double" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="224" posY="192">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="//Code generated according to input schema and output schema&#13;&#10;output_row.Modified_At = input_row.id;&#13;&#10;output_row.Modified_At = input_row.name;&#13;&#10;output_row.Modified_At = input_row.OP_Indicator;&#10;// Assuming input_row.Modified_At is a double representing seconds since epoch&#10;&#10;double doubleValue = input_row.Modified_At;&#10; &#10;// Convert the double to milliseconds&#10;&#10;long milliseconds = (long) (doubleValue * 1000);&#10; &#10;// Subtract 30 minutes (30 * 60 * 1000 milliseconds)&#10;&#10;long modifiedMilliseconds = milliseconds - (330 * 60 * 1000);&#10; &#10;// Create a new Date object with the modified milliseconds&#10;&#10;java.util.Date modifiedDatetimeMinus30Minutes = new java.util.Date(modifiedMilliseconds);&#10; &#10;// Set the output column value&#10;&#10;output_row.Modified_At = modifiedDatetimeMinus30Minutes;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="&#10;double doubleValue = input_row.Modified_At;&#10; &#10;// Convert the double to milliseconds&#10;&#10;long milliseconds = (long) (doubleValue * 1000);&#10; &#10;// Subtract 30 minutes (30 * 60 * 1000 milliseconds)&#10;&#10;long modifiedMilliseconds = milliseconds - (330 * 60 * 1000);&#10; &#10;// Create a new Date object with the modified milliseconds&#10;&#10;java.util.Date modifiedDatetimeMinus30Minutes = new java.util.Date(modifiedMilliseconds);&#10; &#10;// Set the output column value&#10;&#10;output_row.Modified_At = modifiedDatetimeMinus30Minutes;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_2">
-      <column comment="" defaultValue="" key="false" length="-1" name="id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="OP_Indicator" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="FLOAT" type="id_Date" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="352" posY="192">
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
     <elementParameter field="RADIO" name="VERTICAL" value="false"/>
@@ -279,12 +270,6 @@
     <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
     <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
     <elementParameter field="TABLE" name="LENGTHS" show="false">
-      <elementValue elementRef="SCHEMA_COLUMN" value="id"/>
-      <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="name"/>
-      <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="OP_Indicator"/>
-      <elementValue elementRef="LENGTH" value="10"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="Modified_At"/>
       <elementValue elementRef="LENGTH" value="10"/>
     </elementParameter>
@@ -292,10 +277,7 @@
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tLogRow_1">
-      <column comment="" defaultValue="" key="false" length="-1" name="id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INTEGER" type="id_Long" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="OP_Indicator" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="FLOAT" type="id_Date" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tBigQueryInput_1" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_1" target="tJavaRow_1">
@@ -319,7 +301,6 @@
   </connection>
   <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tBigQueryInput_2" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_2" target="tJavaRow_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
   <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tJavaRow_2" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_2" target="tLogRow_1">
@@ -335,7 +316,6 @@
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
   </connection>
   <subjob>
@@ -348,13 +328,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_9112d417-8dee-4765-8e5f-c107371e739b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>fFJoT5v5AiK3RaNtKIGwO39M02gvIUf4U0IrYOKDl7P7HQl/ZW9BLQkQ+p/Z0o7z6cFi9RxKXDNe&#13;
-KSV+LmL+vw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_2b6251b3-0000-473c-a8e1-979478348df5"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>deCd21LpuqKD6CLmbYNJ8n51fjSxyUBkP+sT1GqAINQh4K2H+86pO2U/Z9tL3gAzog2MHAOBYb5g&#13;
-bl7Mlgn7NA==</DigestValue></Reference></SignedInfo><SignatureValue>GXVUCUBmwTsMEfT0jV4NihIaPfjtmOS2eRw+DxNZaBeBVbrZsmqlaSl1emPLu9StO3JurLSAog5h&#13;
-Knuhjjq6PxLIWbTiGfnGMLxbo7Rp7mn93A6tiy3qn/6ma7+QhEBE9MiZZIlf3pVGWqsaSsNXnqM1&#13;
-Q912z7vOAdSoe2Vm1+OFZfsmvIPvL95j8Uzmy9iMrwurm2z9fnqFNCRELU1PZgpoJZ16OIXYhPcz&#13;
-W6BM7o3WKcqoOFQeemgdRiL7Mn5nYprmoAZdTNzPS5bw4iwDq/2CCD49H8iCksu8Z1AxGWv+MIuB&#13;
-+6+TzCNHHAYa1oZgqNIRPpEBmr+BBRTh52B3Ag==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_3f84d18c-569a-415c-a8b5-54cf67e8938f"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>W7SZXRFex0ws9D0GRpooc/5V/FcCQNiiCzRCPpsD9XAg1gyOjpeRSAR/ZTUqznzlJCdAFOq+up2V&#13;
+gd65ZPRZmQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_d812512e-c66c-4da2-9f9b-e19d926b1edf"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>R0YpRoNRtp4e+ohRPzx8Q3+liMB8armKX4Jkm8+/p48jyyKYDIwMAXSZzfdRgXrqxeMEvSdu5rHD&#13;
+0Qjk3Ym/Kw==</DigestValue></Reference></SignedInfo><SignatureValue>e/IvuL4Ih9CMvHAEEXuTGQeIt0MLfwKBpr56ejPQ92x5FwaZy+iORiqWhZqs1n4fBIqYq8AORZYP&#13;
+8tbyBWuP6TW80XmcdHy7yW9zVSeaYAKG8/FPoSPdBtutRDo6Cmd0McKcFg4KJ4CsDMUNw9UjrVj4&#13;
+PzfGCX4V5dto89tTBkBCfKjuxrQ22KL2rdVMz32zQ2U7PQbohmbJMwq1LYg3D3CAW2emOQ4aXRvy&#13;
+X5HFux2sVzsdDWHFAgTq9UvJzvLojVYVOiipBS5YN2nE1B4d3T0e7urctYpejBm8U/k/GbgoI3SB&#13;
+cYWTNq1l6Pu/cbbllIFdooEc7kQvI2ktnFaPQA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -376,4 +356,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_2b6251b3-0000-473c-a8e1-979478348df5" Target="#_9112d417-8dee-4765-8e5f-c107371e739b"><Timestamp>2023-11-28 10:34:55</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_d812512e-c66c-4da2-9f9b-e19d926b1edf" Target="#_3f84d18c-569a-415c-a8b5-54cf67e8938f"><Timestamp>2023-11-28 10:37:34</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
