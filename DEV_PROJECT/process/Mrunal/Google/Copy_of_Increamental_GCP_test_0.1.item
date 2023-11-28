@@ -209,7 +209,7 @@
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="newColumn" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="INewrecords" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties shellMaximized="true"/>
@@ -219,7 +219,7 @@
         <mapperTableEntries expression="out1.Product_name " name="Product_name" nullable="true" type="id_String"/>
         <mapperTableEntries expression=" out1.Price " name="Price" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="  out1.Order_date " name="Order_date" nullable="true" type="id_String"/>
-        <mapperTableEntries name="newColumn" nullable="true" type="id_String"/>
+        <mapperTableEntries name="INewrecords" nullable="true" type="id_String"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="out1" sizeState="INTERMEDIATE">
         <mapperTableEntries name="ID" nullable="true" type="id_Long"/>
@@ -232,7 +232,12 @@
   <node componentName="tFilterRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="896" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFilterRow_4"/>
     <elementParameter field="CLOSED_LIST" name="LOGICAL_OP" value="&amp;&amp;"/>
-    <elementParameter field="TABLE" name="CONDITIONS"/>
+    <elementParameter field="TABLE" name="CONDITIONS">
+      <elementValue elementRef="INPUT_COLUMN" value="INewrecords"/>
+      <elementValue elementRef="FUNCTION" value=""/>
+      <elementValue elementRef="OPERATOR" value="=="/>
+      <elementValue elementRef="RVALUE" value="True"/>
+    </elementParameter>
     <elementParameter field="CHECK" name="USE_ADVANCED" value="false"/>
     <elementParameter field="MEMO_JAVA" name="ADVANCED_COND" show="false" value="// code sample : use input_row to define the condition.&#10;// input_row.columnName1.equals(&quot;foo&quot;) ||!(input_row.columnName2.equals(&quot;bar&quot;))&#10;// replace the following expression by your own filter condition &#10;input_row.columnName1.equals(input_row.columnName2)&#10;&#9;&#9;&#9;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -241,21 +246,21 @@
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="newColumn" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="INewrecords" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
     <metadata connector="FILTER" name="FILTER">
       <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="newColumn" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="INewrecords" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" name="REJECT">
       <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="newColumn" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="INewrecords" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
@@ -313,7 +318,7 @@
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="newColumn" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="INewrecords" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tBigQueryInput_1">
@@ -329,7 +334,7 @@
   </connection>
   <connection connectorName="FLOW" label="OUT2" lineStyle="0" metaname="OUT2" offsetLabelX="0" offsetLabelY="0" source="tMap_2" target="tFilterRow_4">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
-      <elementValue elementRef="TRACE_COLUMN" value="newColumn"/>
+      <elementValue elementRef="TRACE_COLUMN" value="INewrecords"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
@@ -351,13 +356,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_2049e9e6-75a5-4aaf-871b-f72335ac59ee"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>DL6qG7KUQY3ZLwcyuAe5D8d9WBhbaIGBYWydPpgKfCJG2IO6yeDsX+TiC/6AZvYFS44uXS/tcbaa&#13;
-2ionKfGERw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_0fd97384-1f5b-4217-9eb1-da275af309d6"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>9a2HHM7Ypp40Pp0GmwbIdNkS4mKEqw5tU6m4l5SQ1C5FTfns8+JJAu8rYp4WeeM31YI9WrZwAtfw&#13;
-ctjnYQBogA==</DigestValue></Reference></SignedInfo><SignatureValue>eqaX2zCS1sFS1Y+2WKOC4H5qqok+dEcvh/Fn9+kYUKHANOXFReicXiWS/kDmH8T2TT/sZ91RY30U&#13;
-hr1SozhsLr0MZ3GJPP3vvVxuLDXMWFVtIoMhftQx/ZoxpTR1H3HijzJgN37WTPTKa10QNq9v4DTK&#13;
-k5p1R2j6DwZsElv1etCTirSro0LtDSR/dqRGXf3kIYbbJSYrkwLF3DyMDgGizE89lRKswRVB/XrC&#13;
-pyMs2Uubm6HnOVsO5ne9Byo0knmZpjHQbCMj0lbAWnz3Ic33V4hu925l4Vc7CQffcfYhvnH+rmY+&#13;
-Ft5+kAKc9MHz7JG6izS4DjBnxkpyTPCnQ5r2Xw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_5eae0a26-eb39-4035-9853-b67afdb8314c"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>clSgYGMHcfQ6JAU6/28Il91ss5dEbXKzTTihsnHcUYhdmWyCDWHYzLu/Rf9IZ5iAhYSLwoGlfTBv&#13;
+xkG++g8jBA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_aa7912c3-db0e-4227-9810-6d4d6d220f32"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>bD7TgNyfBf2pHvOxtlqVGXt9nscf4cYWtztatjVBz1iX+/qcU69Xc43YwopkAqHMOHKkT3oOmoel&#13;
+cwScxpcMLQ==</DigestValue></Reference></SignedInfo><SignatureValue>fMlaBpZSZqFLOLDSsEzfCBKGQjMvrf/JACspzh2k9veoX+uTU6gPYT6tZSc3pIw16nA3wLlefZ0o&#13;
++E+FtXezTHJxGkqw3xBfsbZXJgtsR0i0mc6QEt7PQPgPJrPaRmE2aPvM97+ebd9dJMGOiqg4Vl5s&#13;
+x7JKcrRsM53oV8A2LtdDrvfWUry7N2kZ7qoADXCAiVuBz/8Py+AgOSgt/2/10BSIo1rA0Neh7s51&#13;
+uXNlCH0PDOcBIPxL7sY/JLOqhv7bfiVweT/6y0SGRU+TL+NllrmATElzWben8G2DsU6QMeo0sJFd&#13;
+YDtudaD1KpyRfwAiMe2e2sUjgj4ZYSWqM4tflA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -379,4 +384,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_0fd97384-1f5b-4217-9eb1-da275af309d6" Target="#_2049e9e6-75a5-4aaf-871b-f72335ac59ee"><Timestamp>2023-11-28 08:59:51</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_aa7912c3-db0e-4227-9810-6d4d6d220f32" Target="#_5eae0a26-eb39-4035-9853-b67afdb8314c"><Timestamp>2023-11-28 09:01:32</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
