@@ -171,7 +171,7 @@
       <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="last_updated_timestamp" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="last_updated_timestamp" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties shellMaximized="true"/>
@@ -180,7 +180,7 @@
         <mapperTableEntries expression="row1.ID " name="ID" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="row1.Product_name " name="Product_name" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row1.Price " name="Price" nullable="true" type="id_Long"/>
-        <mapperTableEntries expression="// Convert the Order_date string to a timestamp&#13;&#10;java.util.Date row1.Order_date = TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, row1.Order_date);&#13;&#10;&#13;&#10;// Manipulate the orderDate timestamp if needed (your existing logic)&#13;&#10;// Example manipulation: subtract 5 hours and 30 minutes&#13;&#10;java.util.Date manipulatedDate = TalendDate.addDate(TalendDate.addDate(row1.Order_date, -5, &quot;HH&quot;), -30, &quot;mm&quot;);&#13;&#10;&#13;&#10;// Format the manipulated date to the desired string format for the target table&#13;&#10;String formattedDate = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, manipulatedDate);&#13;&#10;&#13;&#10;// Assign the formattedDate directly to the last_updated_timestamp column in the output schema&#13;&#10;out1.row1.last_updated_timestamp = formattedDate; " name="last_updated_timestamp" nullable="true" type="id_Date"/>
+        <mapperTableEntries expression="// Convert the Order_date string to a timestamp&#13;&#10;java.util.Date row1.Order_date = TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, row1.Order_date);&#13;&#10;&#13;&#10;// Manipulate the orderDate timestamp if needed (your existing logic)&#13;&#10;// Example manipulation: subtract 5 hours and 30 minutes&#13;&#10;java.util.Date manipulatedDate = TalendDate.addDate(TalendDate.addDate(row1.Order_date, -5, &quot;HH&quot;), -30, &quot;mm&quot;);&#13;&#10;&#13;&#10;// Format the manipulated date to the desired string format for the target table&#13;&#10;String formattedDate = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, manipulatedDate);&#13;&#10;&#13;&#10;// Assign the formattedDate directly to the last_updated_timestamp column in the output schema&#13;&#10;out1.row1.last_updated_timestamp = formattedDate; " name="last_updated_timestamp" nullable="true" type="id_String"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row1" sizeState="INTERMEDIATE">
         <mapperTableEntries name="ID" nullable="true" type="id_Long"/>
@@ -243,7 +243,7 @@
       <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="last_updated_timestamp" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="last_updated_timestamp" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tBigQueryInput_1">
@@ -273,13 +273,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_22fcbd44-520e-42e2-a8d6-67a11e5cb6cb"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>iahOMcLpKPxBR1wnLq4TXXfueYxlaB0j9RrcpcOVOzbHe98jSjPNdKToQhLWoSe4WJi12unFOD4s&#13;
-0ysCMmJH6A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_781212cf-9ae5-4dd1-b72c-493ced506bbf"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>dTnIdDGUjqboPR1I4iuE3iyOzauSDyGv6qex+vpGMY/WDnkAfduqt/bSwzmhxfh0DBtkcXgU/tS7&#13;
-y7sR73EDvw==</DigestValue></Reference></SignedInfo><SignatureValue>Z5t0iwdR3b8sHYhQVwvEb7wvr5SCTTxRKvD3bW8zvbpCWrqTy/U6mB2A5dW6h2KPcpQHhkzgi6RA&#13;
-rEJCCbyeiybsfXtrPH/nNAjfq03V73QQiZcyeWz9CWGzlXTwv08iZ8h+xKFjsT1Dv4o5R0Jgl3yw&#13;
-TkmTQ9ywx5CfeB+v114cZ4n4xmA0C2li0x2F9OzFoAdHbwZZTLVpyZjZEKe/5hng1nR14Etq+tFk&#13;
-IZSDz5IywIuwleatW1HFKS4hRNosAsF3+AsjAgalUglYXJ7F3zMWmvPkbNjoMMrgvaRydbfQ6pcp&#13;
-Jfh0r0V65NzkjHnWJ5Rxx2B465Hjeps+zuLtcg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_2aad45d4-b8ff-426c-9a24-43d3650b5dea"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>hnPH1yxlCs1Tsi9uQQC/NrzgdjYt7YRKKeNmVWI1Cq+qWvoJ1yaf8qaBufSwmdvxuGxtd3VDllvV&#13;
+6awXHdkB/g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_f9ec1b22-d9b5-4c46-828e-330296e6a582"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>sHiTs06u0xoWsl2n6zcoE39u49QEdrDxetH6cBkNdV65BhtG3QIghsiKv3d0SoHkKwrKp84Wqm3L&#13;
+2Ah8lkk3ew==</DigestValue></Reference></SignedInfo><SignatureValue>DzkQusynH9OLpAr1WEleUWG2lFd7WgBPf/d3yIv6aCtc9sBlvXCpuEL1BXhxYWUXkSr/GSDYJmax&#13;
+Jgchf42idndxnNiYgpLn07nDLXh0zECjH6/JwSQzzCekSIOioOhmUJvqLM5O7Nr1Zr04P9BY5FD0&#13;
+gDdnrLokw6wve3gfbHEWMBF9Rkxf9jk95pjnCdobkzYSHtvtTc1ZzEx7XuA/N2tREJ97oA+BWd+z&#13;
+tCyUrKDwr/sGZrCOILzeT1rgqbWGoxvKIcKsJ1aYP77r0s0ueiweW59wUCYidD3vsxza2ydtoYmC&#13;
+Y12ns1CRGA4aR1M+WC1IcwUMQZ+mSbWSxOizkw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -301,4 +301,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_781212cf-9ae5-4dd1-b72c-493ced506bbf" Target="#_22fcbd44-520e-42e2-a8d6-67a11e5cb6cb"><Timestamp>2023-11-28 06:32:25</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_f9ec1b22-d9b5-4c46-828e-330296e6a582" Target="#_2aad45d4-b8ff-426c-9a24-43d3650b5dea"><Timestamp>2023-11-28 06:32:55</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
