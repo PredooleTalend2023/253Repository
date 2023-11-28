@@ -144,12 +144,12 @@
       <column comment="" defaultValue="" key="false" length="-1" name="id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="OP_Indicator" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Modified_At" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_Double" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="//Code generated according to input schema and output schema&#10;output_row.id = input_row.id;&#10;output_row.name = input_row.name;&#10;output_row.OP_Indicator = input_row.OP_Indicator;&#10; &#10;float floatColumn = input_row.Modified_At;&#10; &#10;// Convert the float to double&#10;double doubleValue = (double) floatColumn;&#10; &#10;// Convert the double to milliseconds (assuming it represents seconds since epoch)&#10;long milliseconds = (long) (doubleValue * 1000);&#10; &#10;// Create a Date object&#10;java.util.Date convertedDatetime = new java.util.Date(milliseconds);&#10; &#10;// Set the output column value&#10;output_row.Modified_At = convertedDatetime;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//Code generated according to input schema and output schema&#10;output_row.id = input_row.id;&#10;output_row.name = input_row.name;&#10;output_row.OP_Indicator = input_row.OP_Indicator;&#10; &#10;&#10; &#10;// Convert the double to milliseconds (assuming it represents seconds since epoch)&#10;long milliseconds = (long) (doubleValue * 1000);&#10; &#10;// Create a Date object&#10;java.util.Date convertedDatetime = new java.util.Date(milliseconds);&#10; &#10;// Set the output column value&#10;output_row.Modified_At = convertedDatetime;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_1">
@@ -271,13 +271,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_1625224c-e416-4184-a2c4-0c826f17cfe9"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>K/V+a467V93gqh0h/HCRCtKIdHMhGRLHzNL6Zj5yhPqesmIBKeFxYC8mxTRICZXlD8wFHhHmae58&#13;
-nX/aTsZ0hw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_43afb47e-cd70-47b9-babd-43e3daf5487d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Zzwzl3QBHRzy234sR2ovYZZy4d0r3hVSnzEipKog2iux9DTIMweFlcR0LVz+APbchUaDUtHR3lcj&#13;
-mJ7ivJfQtQ==</DigestValue></Reference></SignedInfo><SignatureValue>MyMS5IeIqyRMNTZq7Rsc8nCUJWSbGu/Ks27dlLU+dy6qi3D1iP9Ve45sBt+bLgdJKiz4x+yy0R/X&#13;
-vwicszb49tkA2fnHP3Wr16l99tBE+imtFRtwilgjW++Hn9ak5+52iojFOG6zu4EcLUGdI/b29fJM&#13;
-RH6LnUkrtEPqSJmXzXfdt+mVR09l3uIUmS6VScJdJ0guH/BstoKh1IptlRmMoRce90Dpnd2619/9&#13;
-kEK/g04fp71ylCiGgWbR+Qt2xxJQWnb4sQKczpUy+U6eS2XkWLCmDstTf0ZP8bilLlZX/EfNHKmQ&#13;
-IU3r6d/UrvE43KM+lLLhjECxcQVQf56n0a6UVQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b143c9c4-5e7e-412b-b180-94363a5e0133"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>cW7imWhfiq+djUCsw+LwGEfDphZWBQSym30gNCKSIso/p6sqCeJ7prstEKumOczfDbUzWBTwHrh0&#13;
+1+hpI51vrA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_cc89a0a5-0719-477b-96ae-14337bcaf3be"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>VC9sqoH4ir4u46otHq0OKWSAPcKmJ7JFJ5edpfWfeOo65yyd0PQZTdbvncBdXhmodEyyxXSZzTWZ&#13;
+mjQUifuwSw==</DigestValue></Reference></SignedInfo><SignatureValue>ZsyMq1ApGA0gXzawDEPSkBh/Xli0ifyS9hB3E+DGmY1GWv727XjXrZmhXHvZMFhAXp3HuCYt6YHb&#13;
+zVBp926YVzcLR9KtWDm0EXLvMhCXgaHYQOKTRQ7+U7LOkroCM2/5IWiWUaw4ymy2w2/edlmg3XCA&#13;
+spOFelMBuImglw7Vgf8/F+I+793K9j7VEZ20sejxdeaJSCmtx05rieqyI6TOl0aojKWDSiRIrVoX&#13;
+6tKd81e3nq9pK7AHjguEMlko7/tCTmRjLRtaErZ/nrctNGKI80Zu3X5KlTJzgDIM5dUa21Q5VXNl&#13;
+HX+oJUilTMXgxrrHzDme+ooTFLBr7m6EJygvPA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -299,4 +299,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_43afb47e-cd70-47b9-babd-43e3daf5487d" Target="#_1625224c-e416-4184-a2c4-0c826f17cfe9"><Timestamp>2023-11-28 09:19:02</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_cc89a0a5-0719-477b-96ae-14337bcaf3be" Target="#_b143c9c4-5e7e-412b-b180-94363a5e0133"><Timestamp>2023-11-28 09:20:31</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
