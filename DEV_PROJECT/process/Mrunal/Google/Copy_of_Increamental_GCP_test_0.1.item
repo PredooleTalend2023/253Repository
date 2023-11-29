@@ -132,7 +132,7 @@
     <elementParameter field="TEXT" name="PROJECT_ID" value="&quot;replicate-40&quot;"/>
     <elementParameter field="TEXT" name="AUTHORIZATION_CODE" show="false" value="&quot;&quot;"/>
     <elementParameter field="CHECK" name="USE_LEGACY_SQL" value="true"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT ID, Product_name, Price, Order_date&#13;&#10;FROM test.Products_orders&#13;&#10;WHERE TIMESTAMP(Order_date) &gt; TIMESTAMP('2023-11-24 11:58:58.567')&#13;&#10;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT ID, Product_name, Price, Order_date&#13;&#10;FROM test.Products_orders&#13;&#10;&quot;"/>
     <elementParameter field="CLOSED_LIST" name="RESULT_SIZE" value="SMALL"/>
     <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
     <elementParameter field="TEXT" name="REGION_ENDPOINT_BQ" show="false" value="&quot;https://bigquery.googleapis.com&quot;"/>
@@ -177,13 +177,19 @@
       <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="out1" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="row1.ID " name="ID" nullable="true" type="id_Long"/>
-        <mapperTableEntries expression="row1.Product_name " name="Product_name" nullable="true" type="id_String"/>
-        <mapperTableEntries expression="row1.Price " name="Price" nullable="true" type="id_Long"/>
-        <mapperTableEntries expression="TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, &#13;&#10;    TalendDate.addDate(&#13;&#10;        TalendDate.addDate(&#13;&#10;            TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, &#13;&#10;                TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, &#13;&#10;                    new java.util.Date(Long.parseLong(row1.Order_date.split(&quot;\\.&quot;)[0]) * 1000 + Long.parseLong(row1.Order_date.split(&quot;\\.&quot;)[1]))&#13;&#10;                )&#13;&#10;            ),&#13;&#10;            -5, &quot;HH&quot;&#13;&#10;        ),&#13;&#10;        -30, &quot;mm&quot;&#13;&#10;    )&#13;&#10;) " name="Order_date" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row1.ID == row2.ID " name="ID" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="row1.ID == row2.ID ? (row1.Product_name == null || row1.Product_name.isEmpty() ? row2.Product_name : row1.Product_name) : row1.Product_name " name="Product_name" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="row1.ID == row2.ID ? (row1.Price == null || row1.Price.isEmpty() ? row2.Price : row1.Price) : row1.Price " name="Price" nullable="true" type="id_Long"/>
+        <mapperTableEntries expression="// Perform date manipulation and store the updated date&#13;&#10;String manipulatedDate = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;,&#13;&#10;    TalendDate.addDate(&#13;&#10;        TalendDate.addDate(&#13;&#10;            TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;,&#13;&#10;                TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;,&#13;&#10;                    new java.util.Date(Long.parseLong(row1.Order_date.split(&quot;\\.&quot;)[0]) * 1000 + Long.parseLong(row1.Order_date.split(&quot;\\.&quot;)[1]))&#13;&#10;                )&#13;&#10;            ),&#13;&#10;            -5, &quot;HH&quot;&#13;&#10;        ),&#13;&#10;        -30, &quot;mm&quot;&#13;&#10;    )&#13;&#10;);&#13;&#10;&#13;&#10;// Merge logic: Update Order_date only if it's null or empty&#13;&#10;String updatedOrderDate = row1.ID == row2.ID ? &#13;&#10;                            (row1.Order_date == null || row1.Order_date.isEmpty() ? manipulatedDate : row1.Order_date) &#13;&#10;                            : row1.Order_date;&#13;&#10;&#13;&#10;updatedOrderDate; // Output the updated Order_date value " name="Order_date" nullable="true" type="id_String"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row1" sizeState="INTERMEDIATE">
         <mapperTableEntries name="ID" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="Product_name" nullable="true" type="id_String"/>
+        <mapperTableEntries name="Price" nullable="true" type="id_Long"/>
+        <mapperTableEntries name="Order_date" nullable="true" type="id_String"/>
+      </inputTables>
+      <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row2" sizeState="INTERMEDIATE">
+        <mapperTableEntries expression="row1.ID " name="ID" nullable="true" operator="=" type="id_Long"/>
         <mapperTableEntries name="Product_name" nullable="true" type="id_String"/>
         <mapperTableEntries name="Price" nullable="true" type="id_Long"/>
         <mapperTableEntries name="Order_date" nullable="true" type="id_String"/>
@@ -246,6 +252,40 @@
       <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
+  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="256">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_2"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
+    <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
+    <elementParameter field="PASSWORD" name="ACCESS_TOKEN" show="false" value="enc:system.encryption.key.v1:GXXtMYywZH/IZhQrwNI2pL8zEvXbfzvY21bOiKuU"/>
+    <elementParameter field="LABEL" name="ACCESS_TOKEN_WARNING" show="false" value="*Note: If the Access Token Expire we won't be able to refresh it!&quot;"/>
+    <elementParameter field="FILE" name="SERVICE_ACCOUNT_CREDENTIALS_FILE" value="&quot;E:/Downloads/replicate-40-d7e290dac998.json&quot;"/>
+    <elementParameter field="TEXT" name="CLIENT_ID" show="false" value="&quot;&quot;"/>
+    <elementParameter field="PASSWORD" name="CLIENT_SECRET" show="false" value="enc:system.encryption.key.v1:sr9FU0bZxc+5v1Fr12uvb8EPpB+/lWSAsO4dGkCn"/>
+    <elementParameter field="TEXT" name="PROJECT_ID" value="&quot;replicate-40&quot;"/>
+    <elementParameter field="TEXT" name="AUTHORIZATION_CODE" show="false" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="USE_LEGACY_SQL" value="true"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT ID, Product_name, Price, Order_date&#13;&#10;FROM test.Products_orders&#13;&#10;WHERE TIMESTAMP(Order_date) &gt; TIMESTAMP('2023-11-25 00:00:00.00')&#13;&#10;&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="RESULT_SIZE" value="SMALL"/>
+    <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
+    <elementParameter field="TEXT" name="REGION_ENDPOINT_BQ" show="false" value="&quot;https://bigquery.googleapis.com&quot;"/>
+    <elementParameter field="FILE" name="TOKEN_NAME" show="false" value="&quot;C:/Users/Laptop_User/workspace/token.properties&quot;"/>
+    <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
+    <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
+    <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="USE_CUSTOM_TEMPORARY_DATASET" show="false" value="false"/>
+    <elementParameter field="TEXT" name="TEMPORARY_DATASET_NAME" show="false" value="&quot;temp_dataset&quot;"/>
+    <elementParameter field="CHECK" name="FORCE_SINGLE_QUERY_EXEC" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tBigQueryInput_2">
+      <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tBigQueryInput_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
   </connection>
@@ -256,6 +296,10 @@
   <connection connectorName="FLOW" label="out1" lineStyle="0" metaname="out1" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tBigQueryOutput_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out1"/>
+  </connection>
+  <connection connectorName="FLOW" label="row2" lineStyle="8" metaname="tBigQueryInput_2" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_2" target="tMap_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" show="false" value="true"/>
@@ -268,13 +312,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_7ce31739-9c61-4533-9ea4-74fdada9735d"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>YEOajVSWhqCRRMxYCa98Wrm6ZgCIH3bUKNzx4KMCcXOL+uFpkejrKKN/peLosPGUdjXroqonxRHq&#13;
-L/TmHBTQrw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_927f42a7-d466-4667-b7b3-1b5d619546ca"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>zwlDUiyYnaaLK+fE9UNQ18vXUpVpKPwbuZpqlMvfE+OmcuqFRoRD/B+aA2V84/cVaeBrGWLpKP5a&#13;
-40paXB8sgw==</DigestValue></Reference></SignedInfo><SignatureValue>cNTxekmlSgel8rjDiGKD+60bk/Ux8Jo5H/YhDMVY6MSYqyohZZodXzPRUtuDZ9FDg9/5IWjWI25r&#13;
-xC8y7PRj4vni+xKW+nmeWvu1k9JZoEKf+6JgY+bYuCahcp3REHUZ3AFnOMTHQiJ9PFetlqvqrTzs&#13;
-6+RkhW9p0GeX6XdFxOWSgE6o7jQpze/y7YLeiqSnV0N5gsTjtW6BPSv9sjHVJ7sr7XGYvcPBlwEJ&#13;
-XzE0pLjIwfWg9mWG7kqgFA+UjsBtcgz/Q3ISlEoTdy1UZQa9mKfpqZznHzfI0/btrDzcmn7orABv&#13;
-VxfkiYk7rLf0AnxaJFsn0lbfMdyt1y2GHZdXEQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6f761400-e281-44fa-ae6a-63f3122ce668"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>BgXshq27dFs3MLazWg3YWksogb4p0DNr5ci5wZsZDirxzHNivYc2SD0NWmxhOZHzImsJIfagzUKt&#13;
+ERH4CNR6oA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_c2d25ce4-b801-49b9-9bc5-f1258248fdb5"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>WGYTsZhO3EcDMtwhg6ezMhMrjVDp+OcC0AD34LQbIRcYLPSitYij07MCHaL8B0P7CoOs4FwWf4ko&#13;
+A0are+PnHw==</DigestValue></Reference></SignedInfo><SignatureValue>R5liRPmShxBn5XERTij5ZODRDmRmCz8lX9eVHzcS5/vTqRODPMjKlZsQFDOnLDDoqS4flQLw9DJk&#13;
+bslWwOdLpvPYNQZCLDHttLOzTYSPRTXMjrASeM9h4az7DhfuhFu4w0hQdLx+5XVgXjXwkwCfOLTD&#13;
+HZNtP3lnd2G1T4ZragUC6lPn90Ct2Vv+SaEcEoN57yGIjX0sMmiSuKmZWIjjGApV3wUkgMcOIX7g&#13;
+5tIrxLR4qTK0cpmJCXwt7QQadH9zT9kuMhMir0wpGU3kp8Un3vJCbJqJydLev8OT5beU4ChbTXpA&#13;
+2gpF+u2m2cNCKOkLdkWQGiEkaAs0lAyFVktNVg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -296,4 +340,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_927f42a7-d466-4667-b7b3-1b5d619546ca" Target="#_7ce31739-9c61-4533-9ea4-74fdada9735d"><Timestamp>2023-11-29 04:31:54</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_c2d25ce4-b801-49b9-9bc5-f1258248fdb5" Target="#_6f761400-e281-44fa-ae6a-63f3122ce668"><Timestamp>2023-11-29 04:59:03</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
