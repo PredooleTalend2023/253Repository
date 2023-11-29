@@ -120,22 +120,28 @@
     <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="96">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
-    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
-    <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
+  <node componentName="tBigQuerySQLRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="288">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQuerySQLRow_1"/>
+    <elementParameter field="TEXT" name="COMPONENT_NAME" show="false" value="tBigQuerySQLRow"/>
+    <elementParameter field="TEXT" name="VERSION" show="false" value="0.102 (ALPHA)"/>
+    <elementParameter field="TEXT" name="FAMILY" show="false" value="Big Data/Google BigQuery"/>
+    <elementParameter field="CHECK" name="START" show="false" value="true"/>
+    <elementParameter field="CHECK" name="STARTABLE" show="false" value="true"/>
+    <elementParameter field="CHECK" name="SUBTREE_START" show="false" value="true"/>
+    <elementParameter field="CHECK" name="END_OF_FLOW" show="false" value="true"/>
+    <elementParameter field="TEXT" name="HELP" show="false" value="org.talend.help.tBigQuerySQLRow"/>
+    <elementParameter field="DIRECTORY" name="IREPORT_PATH" show="false" value=""/>
+    <elementParameter field="DIRECTORY" name="JAVA_LIBRARY_PATH" show="false" value="C:\Program Files (x86)\Talend-Studio\studio\configuration\lib\java"/>
     <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
-    <elementParameter field="PASSWORD" name="ACCESS_TOKEN" show="false" value="enc:system.encryption.key.v1:0WxU2fSsEVNv9OSGLetqq0cW1y/JJC/tL9VN9d3m"/>
+    <elementParameter field="PASSWORD" name="ACCESS_TOKEN" show="false" value="enc:system.encryption.key.v1:aGGa2Doe+cKG3ozsZ6r1IEd81hz1DeBwXSn5kDfa"/>
     <elementParameter field="LABEL" name="ACCESS_TOKEN_WARNING" show="false" value="*Note: If the Access Token Expire we won't be able to refresh it!&quot;"/>
     <elementParameter field="FILE" name="SERVICE_ACCOUNT_CREDENTIALS_FILE" value="&quot;E:/Downloads/replicate-40-d7e290dac998.json&quot;"/>
     <elementParameter field="TEXT" name="CLIENT_ID" show="false" value="&quot;&quot;"/>
-    <elementParameter field="PASSWORD" name="CLIENT_SECRET" show="false" value="enc:system.encryption.key.v1:bSdZ+3jhWqAEDvTdxFyCL+IuAS7MLvT6jiZdoBgd"/>
+    <elementParameter field="PASSWORD" name="CLIENT_SECRET" show="false" value="enc:system.encryption.key.v1:n/P08jDpdaEUaBSkpeCKnxhFMbnELH8w+G9D+m82"/>
     <elementParameter field="TEXT" name="PROJECT_ID" value="&quot;replicate-40&quot;"/>
     <elementParameter field="TEXT" name="AUTHORIZATION_CODE" show="false" value="&quot;&quot;"/>
-    <elementParameter field="CHECK" name="USE_LEGACY_SQL" value="true"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT ID, Product_name, Price, Order_date&#13;&#10;FROM test.Products_orders&#13;&#10;&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="RESULT_SIZE" value="SMALL"/>
+    <elementParameter field="CHECK" name="USE_LEGACY_SQL" value="false"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT ID, Product_name, Price, Order_date&#13;&#10;FROM test.Products_orders&#13;&#10;&quot;&#13;&#10;"/>
     <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
     <elementParameter field="TEXT" name="REGION_ENDPOINT_BQ" show="false" value="&quot;https://bigquery.googleapis.com&quot;"/>
     <elementParameter field="FILE" name="TOKEN_NAME" show="false" value="&quot;C:/Users/Laptop_User/workspace/token.properties&quot;"/>
@@ -144,18 +150,17 @@
     <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
-    <elementParameter field="CHECK" name="USE_CUSTOM_TEMPORARY_DATASET" show="false" value="false"/>
-    <elementParameter field="TEXT" name="TEMPORARY_DATASET_NAME" show="false" value="&quot;temp_dataset&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="RESULT_SIZE" show="false" value="AUTO"/>
     <elementParameter field="CHECK" name="FORCE_SINGLE_QUERY_EXEC" value="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tBigQueryInput_1">
+    <metadata connector="FLOW" name="tBigQuerySQLRow_1">
       <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="608" posY="96">
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="64" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tMap_1"/>
     <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
@@ -185,36 +190,23 @@
         <mapperTableEntries expression="row2.Price " name="Price" nullable="true" type="id_Long"/>
         <mapperTableEntries expression=" row2.Order_date " name="Order_date" nullable="true" type="id_String"/>
       </outputTables>
-      <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row2" sizeState="INTERMEDIATE">
-        <mapperTableEntries name="ID" nullable="true" type="id_Long"/>
-        <mapperTableEntries name="Product_name" nullable="true" type="id_String"/>
-        <mapperTableEntries name="Price" nullable="true" type="id_Long"/>
-        <mapperTableEntries name="Order_date" nullable="true" type="id_String"/>
-      </inputTables>
     </nodeData>
   </node>
-  <node componentName="tBigQuerySQLRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="544" posY="288">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQuerySQLRow_1"/>
-    <elementParameter field="TEXT" name="COMPONENT_NAME" show="false" value="tBigQuerySQLRow"/>
-    <elementParameter field="TEXT" name="VERSION" show="false" value="0.102 (ALPHA)"/>
-    <elementParameter field="TEXT" name="FAMILY" show="false" value="Big Data/Google BigQuery"/>
-    <elementParameter field="CHECK" name="START" show="false" value="true"/>
-    <elementParameter field="CHECK" name="STARTABLE" show="false" value="true"/>
-    <elementParameter field="CHECK" name="SUBTREE_START" show="false" value="true"/>
-    <elementParameter field="CHECK" name="END_OF_FLOW" show="false" value="false"/>
-    <elementParameter field="TEXT" name="HELP" show="false" value="org.talend.help.tBigQuerySQLRow"/>
-    <elementParameter field="DIRECTORY" name="IREPORT_PATH" show="false" value=""/>
-    <elementParameter field="DIRECTORY" name="JAVA_LIBRARY_PATH" show="false" value="C:\Program Files (x86)\Talend-Studio\studio\configuration\lib\java"/>
+  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="768" posY="288">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_2"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
+    <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
     <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
-    <elementParameter field="PASSWORD" name="ACCESS_TOKEN" show="false" value="enc:system.encryption.key.v1:aGGa2Doe+cKG3ozsZ6r1IEd81hz1DeBwXSn5kDfa"/>
+    <elementParameter field="PASSWORD" name="ACCESS_TOKEN" show="false" value="enc:system.encryption.key.v1:3klCxd0+cImNDjNoRVOA/yTevR+/wfP7mLAPENSj"/>
     <elementParameter field="LABEL" name="ACCESS_TOKEN_WARNING" show="false" value="*Note: If the Access Token Expire we won't be able to refresh it!&quot;"/>
     <elementParameter field="FILE" name="SERVICE_ACCOUNT_CREDENTIALS_FILE" value="&quot;E:/Downloads/replicate-40-d7e290dac998.json&quot;"/>
     <elementParameter field="TEXT" name="CLIENT_ID" show="false" value="&quot;&quot;"/>
-    <elementParameter field="PASSWORD" name="CLIENT_SECRET" show="false" value="enc:system.encryption.key.v1:n/P08jDpdaEUaBSkpeCKnxhFMbnELH8w+G9D+m82"/>
+    <elementParameter field="PASSWORD" name="CLIENT_SECRET" show="false" value="enc:system.encryption.key.v1:fZsP2oVMP0Um4FPLn5TL6eRJtBWw6ebaAJ4ChS9T"/>
     <elementParameter field="TEXT" name="PROJECT_ID" value="&quot;replicate-40&quot;"/>
     <elementParameter field="TEXT" name="AUTHORIZATION_CODE" show="false" value="&quot;&quot;"/>
-    <elementParameter field="CHECK" name="USE_LEGACY_SQL" value="false"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT ID, Product_name, Price, Order_date&#13;&#10;FROM test.Products_orders&#13;&#10;&quot;&#13;&#10;"/>
+    <elementParameter field="CHECK" name="USE_LEGACY_SQL" value="true"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;&quot;select * from products where created_at &gt; '&quot;+ context.last_success +&#13;&#10;&quot;'Products_orders&#13;&#10;&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="RESULT_SIZE" value="SMALL"/>
     <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
     <elementParameter field="TEXT" name="REGION_ENDPOINT_BQ" show="false" value="&quot;https://bigquery.googleapis.com&quot;"/>
     <elementParameter field="FILE" name="TOKEN_NAME" show="false" value="&quot;C:/Users/Laptop_User/workspace/token.properties&quot;"/>
@@ -223,10 +215,11 @@
     <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
     <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
-    <elementParameter field="CLOSED_LIST" name="RESULT_SIZE" show="false" value="AUTO"/>
+    <elementParameter field="CHECK" name="USE_CUSTOM_TEMPORARY_DATASET" show="false" value="false"/>
+    <elementParameter field="TEXT" name="TEMPORARY_DATASET_NAME" show="false" value="&quot;temp_dataset&quot;"/>
     <elementParameter field="CHECK" name="FORCE_SINGLE_QUERY_EXEC" value="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tBigQuerySQLRow_1">
+    <metadata connector="FLOW" name="tBigQueryInput_2">
       <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
@@ -289,18 +282,65 @@
       <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tBigQueryInput_1">
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnComponentOk1"/>
+  <node componentName="tBigtableConnection" componentVersion="2" offsetLabelX="0" offsetLabelY="0" posX="384" posY="96">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigtableConnection_1"/>
+    <elementParameter field="TECHNICAL" name="TACOKIT_COMPONENT_ID" show="false" value="YmlndGFibGUjQmlndGFibGUjSW5wdXQConnection"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" show="false" value=""/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" show="false" value=""/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="TEXT" name="configuration.projectName" value="&quot;replicate&quot;"/>
+    <elementParameter field="TEXT" name="configuration.instanceId" value="replicate-40"/>
+    <elementParameter field="CLOSED_LIST" name="configuration.authType" value="SERVICE_ACCOUNT_KEY"/>
+    <elementParameter field="PASSWORD" name="configuration.googleCredentials" value="enc:system.encryption.key.v1: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"/>
+    <elementParameter field="TECHNICAL" name="configuration.__version" show="false" value="-1"/>
+    <metadata connector="FLOW" name="tBigtableConnection_1"/>
+    <metadata connector="LOOKUP" name="LOOKUP"/>
+    <metadata connector="MERGE" name="MERGE"/>
+    <metadata connector="REJECT" name="REJECT"/>
+  </node>
+  <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="672" posY="96">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_1"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
+    <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
+    <elementParameter field="PASSWORD" name="ACCESS_TOKEN" show="false" value="enc:system.encryption.key.v1:WCfRqITESDF7/8Vx9IqVixq8bS7tcniVNtwvWLSh"/>
+    <elementParameter field="LABEL" name="ACCESS_TOKEN_WARNING" show="false" value="*Note: If the Access Token Expire we won't be able to refresh it!&quot;"/>
+    <elementParameter field="FILE" name="SERVICE_ACCOUNT_CREDENTIALS_FILE" value="&quot;E:/Downloads/replicate-40-d7e290dac998.json&quot;"/>
+    <elementParameter field="TEXT" name="CLIENT_ID" show="false" value="&quot;&quot;"/>
+    <elementParameter field="PASSWORD" name="CLIENT_SECRET" show="false" value="enc:system.encryption.key.v1:34ofjV+X42xJGxKOoMBu6k9vMDBk+XkPZY3qzGMv"/>
+    <elementParameter field="TEXT" name="PROJECT_ID" value="&quot;replicate-40&quot;"/>
+    <elementParameter field="TEXT" name="AUTHORIZATION_CODE" show="false" value="&quot;&quot;"/>
+    <elementParameter field="CHECK" name="USE_LEGACY_SQL" value="true"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select max(test.ETLcontrol)&#13;&#10;from test.etlcontrol&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="RESULT_SIZE" value="SMALL"/>
+    <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
+    <elementParameter field="TEXT" name="REGION_ENDPOINT_BQ" show="false" value="&quot;https://bigquery.googleapis.com&quot;"/>
+    <elementParameter field="FILE" name="TOKEN_NAME" show="false" value="&quot;C:/Users/Laptop_User/workspace/token.properties&quot;"/>
+    <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
+    <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" show="false" value="&quot;,&quot;"/>
+    <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" show="false" value="&quot;.&quot;"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="USE_CUSTOM_TEMPORARY_DATASET" show="false" value="false"/>
+    <elementParameter field="TEXT" name="TEMPORARY_DATASET_NAME" show="false" value="&quot;temp_dataset&quot;"/>
+    <elementParameter field="CHECK" name="FORCE_SINGLE_QUERY_EXEC" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tBigQueryInput_1">
+      <column comment="" defaultValue="" key="false" length="-1" name="job_id" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="job_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="table_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="last_Success" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tBigQuerySQLRow_1" offsetLabelX="0" offsetLabelY="0" source="tBigQuerySQLRow_1" target="tBigQueryInput_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk1"/>
   </connection>
-  <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tBigQueryInput_1" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_1" target="tMap_1">
-    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
-  </connection>
-  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tBigQuerySQLRow_1" offsetLabelX="0" offsetLabelY="0" source="tBigQuerySQLRow_1" target="tBigQueryOutput_1">
+  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tBigQueryInput_2" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_2" target="tBigQueryOutput_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tBigtableConnection_1" offsetLabelX="0" offsetLabelY="0" source="tBigtableConnection_1" target="tBigQueryInput_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="OnSubjobOk2"/>
   </connection>
   <subjob>
     <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" show="false" value="true"/>
@@ -309,22 +349,37 @@
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="255;220;180"/>
   </subjob>
   <subjob>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_1"/>
-    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
-    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
-  </subjob>
-  <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQuerySQLRow_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_101aef20-45c8-42ff-b3a0-7bcb8e7dbe69"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>w9X0xJX1nk56iv7pU2bpZmSc0T/pl7tKUdo3Bc7U6SMISOZF+tRri7IOtSpY8ZRJiqeJcI0Bd+2h&#13;
-djBJ/Caj3Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_90ec31fc-41c3-4649-a92a-7451d00eb5bc"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>CUbfsrsezP7ssywpW1gVEc2sXLLbtewEdO+xOXyNc081poIUfmN3b9MP/ioPt+ez+aS1NF6Pmwho&#13;
-86VyZj/rNQ==</DigestValue></Reference></SignedInfo><SignatureValue>JNgvnzFaMS07c3xO0yPqYzR/ViodvEB7uUZiC433yrogi7nYa0vPHbzgwzYHM+tZQuFP2tNFs1fg&#13;
-m+UWs1/PSF1Vqb/nXBKrDSGfIzhLZCldRgZyaw+lPTTrQvf+oHYv4KIwFBNF+L2Z4pZKT7AcCKo1&#13;
-QYl/XEJUWvG6U1DU63iXeV6Itua4uumuQq8EBPMTwFcDGW2yZrMfA49+OnNj4CG+Lhsc2+JF+lWj&#13;
-qNDTXf2xm3E5x5wCKZ53SUSrVtKEvFOzkCQS/2XW3hhpnmMS8tSzHH2C49Jvgq+HBOGlBVY7Ucp6&#13;
-rpC/r0EiT16FydcnvpT+hGGF3DS8Nf+Wa6xNLA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tMap_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_2"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigtableConnection_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_1"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f0001a05-0839-43e0-b0d3-a85d87538e5b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Sv8ZtpDSZ8Mrh7h7D6O3zZ1mX+YQkkhJLBoVN9/sNljyTpOStN5k9SoEfRiUkMEPYsO74n9HbwiQ&#13;
+IC6Ynf+yAA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_9338ecbf-9300-47a8-835f-e1e73162a77c"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Fscrk7P+ZVUzexMvXCY4MvCME8Z3zNV/EpndjZxyVwijhSx/X5WxKlSBeK7C4UrI7yrIH2EMYaOU&#13;
+puh9KGdIow==</DigestValue></Reference></SignedInfo><SignatureValue>WaC+gmm4RoJgm6BzCHjtnALJjBIIt2luUHTvIqbAvyuhzVZV1E3DeHhK9qhJL9L4rZ83WyJCY10t&#13;
+nedjG/g1ZrIC0CKPNLcCwO4jYglNUAUi64JipdpoUVJnLPHWiYZm/N2Vw52IYQ3cJhRc+WDRaRZu&#13;
+kEmXgQ7r0r02CfW+PSJeHtAB+D8KZbifecHG0jRBsQkEdeLcm/hL9PW307i+dlSAKHK36FX9JM9S&#13;
+R5P0my2zGlYMtwtS29gU6z3nUtC1XhO3498mJBL6wP1YzAHzSTaGOd8ViaLXDHMswK5jErDtfmW+&#13;
+M2nABBHeXUueciebdhbF19YjI0CjNV9ysXozYQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -346,4 +401,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_90ec31fc-41c3-4649-a92a-7451d00eb5bc" Target="#_101aef20-45c8-42ff-b3a0-7bcb8e7dbe69"><Timestamp>2023-11-29 07:20:56</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_9338ecbf-9300-47a8-835f-e1e73162a77c" Target="#_f0001a05-0839-43e0-b0d3-a85d87538e5b"><Timestamp>2023-11-29 09:21:21</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
