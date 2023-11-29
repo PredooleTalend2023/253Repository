@@ -153,7 +153,7 @@
       <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="544" posY="96">
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="608" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tMap_1"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
@@ -176,11 +176,11 @@
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
-      <outputTables activateExpressionFilter="true" name="out1" sizeState="INTERMEDIATE">
+      <outputTables name="out1" sizeState="INTERMEDIATE">
         <mapperTableEntries expression="row1.ID " name="ID" nullable="true" type="id_Long"/>
         <mapperTableEntries expression="row1.Product_name " name="Product_name" nullable="true" type="id_String"/>
         <mapperTableEntries expression="row1.Price " name="Price" nullable="true" type="id_Long"/>
-        <mapperTableEntries expression=" row1.Order_date " name="Order_date" nullable="true" type="id_String"/>
+        <mapperTableEntries expression="TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, &#13;&#10;    TalendDate.addDate(&#13;&#10;        TalendDate.addDate(&#13;&#10;            TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, &#13;&#10;                TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, &#13;&#10;                    new java.util.Date(Long.parseLong(row1.Order_date.split(&quot;\\.&quot;)[0]) * 1000 + Long.parseLong(row1.Order_date.split(&quot;\\.&quot;)[1]))&#13;&#10;                )&#13;&#10;            ),&#13;&#10;            -5, &quot;HH&quot;&#13;&#10;        ),&#13;&#10;        -30, &quot;mm&quot;&#13;&#10;    )&#13;&#10;) " name="Order_date" nullable="true" type="id_String"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row1" sizeState="INTERMEDIATE">
         <mapperTableEntries name="ID" nullable="true" type="id_Long"/>
@@ -190,19 +190,39 @@
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="800" posY="96">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="// Fetch the maximum Order_date from the context or global variable&#10;String maxOrderDateFromTarget = (String) globalMap.get(&quot;maxOrderDate&quot;);&#10;&#10;// Extract timestamp from the source Order_date string and convert to milliseconds&#10;try {&#10;    // Convert the string timestamp to milliseconds&#10;    long timestamp = Long.parseLong(input_row.Order_date.split(&quot;\\.&quot;)[0]) * 1000L + Long.parseLong(input_row.Order_date.split(&quot;\\.&quot;)[1]);&#10;    &#10;    // Create a Date object from the milliseconds&#10;    java.util.Date inputDate = new java.util.Date(timestamp);&#10;&#10;    // Manipulate the timestamp: subtract 5 hours and 30 minutes&#10;    java.util.Calendar cal = java.util.Calendar.getInstance();&#10;    cal.setTime(inputDate);&#10;    cal.add(java.util.Calendar.HOUR_OF_DAY, -5);&#10;    cal.add(java.util.Calendar.MINUTE, -30);&#10;&#10;    // Get the manipulated Date object&#10;    java.util.Date manipulatedDate = cal.getTime();&#10;&#10;    // Format the manipulated date to the desired string format&#10;    java.text.SimpleDateFormat outputDateFormat = new java.text.SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);&#10;    String formattedDate = outputDateFormat.format(manipulatedDate);&#10;&#10;    // Compare the formatted manipulated date with the maximum Order_date from the target table&#10;    if (maxOrderDateFromTarget != null &amp;&amp; formattedDate.compareTo(maxOrderDateFromTarget) &gt; 0) {&#10;        // If the formatted manipulated date is greater than the maximum from the target table, it's an updated record&#10;&#10;        // Your logic to handle updated records here&#10;        // For example, print a message or perform further processing&#10;        System.out.println(&quot;Updated Order_date: &quot; + input_row.Order_date);&#10;&#10;        // Update the target table with the updated record&#10;        // You'll typically have a component (e.g., tMySQLOutput) connected to the target table&#10;        // Map the output_row values to the corresponding columns in the target table&#10;        output_row.ID = input_row.ID;&#10;        output_row.Product_name = input_row.Product_name;&#10;        output_row.Price = input_row.Price;&#10;        output_row.Order_date = formattedDate;&#10;    } else {&#10;        // If the record is not updated, set output_row values as input_row values&#10;        output_row.ID = input_row.ID;&#10;        output_row.Product_name = input_row.Product_name;&#10;        output_row.Price = input_row.Price;&#10;        output_row.Order_date = input_row.Order_date;&#10;    }&#10;} catch (Exception e) {&#10;    // Handle any potential exceptions&#10;    e.printStackTrace();&#10;}&#10;"/>
-    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+  <node componentName="tFilterRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="800" posY="96">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tFilterRow_16"/>
+    <elementParameter field="CLOSED_LIST" name="LOGICAL_OP" value="&amp;&amp;"/>
+    <elementParameter field="TABLE" name="CONDITIONS">
+      <elementValue elementRef="INPUT_COLUMN" value="Order_date"/>
+      <elementValue elementRef="FUNCTION" value=""/>
+      <elementValue elementRef="OPERATOR" value="&gt;"/>
+      <elementValue elementRef="RVALUE" value="&quot;2023-11-24 11:58:58.567&quot;"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="USE_ADVANCED" value="false"/>
+    <elementParameter field="MEMO_JAVA" name="ADVANCED_COND" show="false" value="// code sample : use input_row to define the condition.&#10;// input_row.columnName1.equals(&quot;foo&quot;) ||!(input_row.columnName2.equals(&quot;bar&quot;))&#10;// replace the following expression by your own filter condition &#10;input_row.columnName1.equals(input_row.columnName2)&#10;&#9;&#9;&#9;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tJavaRow_1">
+    <metadata connector="FLOW" name="tFilterRow_16">
       <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
     </metadata>
+    <metadata connector="FILTER" name="FILTER">
+      <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="REJECT" name="REJECT">
+      <column comment="" defaultValue="" key="true" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="TIMESTAMP" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" originalLength="-1" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
   </node>
-  <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1088" posY="64">
+  <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1088" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryOutput_1"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Users/Laptop_User/workspace/biquery_ProductOrderstest_date.csv&quot;"/>
@@ -265,11 +285,11 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
-  <connection connectorName="FLOW" label="out1" lineStyle="0" metaname="out1" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tJavaRow_1">
+  <connection connectorName="FLOW" label="out1" lineStyle="0" metaname="out1" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tFilterRow_16">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="out1"/>
   </connection>
-  <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tBigQueryOutput_1">
+  <connection connectorName="FILTER" label="row2" lineStyle="0" metaname="FILTER" offsetLabelX="0" offsetLabelY="0" source="tFilterRow_16" target="tBigQueryOutput_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
@@ -284,13 +304,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_10f07939-09bd-40b3-96a2-1f0612e7dec8"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>zbwoEecU60miRnkHaEuybBs591CeeFylDRRl8YpdBK5m0xVKiFQBeDGqfoUQo662LX7z7NH7U1Rf&#13;
-YYSAfQoSxw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_a8decec9-cff2-4393-bfec-768334d03ff8"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>jnXLj9NjBWhr1ZprdeNwOU0dpk5wdbylYIdO81UJ/DnrOBrjHuE7ZLAShDuus6lPUvpDJiL8zhmP&#13;
-xT6PoEzMGQ==</DigestValue></Reference></SignedInfo><SignatureValue>CtUiTNcmY9dJJg0/wszF0a2E1TIJRjMo0IlyMJ1JPsgeKOUf4DnGwBNy/44vm0KnfEIaMTcNkpwr&#13;
-FpSHujtoDnm/UvE+tTNaQBj6l1Nmh7jGB95r0HdNkCDm7c3LS4Bsz7FInHV0HHzDsgQ4El3pYToz&#13;
-s64e3D+W9txc/tZ1QMviRBhtnBcs2ptKzuj02IfnlhqTHG7J1nVlkL3CkvAtwGWyRCq4vcA5X6bg&#13;
-/AWlNwm1LRB9dzXm9K5zG+bI12m7+fyCQwZsOiGzGc5whGQWkFM0yZXGteDRv/3S5DHf1oSHBEsN&#13;
-vImrB+3nO1lYSicV2zkFukxnrcf2rLVii8kidA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_f988d7ba-2055-48ef-9baf-9f567f0f3b3d"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>xTtdMyMBUmlNBtNcZ0EHbeviTIDZYme8waznA6Wj4BASnM+9LmltFC/oH6aXO6OE71KcHbkLLU3t&#13;
+IfJoOlVSDQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_614b4254-7f17-4afb-a61c-cdb31a6297aa"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>cKqGS8hnlb/H1Cvgq8RJfJEIDS1oZ0Q90WbOQACHs4bCtg7R+/DXOtaYhKcAgR4/6vDb+dJ6t2bE&#13;
+oELxhjV7Ug==</DigestValue></Reference></SignedInfo><SignatureValue>pCAhQF9B8XiIjmQipOvegbcKnKwlfUUbG3ZvOGi1NwXVMyTnO3/p1Sx/yPNhRp9SYi6pJptZseL2&#13;
+rdXfQPoSk5rdFaZEzMA6k8QHJK0dhxBmB2jz+MRYp5QNpRvrxc69I4mX0iy0gG/Xua6VycvhPwy+&#13;
+yFHW/OM9efmtSA//1/oIy+rPNE4t6hH9Jp19FIqkDXd9ekMOpsT6JIYB9YUtS4kIG+L8rePIjzZo&#13;
+zzGwKw4j/yloWz8JAlEdpSqp3d3yHVpYfC9AEeuc26Jt5oaoDCWrX8ZAp3FnuPa2UHemKFQmYqkT&#13;
+dqjRWpfQgQXzZsfSCjBrpeiyKKlCa6D8A5nrdw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -312,4 +332,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_a8decec9-cff2-4393-bfec-768334d03ff8" Target="#_10f07939-09bd-40b3-96a2-1f0612e7dec8"><Timestamp>2023-11-28 11:46:19</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_614b4254-7f17-4afb-a61c-cdb31a6297aa" Target="#_f988d7ba-2055-48ef-9baf-9f567f0f3b3d"><Timestamp>2023-11-28 13:06:15</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
