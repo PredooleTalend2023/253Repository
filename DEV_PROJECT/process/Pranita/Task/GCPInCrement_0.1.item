@@ -117,6 +117,7 @@
   </parameters>
   <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
     <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
@@ -151,6 +152,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="448" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="//Code generated according to input schema and output schema&#10;output_row.id = input_row.id;&#10;output_row.name = input_row.name;&#10;output_row.OP_Indicator = input_row.OP_Indicator;&#10;&#10;// Assuming input_row.Modified_At is a double representing seconds since epoch&#10;&#10;// Assuming input_row.Modified_At is a double representing seconds since epoch&#10;double doubleValue = input_row.Modified_At;&#10;&#10;// Convert the double to milliseconds&#10;long milliseconds = (long) (doubleValue * 1000);&#10;&#10;// Subtract 30 minutes (30 * 60 * 1000 milliseconds)&#10;long modifiedMilliseconds = milliseconds - (330 * 60 * 1000);&#10;&#10;// Create a new Date object with the modified milliseconds&#10;java.util.Date modifiedDatetimeMinus30Minutes = new java.util.Date(modifiedMilliseconds);&#10;&#10;// Set the output column value&#10;output_row.Modified_At = modifiedDatetimeMinus30Minutes;&#10;&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -163,6 +165,7 @@
   </node>
   <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="640" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryOutput_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Users/Laptop_User/workspace/biquery_bulk.txt&quot;"/>
     <elementParameter field="CHECK" name="APPEND" value="false"/>
@@ -262,6 +265,7 @@
   </node>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tBigQueryInput_1" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_1" target="tJavaRow_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tBigQueryOutput_1">
@@ -277,6 +281,7 @@
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
   </connection>
   <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tBigQueryInput_2" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_2" target="tJavaRow_2">
@@ -302,13 +307,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="230;100;0"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="255;220;180"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_1024b742-fec5-42a5-a275-d4c3efcd7a8b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>+O38pbRm2cgAabBW++JQKmHj8zOgXjKL/Pv7M/4o9zBvWI3AHIYEsCOLU9KSzwi51uxrjHRmr/jK&#13;
-Xc8GmRZIrA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_0f977a01-1519-4c0e-945a-205344fe3a37"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>qe0KCMF2sjpK5QkmyRevkH+ESmQ+2kXyVao+oMw0G7pAisMkpuPsxIADeY2zlsMDj1dG93mKx2Jt&#13;
-DsLIfhV4jA==</DigestValue></Reference></SignedInfo><SignatureValue>XLdtSkdH/H8WXsjFg6+Qt3z51C6OB1M4Qeo3I6GZLBhSrtrmaRNWVl3t02TBbYo/65+9KhvegYzp&#13;
-DAIlmZXPQcsFKYPwCYKiQoMaXnN0LRifFJCzztbAPoIrvs6rgrN2uN65fLHIvdtJ1k9/Ge4VFEKy&#13;
-ilIARHf5j8ONw5OLu1Eq0ohj5DqpXurHSvU2NEtKTcvngcy35SLgeU8ow6YgUGSV+QhZz0B5kxAm&#13;
-fRx5aHdv5tdpfjUjulxHvYkYQ4FEWDLnBAT58U/NRM20kHATZ2GONvWFJNxiGhRHrwAywPQXetUH&#13;
-nW3zbu4fOM5Rh8HWzhFx6GpSjNVrwicFCF84cA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_153df789-75a8-4a43-a7f9-3ee6768e740b"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>iVywjCDhjjlnyAoM0LV0ysrxQVcavb+GppfGQgqN77UUoMWC2Citko4q2ZhxwZ68YHP9qJkjC3Pz&#13;
+H3GZXfPTgA==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_7afceae9-2b66-40c5-b153-752b20d937f6"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>PBOfJyazT01IwkPuC3Qq75U5HEBRLZOEC5e3UiLmuyt4dHRTHya15fRfkJsUIWflU5tsVOAgEyO6&#13;
+rAZEoimkpQ==</DigestValue></Reference></SignedInfo><SignatureValue>Kk1hZuVoLtq5y4f8D7K94vb6WQSXK3YZlelQyOvoyO0qRe8ooa7TVyNYhJQB7LTrbAZB1daL6ZC2&#13;
+4hY4HMtDhOqArdPcaJfW31ctcRMniX8I+m3F8oU5X9RqfRz+evEtlwpK9FRAEde8VdHIGCeJ9uqQ&#13;
+HLHsoN1r4kKT+OFHV/tQrhDM1rC0/n6KjqnpM0yuuEd0Q0gLnmvZXYqV+Pwm4pGBhF/XfurWz+Xa&#13;
+a3sioxGBJUx20FOOhEB76072UKgwZgRaHHzk4TE+kN7gwHHPScgUk/rueykSoqRFZAC57WEMeNx+&#13;
+013IhkR3tvzeW+2eSvNW6xJf9SmAswU/qTUXBQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -330,4 +335,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_0f977a01-1519-4c0e-945a-205344fe3a37" Target="#_1024b742-fec5-42a5-a275-d4c3efcd7a8b"><Timestamp>2023-11-29 04:17:17</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_7afceae9-2b66-40c5-b153-752b20d937f6" Target="#_153df789-75a8-4a43-a7f9-3ee6768e740b"><Timestamp>2023-11-29 04:17:27</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
