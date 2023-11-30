@@ -155,7 +155,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1088" posY="64">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.last_Success= TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, input_row.last_Success);&#10;context.Current_run = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, TalendDate.getCurrentDate());&#10;context.delete_sql=&quot;delete from products='&quot; +context.last_Success+ &quot; ' &quot;;&#10;&#10;&#10;System.out.println(&quot;last_success : &quot; +context.last_Success);&#10;System.out.println(&quot;Current_run  : &quot; +context.Current_run);&#10;System.out.println(&quot;delete_sql  : &quot; +context.delete_sql);&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="// Convert input_row.last_Success from string to datetime format&#10;java.util.Date lastSuccessDate = TalendDate.parseDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, input_row.last_Success);&#10;&#10;// Set context variables as datetime strings&#10;context.last_Success = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, lastSuccessDate);&#10;context.Current_run = TalendDate.formatDate(&quot;yyyy-MM-dd HH:mm:ss&quot;, TalendDate.getCurrentDate());&#10;&#10;// Constructing delete SQL statement&#10;context.delete_sql = &quot;delete from products where Order_date &lt; '&quot; + context.last_Success + &quot;'&quot;;&#10;&#10;// Printing the variables&#10;System.out.println(&quot;last_success : &quot; + context.last_Success);&#10;System.out.println(&quot;Current_run : &quot; + context.Current_run);&#10;System.out.println(&quot;delete_sql : &quot; + context.delete_sql);&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_1">
@@ -271,7 +271,7 @@
       <column comment="" key="false" length="-1" name="last_Success" nullable="false" originalLength="-1" pattern="&quot;yyyy-MM-dd HH:mm:ss&quot;" precision="-1" sourceType="DATE" type="id_Date" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tBigQuerySQLRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1280" posY="384">
+  <node componentName="tBigQuerySQLRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1152" posY="384">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQuerySQLRow_1"/>
     <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
     <elementParameter field="PASSWORD" name="ACCESS_TOKEN" show="false" value="enc:system.encryption.key.v1:bDdpXWyx3UCdN7L88KdRsSlw5PA+4Dw677NQ6QaO"/>
@@ -332,7 +332,7 @@
       <column comment="" defaultValue="" key="false" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="&quot;YYYY-MM-DD HH:MM:SS&quot;" precision="-1" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="&quot;YYYY-MM-DD HH:MM:SS:SSSSSS&quot;" precision="-1" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="832" posY="384">
@@ -388,7 +388,7 @@
       <column comment="" defaultValue="" key="false" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="&quot;YYYY-MM-DD HH:MM:SS&quot;" precision="-1" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Order_date" nullable="true" originalLength="-1" pattern="&quot;YYYY-MM-DD HH:MM:SS:SSSSSS&quot;" precision="-1" sourceType="TIMESTAMP" type="id_Date" usefulColumn="true"/>
     </metadata>
     <metadata connector="VALIDATION_REJECT" name="VALIDATION_REJECT">
       <column comment="" defaultValue="" key="false" length="-1" name="ID" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
@@ -443,13 +443,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_990013ee-aa84-4265-ab10-420d7cf5a076"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>uR+5dc4wGhh8bucnwNB+dBHOuLD70l8pkFQ1NbK9B0sZnm3DMSPz3D5gnSlbOXY3cBXa6Y3poqmi&#13;
-zwlho8dd3g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_a2b886fe-3866-409c-8e86-17c1c069729d"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>6X4s5T27kpgbv7WfFykbUhAkDZFFBT7Cd++AgF7UTBVyTpCMuNakS7y9aHceEVsVRaqOA+/VfKFD&#13;
-pRNOjg/68Q==</DigestValue></Reference></SignedInfo><SignatureValue>P3YxKxNE8i6xKoLNd/KfpNYc3vhvOeEydhEFmuYhc94rFg+eaZnqUledLVUJpzeGHmfOmcBomMMS&#13;
-VtKo6IThc874e97RrbZd7Rc1IA4Ido+OPavuxg7Us9rZHEy9BPHnGmZmtJcqgI0Y8KKMwLIlggVZ&#13;
-qbEBTmZ45nPQzLSOK3xuj3oZk4/vmKmAK/qShp46coQDwaD5LdsLukrLaeyQd01Qk4+exjX0pe9K&#13;
-1TvGu0pNJAh545wbbybmKyzImcLVs8cRlBPrP3wYBnO0WEJfLKMBz3NOVhCaY1MPWc/fBMwYBsXX&#13;
-c3jDxZCzfYe8ZPh014bHARkkcavSL9zv2AsYGg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_4edda806-35da-4f10-98b2-3420111e80be"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>qMZqq69wHhW6BSNeIyy+qfFcZmvYJDuSxN6rT5WJ9Um8EjrdJee1aW5g/WJ6+mkGuDdmhDcoBQa6&#13;
+gHvCw8beYQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_fb5b9103-c83b-46e8-97db-ecfcf4e6aeb5"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>G5c3gQcZ5iLL9JdfXMCmASsMNFteKEY+qJiRHTpwy7tMBFEm3fCfkTBlRwEx8OGMRW/K3UQTmDAF&#13;
+bLKUDGFOsw==</DigestValue></Reference></SignedInfo><SignatureValue>B6usDG3O5V2DCzV4vSs+I1Db+W3lN/h/jj518Q2gm0tszadNAD2DHT/BugRFnRIhmsJB3hgUalx6&#13;
+WUxUphB29FvA5/CG1YAK8qDnTdei3OBuzfuxDASLtryegKLQ8ycqQ7SFucPRBKrmk5ub3NiUFfgb&#13;
+HxE1beBIIK5iiLKYtWT32JCPHEiVttFOmGdjG2v3zywJadnUIWiGSgynt6GI005eMRMOOoqRkoIo&#13;
+X1o2VYhMERogdufNeUTGDvoS0EvhmALZdcHt4336fXhAP88kHKmC6mJ2MG3jwW6BDrqpYNsOoUwV&#13;
+4Goy2MhNkXMtAW50hHkku/yJvqWbFwnh1UTi6g==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -471,4 +471,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_a2b886fe-3866-409c-8e86-17c1c069729d" Target="#_990013ee-aa84-4265-ab10-420d7cf5a076"><Timestamp>2023-11-30 12:40:47</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_fb5b9103-c83b-46e8-97db-ecfcf4e6aeb5" Target="#_4edda806-35da-4f10-98b2-3420111e80be"><Timestamp>2023-11-30 12:49:33</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
