@@ -315,7 +315,7 @@
     <elementParameter field="TEXT" name="PROJECT_ID" value="&quot;replicate-40&quot;"/>
     <elementParameter field="TEXT" name="AUTHORIZATION_CODE" show="false" value="&quot;&quot;"/>
     <elementParameter field="CHECK" name="USE_LEGACY_SQL" value="true"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT * FROM test.Products_orders&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT * FROM test.Products_orders&#13;&#10;WHERE h &gt;= '&quot; + ((String)context.last_Success) + &quot;' AND h &lt;= '&quot; + ((String)context.Current_run) + &quot;'&#13;&#10;"/>
     <elementParameter field="CLOSED_LIST" name="RESULT_SIZE" value="SMALL"/>
     <elementParameter field="CHECK" name="USE_REGION_ENDPOINT" value="false"/>
     <elementParameter field="TEXT" name="REGION_ENDPOINT_BQ" show="false" value="&quot;https://bigquery.googleapis.com&quot;"/>
@@ -357,7 +357,7 @@
       <uiProperties shellMaximized="true"/>
       <varTables minimized="true" name="Var" sizeState="INTERMEDIATE"/>
       <outputTables name="out1" sizeState="INTERMEDIATE">
-        <mapperTableEntries expression="java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);&#13;&#10;java.util.Date lastSuccessDate = null;&#13;&#10;java.util.Date currentRunDate = null;&#13;&#10;java.util.Date orderDate = null;&#13;&#10;&#13;&#10;try {&#13;&#10;    lastSuccessDate = TalendDate.parseDateLocale(&quot;yyyy-MM-dd HH:mm:ss&quot;, context.last_Success, &quot;EN&quot;);&#13;&#10;    currentRunDate = TalendDate.parseDateLocale(&quot;yyyy-MM-dd HH:mm:ss&quot;, context.Current_run, &quot;EN&quot;);&#13;&#10;    orderDate = TalendDate.parseDateLocale(&quot;yyyy-MM-dd HH:mm:ss&quot;, row1.Orde_date, &quot;EN&quot;);&#13;&#10;} catch (java.text.ParseException e) {&#13;&#10;    e.printStackTrace();&#13;&#10;}&#13;&#10;&#13;&#10;if (orderDate != null &amp;&amp; lastSuccessDate != null &amp;&amp; currentRunDate != null) {&#13;&#10;    if (orderDate.compareTo(lastSuccessDate) &gt;= 0 &amp;&amp; orderDate.compareTo(currentRunDate) &lt;= 0) {&#13;&#10;        row1.isWithinRange = &quot;Yes&quot;; // Use row2 for output&#13;&#10;    } else {&#13;&#10;        row1.isWithinRange = &quot;No&quot;; // Use row2 for output&#13;&#10;    }&#13;&#10;} else {&#13;&#10;    row1.isWithinRange = &quot;No&quot;; // Handle null dates as needed&#13;&#10;} " name="Orde_date" nullable="true" type="id_Date"/>
+        <mapperTableEntries expression="TalendDate.parseDateLocale(&quot;yyyy-MM-dd HH:mm:ss&quot;,row1.Orde_date,&quot;EN&quot;) " name="Orde_date" nullable="true" type="id_Date"/>
       </outputTables>
       <inputTables lookupMode="LOAD_ONCE" matchingMode="UNIQUE_MATCH" name="row1" sizeState="INTERMEDIATE">
         <mapperTableEntries name="ID" nullable="true" type="id_Long"/>
@@ -571,13 +571,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_6fcd9d57-d4d3-4af7-bbdd-f1d5adbdfd09"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>Wx7Wj5PQo2t1TKDTQBqBm4QCL8rYvc79OydLdkbDVx1VswfMjM4yyvY+JuiSwia99nTTo6J+djwH&#13;
-nzRveCQa2Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_68d0df22-3532-4b55-9c3e-5ca45b3c7e43"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>aG5S+JN0gj8JhPjRRP5ulIc+YFVNa8Ss0FkRpXaTJFlkYcmon41N8w2snJo9dFWxw3ZPBDe1jyUs&#13;
-0nccv72uUg==</DigestValue></Reference></SignedInfo><SignatureValue>hbKtR+YfRd+Ha6wwDJGve/11CqfKq5fRddKMFTRxMbXHqWLxSDfzaazlG8+ZiULU4WHiDc7HgItv&#13;
-Dj0xHjWFUt0HOVm3eCSQ0RoMGNkj5znionlSvlcqQy5rxfCGgapE7CkkZ9PGFODTLredEK6SwTLe&#13;
-8OM1Oy13Wj3hvuz70X428Q5haffoOYW22hpCCY+DD2G5VuuqQIKRCP4CbXE9L1gnA7oKm6X2UtlL&#13;
-psGcSHyPGg5AH5i59ggA8SLmb0EIPfv/VRzgq7ZKRIcpABoibKNfkjmOSe00oX/X6Dvw7kMA6fN3&#13;
-rad9CuCj9D7qR/PQBGugjH9eV2abeBK8LdK+/w==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_71615d9e-ee2d-4a57-81ee-509fdfde1151"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>EIcKSzGKut0FCAQz+iWL9EH3f01OZGIDcA2PL6SibIl24vGxLlReXk7aMavGm7Rxyb3Bs4Ry1Yw6&#13;
+l3JlSmIKVg==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_73abbf59-267a-4fbd-afd9-84a6a8c45ee5"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>RJs/pwmF8/xduMrhYNwxlOgLpHuGF9uWf0u8T9EN5HAShmfK7x3OjRWKhR0+PdqMYZejCQNxyWGC&#13;
+EPmm8KhozQ==</DigestValue></Reference></SignedInfo><SignatureValue>OelzxxvRMyZoblcVDQQ2KgD0HFoVlfnPtT3Dutw6eiDA3E77/46vrI5YMOFGrFkDbOw+D7rdb46Y&#13;
+QweLVcd/9iSvBbbR0o8jyhKsJLdpSi4zCmhB6WB4dehn9XNJM+qDpG/BWqm+EO6FpbDeAYaDsu2J&#13;
+moqccXrEkxhRmOeRhT2Q7nlzjAF8d/bTwf8CBtQSEgc+uP+vu/2I70pwlEgYSjEXdm47dhvuxa9x&#13;
+UK4csQbIJN5x7VdhW8vfS/QJ42hz6WeB6Ih92DJ7WtZ+50lOAoTsqdOnmC4mrdq9kQjNxk/DaHSI&#13;
+nJG/PyjFYo/IklWqPaGJu1HNylcxUvHdT/FRMw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -599,4 +599,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_68d0df22-3532-4b55-9c3e-5ca45b3c7e43" Target="#_6fcd9d57-d4d3-4af7-bbdd-f1d5adbdfd09"><Timestamp>2023-12-01 05:03:27</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_73abbf59-267a-4fbd-afd9-84a6a8c45ee5" Target="#_71615d9e-ee2d-4a57-81ee-509fdfde1151"><Timestamp>2023-12-01 05:07:35</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
