@@ -463,7 +463,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_2"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="// Assuming Orde_date is a boolean column&#10;double isTrue = input_row.Orde_date;&#10;&#10;// Define a default datetime value or null&#10;java.util.Date defaultDateTime = null; // Change this to a default datetime value if needed&#10;&#10;// Check the boolean condition and set the datetime value accordingly&#10;java.util.Date newDateTime = isTrue ? TalendDate.getCurrentDate() : defaultDateTime;&#10;&#10;// Output the new datetime value to the NewDateTimeColumn&#10;output_row.NewDateTimeColumn = newDateTime;&#10;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="// Assuming Orde_date is a double column representing timestamp (e.g., milliseconds or seconds since epoch)&#10;double timestamp = input_row.Orde_date;&#10;&#10;// Define the epoch time (January 1, 1970, 00:00:00 UTC) in milliseconds&#10;long epochMilliseconds = 0L;&#10;&#10;// Determine if the timestamp is in seconds or milliseconds since epoch&#10;boolean isMilliseconds = timestamp &gt; 1000000000000L; // Assuming this threshold for milliseconds&#10;&#10;// Convert the timestamp to milliseconds&#10;long timestampMilliseconds = isMilliseconds ? (long) timestamp : (long) timestamp * 1000; // If it's in seconds, convert to milliseconds&#10;&#10;// Calculate the datetime by adding the timestamp to the epoch time&#10;java.util.Date datetime = new java.util.Date(epochMilliseconds + timestampMilliseconds);&#10;&#10;// Output the datetime or assign it to an output column&#10;output_row.DateTimeColumn = datetime;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_2">
@@ -471,7 +471,7 @@
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Orde_date" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="TIMESTAMP" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="NewDateTimeColumn" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="DateTimeColumn" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="736" posY="256">
@@ -496,7 +496,7 @@
       <elementValue elementRef="LENGTH" value="10"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="Orde_date"/>
       <elementValue elementRef="LENGTH" value="10"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="NewDateTimeColumn"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="DateTimeColumn"/>
       <elementValue elementRef="LENGTH" value="10"/>
     </elementParameter>
     <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
@@ -507,7 +507,7 @@
       <column comment="" key="false" length="-1" name="Product_name" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="STRING" type="id_String" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="-1" name="Price" nullable="true" originalLength="-1" pattern="" precision="-1" sourceType="INT64" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Orde_date" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="TIMESTAMP" type="id_Double" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="NewDateTimeColumn" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="DateTimeColumn" nullable="true" originalLength="-1" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tPrejob_1" offsetLabelX="0" offsetLabelY="0" source="tPrejob_1" target="tBigQueryInput_1">
@@ -541,7 +541,7 @@
       <elementValue elementRef="TRACE_COLUMN" value="Orde_date"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="NewDateTimeColumn"/>
+      <elementValue elementRef="TRACE_COLUMN" value="DateTimeColumn"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
@@ -589,13 +589,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_b2ae3729-bf14-4bf8-a906-b48ad687252c"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>gGNPO7krK/AbIj1kUNDIH/qAz+IHNbIlentpfN1fpujv1ykkBs0EnFYFuav3RZ27j2meZm6MKGLL&#13;
-gNRXydyhMw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_f264ffad-916c-44b5-a989-5820bb1fea98"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>d/2lB4esdoWd8mLMcVI6eDFY8kUQsj1Z+/lYD4KOO3QXW3+VhVXXb3P6ggmlfvM9b4GLLj8tyZCg&#13;
-UzBIsKlM3Q==</DigestValue></Reference></SignedInfo><SignatureValue>b3qWOcqRpE5YtqTZkJblCWA4pVdO2J4FClD6gFusVAY8mw1LD6S9iBcqKEv6A697ZwJs9i0e9vd2&#13;
-alSB0Oqtjwxq0O3q8D0MRwan/+W18RsWGT+HcuIcztjAhEWAiX53gNOi57c4nU1mXsRVr+DtLjIS&#13;
-y9RxdfQuRbygp1tT5oHs2PqmlsVpnxoGYR7jwcCbKWRGzhtZRIskg9MeHBglf6SatXyTB5rczvPd&#13;
-sjQYD+iqrY0iLJTuNl4dqsxmT4HFIfes4MfEb1HeUz6VdvO+AmdoJECcoSPfKw4jlull+kMQJ6Ly&#13;
-v+c0uUkoFFdLnKpOUtbFtiy/VmcwjqV8bqa/KA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_0d1f8d0b-373c-4bcc-9bba-19b90d6059ed"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>4iGyhJgV+2ZEUdAKm3RePi9P46YFoSsg7qAnT4X075WqOXCY8w+YTrKX47rcWtL/Vj613Shs/0zP&#13;
+SSqxoguQJw==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_d09b46e5-2f34-4ea3-8fd6-77ca85c50fc2"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>IgfHFe8kQICpUk5RKOShCvf1zMpo3FuA7EU2iYLq/PLv4RbfwwXxmEduw5q6Ki/ah0VfgkS0VEeL&#13;
+stZxuhX3Wg==</DigestValue></Reference></SignedInfo><SignatureValue>gZGIyy3qr2ow2B/6myNZEpwQnVAlBp+TIq4WuIEjWfVcInkGtFrK1ThzYI9uxiEIX2Wqog+ELRB8&#13;
+Q3SFvw23katqWfOsQYv2IWyw3cq2jXcMmlkiolKjlAK+AH+Q9XvOByWQBBTHsRe635P5b7+0uQq7&#13;
+eAHthxJqMVFK417z1AQK5sbquHkM9oxb2PRGgXHSDR6CgQCadwWaDFL4GnBe2tJfbjAnGsRhvGxF&#13;
+oxmY3ZaYxx9FFbrU90h+EhtT9HgeX56Qlz54BOThg/aFDCQxNUPJqCPE/JlfS/CJOxLqfvZoS1L5&#13;
+nRPG/rcmzLloamFbUQVpe2TqQN28U/dbG0mt3w==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -617,4 +617,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_f264ffad-916c-44b5-a989-5820bb1fea98" Target="#_b2ae3729-bf14-4bf8-a906-b48ad687252c"><Timestamp>2023-12-01 06:52:17</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_d09b46e5-2f34-4ea3-8fd6-77ca85c50fc2" Target="#_0d1f8d0b-373c-4bcc-9bba-19b90d6059ed"><Timestamp>2023-12-01 06:54:01</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
