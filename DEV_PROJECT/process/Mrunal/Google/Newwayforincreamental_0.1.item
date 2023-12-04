@@ -115,6 +115,7 @@
   </parameters>
   <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="160" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
     <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
@@ -150,6 +151,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_2"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="// Assuming Orde_date is a double column representing timestamp (e.g., milliseconds or seconds since epoch)&#10;double timestamp = input_row.Orde_date;&#10;&#10;// Define the epoch time (January 1, 1970, 00:00:00 UTC) in milliseconds&#10;long epochMilliseconds = 0L;&#10;&#10;// Determine if the timestamp is in seconds or milliseconds since epoch&#10;boolean isMilliseconds = timestamp &gt; 1000000000000L; // Assuming this threshold for milliseconds&#10;&#10;// Convert the timestamp to milliseconds&#10;long timestampMilliseconds = isMilliseconds ? (long) timestamp : (long) timestamp * 1000; // If it's in seconds, convert to milliseconds&#10;&#10;// Calculate the datetime by adding the timestamp to the epoch time&#10;java.util.Date datetime = new java.util.Date(epochMilliseconds + timestampMilliseconds);&#10;&#10;// Output the datetime or assign it to an output column&#10;output_row.Orde_date =datetime;&#10;output_row.ID = input_row.ID;&#10;output_row.Product_name = input_row.Product_name;&#10;output_row.Price = input_row.Price;&#10;output_row.header__operation = input_row.header__operation;&#10;&#10;&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -163,6 +165,7 @@
   </node>
   <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="672" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryOutput_1"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Users/Laptop_User/workspace/biquery_product_Update_ct.csv&quot;"/>
     <elementParameter field="CHECK" name="APPEND" value="false"/>
@@ -219,7 +222,6 @@
   </node>
   <node componentName="tBigQueryInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryInput_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="DYNAMIC_GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
     <elementParameter field="CLOSED_LIST" name="AUTH_MODE" value="SERVICEACCOUNT"/>
@@ -261,7 +263,6 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="// Assuming Orde_date is a double column representing timestamp (e.g., milliseconds or seconds since epoch)&#10;double timestamp = input_row.Orde_date;&#10;&#10;// Define the epoch time (January 1, 1970, 00:00:00 UTC) in milliseconds&#10;long epochMilliseconds = 0L;&#10;&#10;// Determine if the timestamp is in seconds or milliseconds since epoch&#10;boolean isMilliseconds = timestamp &gt; 1000000000000L; // Assuming this threshold for milliseconds&#10;&#10;// Convert the timestamp to milliseconds&#10;long timestampMilliseconds = isMilliseconds ? (long) timestamp : (long) timestamp * 1000; // If it's in seconds, convert to milliseconds&#10;&#10;// Calculate the datetime by adding the timestamp to the epoch time&#10;java.util.Date datetime = new java.util.Date(epochMilliseconds + timestampMilliseconds);&#10;&#10;// Output the datetime or assign it to an output column&#10;output_row.Orde_date =datetime;&#10;output_row.ID = input_row.ID;&#10;output_row.Product_name = input_row.Product_name;&#10;output_row.Price = input_row.Price;&#10;output_row.header__operation = input_row.header__operation;&#10;&#10;&#10;&#10;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -275,7 +276,6 @@
   </node>
   <node componentName="tBigQueryOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tBigQueryOutput_2"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" show="false" value="bigquery_id"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;C:/Users/Laptop_User/workspace/biquery_product_Update_ct1.csv&quot;"/>
     <elementParameter field="CHECK" name="APPEND" value="false"/>
@@ -332,15 +332,16 @@
   </node>
   <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tBigQueryInput_1" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_1" target="tJavaRow_2">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
   </connection>
   <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tJavaRow_2" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_2" target="tBigQueryOutput_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row4"/>
   </connection>
   <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tBigQueryInput_2" offsetLabelX="0" offsetLabelY="0" source="tBigQueryInput_2" target="tJavaRow_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
   </connection>
   <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tBigQueryOutput_2">
@@ -350,7 +351,6 @@
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" show="false" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row3"/>
   </connection>
   <subjob>
@@ -363,13 +363,13 @@
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="92;131;150"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_93bcd12a-6d6b-486f-b3aa-977bc0906fb8"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>fTkURdPiQnr2t4JDzUdaMoCvX8IOGPdqTGZch0uHTi0eJtenG7AJdLbgvKEvmeASSPHtckaDJi5v&#13;
-cxiI0OWg5Q==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_7e878d66-0758-4f9d-96ef-64108e3b4d69"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>qGdSYefVqcXsJqWNfA3QWNzzQFA0wExPZEDlNUmk9ncbqU5/CiEh+8G2V3+bKRFwbPMD+h8mCO7v&#13;
-o8wofq8DVQ==</DigestValue></Reference></SignedInfo><SignatureValue>dc6ZH42ZvRGfEQZwkCSUV6xmXorrjHsEM67TxDsy6MZ0i4CFoKxR2RUx/b6lr8y00wSPVzwErylb&#13;
-at0vNXi5oEW3vuJ+MlTluuqoE1+a4dcimpnikQIG1bCUvmcoEiAqDAQ/i3doCH6aTrtNqKr4lF/t&#13;
-2rK0OUdwC/ms3ELkARzgeg0kz74KZi9A4Z+AGI1h0ICIL74aYmA8U3i5S4TMMSxKIKRz1QCyh3IX&#13;
-kIYUFqDkQl26v4q4NGi1mOWcRHkFkZPg7e6qFI62c7Q6KL6GR7DjpKZVhL0ShWSw0HHZChDuRvDI&#13;
-xIny0pCUVGKOJGURBEpcEi1Lq+vGCvR8fnl3Cw==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_2ddb870d-be0e-4888-a305-dbe16540cc28"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>wpiofBMFZmp0PdqkJHgTAXrfs5ytfXb2lvwazTp7FWdo6ON2CY92aENFw4di8MsutnmfSGetkm9c&#13;
+L/oU+ivV0g==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_87d2aed6-09a8-4d9f-bc68-0c5c898bfd18"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>SzAOnWfGIks34rE+w8cgkvcYOp9dIhvPdXQkJQU14jAChPAYnjQBSlFxyQ/KKc/Q8XDZEULXTVmp&#13;
+RVO1dD8bJw==</DigestValue></Reference></SignedInfo><SignatureValue>NJ5JbEWK4WMuSxDXQ0xa1cdqj6dKR0EcYBxPGlttuzUFmAb+/AA8X530z3X11KadVWOlgO7YFTfI&#13;
+0Y1F5p4VKj03aOegCokNft/IGRIMaM47jjk8JcRDicm1NLOZIl04nfKWunm3huHhNl4DVFuMKuEH&#13;
+qcWf0uMkwpiHfHxcRRPxF91en7XGdh1ZSyIQbEXLn1+VfPdJ7/TF8/eNdaKokKsGwSwQwe67IDVE&#13;
+XAU4s0td14PPeCMXX13tEsD2BbQZ3Bm/IeGdGPCpJESIMYpyQWCOTPYUeIwc3OD6iKz1Mi4+i6Qw&#13;
+ToxN9tAueY9J3yYtfwDns12DaK0gbZqdsR5bWQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -391,4 +391,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_7e878d66-0758-4f9d-96ef-64108e3b4d69" Target="#_93bcd12a-6d6b-486f-b3aa-977bc0906fb8"><Timestamp>2023-12-04 06:47:49</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_87d2aed6-09a8-4d9f-bc68-0c5c898bfd18" Target="#_2ddb870d-be0e-4888-a305-dbe16540cc28"><Timestamp>2023-12-04 06:52:35</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
